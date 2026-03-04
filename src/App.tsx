@@ -4,6 +4,7 @@ import { Training } from './components/Training';
 import { Exam } from './components/Exam';
 import { LanguageSelector } from './components/LanguageSelector';
 import { ThemeToggle } from './components/ThemeToggle';
+import { ScrollToTop } from './components/ScrollToTop';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { allQuestions, corrigesParTheme } from './data/questions';
 import type { Tab } from './types';
@@ -67,6 +68,7 @@ function AppContent() {
           </div>
         </div>
       </div>
+      <ScrollToTop />
     </div>
   );
 }

@@ -488,6 +488,39 @@ hr {
   font-style: italic;
 }
 
+/* Scroll to Top Button */
+.scroll-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: var(--accent-blue);
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-to-top:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
 @media (max-width: 768px) {
   h1 {
     font-size: 1.6rem;
@@ -529,5 +562,113 @@ hr {
 
   .header-controls {
     justify-content: center;
+  }
+
+  .scroll-to-top {
+    width: 3rem;
+    height: 3rem;
+    bottom: 1rem;
+    right: 1rem;
+    font-size: 1.2rem;
+  }
+
+  .language-buttons {
+    gap: 0.2rem;
+  }
+
+  .language-btn {
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 1rem;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.3rem;
+    padding-left: 0.8rem;
+    border-left-width: 4px;
+  }
+
+  .nav-tabs {
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+
+  .nav-tab {
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+    border-radius: 30px;
+  }
+
+  .tab-content {
+    padding: 1rem 0.8rem;
+    border-radius: 24px;
+  }
+
+  .theme-grid {
+    gap: 0.5rem;
+  }
+
+  .theme-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .controls {
+    padding: 0.6rem 1rem;
+    border-radius: 40px;
+  }
+
+  .question-card {
+    padding: 1rem;
+    border-radius: 20px;
+  }
+
+  .q-text {
+    font-size: 0.95rem;
+  }
+
+  .option {
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .timer {
+    font-size: 1.3rem;
+    padding: 0.2rem 1rem;
+  }
+
+  .exam-btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .score {
+    font-size: 2.5rem;
+  }
+
+  .search-input {
+    padding: 0.7rem 1rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .option,
+  .theme-btn,
+  .nav-tab,
+  .exam-btn,
+  .page-btn,
+  .show-corrige-btn,
+  .toggle-corrige {
+    min-height: 44px;
+  }
+
+  .language-btn {
+    min-width: 44px;
+    min-height: 44px;
   }
 }

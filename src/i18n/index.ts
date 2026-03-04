@@ -5,6 +5,8 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import translationFR from "./locales/fr.json";
 import translationEN from "./locales/en.json";
 import translationUK from "./locales/uk.json";
+import translationES from "./locales/es.json";
+import translationIT from "./locales/it.json";
 
 const resources = {
   fr: {
@@ -16,6 +18,12 @@ const resources = {
   uk: {
     translation: translationUK,
   },
+  es: {
+    translation: translationES,
+  },
+  it: {
+    translation: translationIT,
+  },
 };
 
 i18n
@@ -24,6 +32,7 @@ i18n
   .init({
     resources,
     fallbackLng: "fr",
+    lng: "fr", // Default language is French
     interpolation: {
       escapeValue: false,
     },
