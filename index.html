@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🇫🇷 Formation civique – entraînement + examen</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: #f0f4fa;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 1100px;
+            width: 100%;
+        }
+        h1 {
+            color: #0b2b4a;
+            font-weight: 600;
+            font-size: 2.2rem;
+            border-left: 6px solid #e1000f;
+            padding-left: 1.3rem;
+            margin: 0 0 0.3rem 0;
+        }
+        .nav-tabs {
+            display: flex;
+            gap: 1rem;
+            margin: 1.8rem 0 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        .nav-tab {
+            background: white;
+            border: 1px solid #c0d0e5;
+            border-radius: 40px;
+            padding: 0.6rem 2rem;
+            font-weight: 600;
+            color: #1e3a6b;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.02);
+            font-size: 1.1rem;
+        }
+        .nav-tab.active {
+            background: #1e3a6b;
+            color: white;
+            border-color: #1e3a6b;
+        }
+        .tab-content {
+            background: #fbfdff;
+            border-radius: 40px;
+            padding: 2rem 2rem 2rem 2rem;
+            box-shadow: 0 10px 30px rgba(0,20,50,0.1);
+        }
+        .theme-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1rem;
+            margin-bottom: 1.8rem;
+        }
+        .theme-btn {
+            background: white;
+            border: 1px solid #cfd9e6;
+            border-radius: 40px;
+            padding: 0.5rem 1.3rem;
+            font-weight: 500;
+            color: #1e3a6b;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+        .theme-btn.active {
+            background: #1e3a6b;
+            color: white;
+            border-color: #1e3a6b;
+        }
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            background: #eef4fa;
+            padding: 0.8rem 1.8rem;
+            border-radius: 60px;
+            margin-bottom: 2rem;
+        }
+        .toggle-corrige {
+            background: #e1000f;
+            color: white;
+            border: none;
+            border-radius: 40px;
+            padding: 0.55rem 1.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid #e1000f;
+        }
+        .toggle-corrige.off {
+            background: white;
+            color: #2c3e50;
+            border: 1px solid #b0c0d0;
+        }
+        .counter {
+            background: #eef2f7;
+            padding: 0.3rem 1.2rem;
+            border-radius: 30px;
+        }
+        .question-card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e0eaf3;
+        }
+        .theme-tag {
+            background: #dde5f0;
+            border-radius: 30px;
+            padding: 0.2rem 1.2rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 0.8rem;
+        }
+        .q-text {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 1.2rem;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+        .option {
+            background: #f1f5fb;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            border: 1px solid #d9e2f0;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .option.selected {
+            background: #d3e4ff;
+            border-color: #1e3a6b;
+            box-shadow: 0 0 0 2px #a5c1e5;
+            font-weight: 500;
+        }
+        .option.correct-highlight {
+            background: #bfe5cf;
+            border-color: #0f7b4a;
+            color: #004d2b;
+            font-weight: 500;
+            box-shadow: 0 0 0 2px #9fdfb6;
+        }
+        .footer-card {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .show-corrige-btn {
+            background: none;
+            border: 1px solid #1e3a6b;
+            border-radius: 30px;
+            padding: 0.3rem 1.3rem;
+            color: #1e3a6b;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .show-corrige-btn:hover {
+            background: #1e3a6b;
+            color: white;
+        }
+        .navigate {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+            margin: 1rem 0;
+        }
+        .page-btn {
+            background: white;
+            border: 1px solid #b9c7da;
+            border-radius: 40px;
+            width: 2.5rem;
+            height: 2.5rem;
+            font-size: 1.3rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .page-btn:disabled {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        .exam-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f2f7ff;
+            border-radius: 60px;
+            padding: 1rem 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .timer {
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: monospace;
+            background: #0b2136;
+            color: white;
+            padding: 0.3rem 1.8rem;
+            border-radius: 60px;
+            letter-spacing: 2px;
+        }
+        .exam-progress {
+            font-weight: 600;
+            color: #1e3a6b;
+        }
+        .exam-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+        .exam-btn {
+            background: #1e3a6b;
+            color: white;
+            border: none;
+            border-radius: 40px;
+            padding: 0.8rem 2.5rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .exam-btn:disabled {
+            background: #9aaec9;
+            cursor: not-allowed;
+        }
+        .result-box {
+            background: #e5f0ff;
+            border-radius: 40px;
+            padding: 1.8rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .score {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #0b2b4a;
+        }
+        hr {
+            border: 1px solid #dae2ed;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container" id="app">
+    <h1>🇫🇷 Parcours citoyen</h1>
+    <div style="margin-bottom:1rem;">190 questions réelles – entraînement + examen blanc</div>
+
+    <div class="nav-tabs">
+        <div class="nav-tab" :class="{active: activeTab==='train'}" @click="activeTab='train'">📘 Entraînement</div>
+        <div class="nav-tab" :class="{active: activeTab==='exam'}" @click="activeTab='exam'">📝 Examen blanc</div>
+    </div>
+
+    <!-- ENTRAÎNEMENT -->
+    <div class="tab-content" v-if="activeTab==='train'">
+        <div class="theme-grid">
+            <button class="theme-btn" :class="{active: currentTheme===0}" @click="setTheme(0)">Tous</button>
+            <button class="theme-btn" :class="{active: currentTheme===1}" @click="setTheme(1)">1. Principes</button>
+            <button class="theme-btn" :class="{active: currentTheme===2}" @click="setTheme(2)">2. Institutions</button>
+            <button class="theme-btn" :class="{active: currentTheme===3}" @click="setTheme(3)">3. Droits & devoirs</button>
+            <button class="theme-btn" :class="{active: currentTheme===4}" @click="setTheme(4)">4. Histoire & culture</button>
+            <button class="theme-btn" :class="{active: currentTheme===5}" @click="setTheme(5)">5. Vie sociale</button>
+        </div>
+        <div class="controls">
+            <span class="counter">{{filteredQuestions.length}} questions</span>
+            <button class="toggle-corrige" :class="{off: !globalShowCorrection}" @click="globalShowCorrection = !globalShowCorrection">
+                {{ globalShowCorrection ? 'Masquer corrigé' : 'Afficher tout corrigé' }}
+            </button>
+        </div>
+
+        <div class="navigate">
+            <button class="page-btn" :disabled="page===1" @click="page--">←</button>
+            <span>page {{page}} / {{totalPages}}</span>
+            <button class="page-btn" :disabled="page===totalPages" @click="page++">→</button>
+        </div>
+
+        <div v-for="q in paginatedQuestions" :key="q.id" class="question-card">
+            <span class="theme-tag">{{ themeName(q.theme) }} · thème {{ q.theme }}</span>
+            <div class="q-text">{{ q.num }}. {{ q.text }}</div>
+            <div class="options">
+                <div v-for="(opt, idx) in q.options" :key="idx" 
+                     class="option" 
+                     :class="{ 
+                        'selected': isSelected(q.id, String.fromCharCode(65+idx)),
+                        'correct-highlight': (globalShowCorrection || q.revealed) && q.correct === String.fromCharCode(65+idx)
+                     }"
+                     @click="selectOption(q.id, String.fromCharCode(65+idx))">
+                    {{ String.fromCharCode(65+idx) }}) {{ opt }}
+                </div>
+            </div>
+            <div class="footer-card">
+                <button class="show-corrige-btn" @click="revealOne(q.id)">⚡ révéler (cette question)</button>
+                <span v-if="getUserChoice(q.id)">votre choix : {{ getUserChoice(q.id) }}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXAMEN BLANC -->
+    <div class="tab-content" v-else-if="activeTab==='exam'">
+        <div v-if="!examActive && !examFinished" style="text-align: center; padding: 2.5rem;">
+            <h2 style="color:#0b2b4a; margin-bottom:1rem;">Examen blanc – 40 questions</h2>
+            <p style="margin-bottom:2rem;">28 questions de connaissance, 12 mises en situation. Durée : 45 minutes.</p>
+            <button class="exam-btn" @click="startExam">▶️ Démarrer l'examen</button>
+        </div>
+
+        <div v-else-if="examActive">
+            <div class="exam-header">
+                <span class="exam-progress">Question {{examIndex+1}} / {{examQuestions.length}}</span>
+                <span class="timer">{{ examTimerFormatted }}</span>
+                <span style="font-weight:500;">{{ examQuestions[examIndex].type }}</span>
+            </div>
+
+            <div class="question-card" style="background:#f5faff;">
+                <span class="theme-tag">{{ themeName(examQuestions[examIndex].theme) }} · {{ examQuestions[examIndex].type }}</span>
+                <div class="q-text">{{ examIndex+1 }}. {{ examQuestions[examIndex].text }}</div>
+                <div class="options">
+                    <div v-for="(opt, idx) in examQuestions[examIndex].options" :key="idx"
+                         class="option"
+                         :class="{ 'selected': examAnswers[examIndex] === String.fromCharCode(65+idx) }"
+                         @click="setExamAnswer(String.fromCharCode(65+idx))">
+                        {{ String.fromCharCode(65+idx) }}) {{ opt }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="exam-actions">
+                <button class="exam-btn" :disabled="examIndex===0" @click="examIndex--">⬅ Précédent</button>
+                <button class="exam-btn" v-if="examIndex < examQuestions.length-1" @click="examIndex++" :disabled="examAnswers[examIndex] === null">Suivant ➔</button>
+                <button class="exam-btn" v-else @click="finishExam" :disabled="examAnswers[examIndex] === null">📤 Terminer</button>
+            </div>
+        </div>
+
+        <div v-else-if="examFinished">
+            <div class="result-box">
+                <div class="score">{{ examScore }} / 40</div>
+                <div style="font-size:1.3rem; margin:0.5rem 0;">{{ examScore >= 24 ? '✅ Réussite' : '❌ À retravailler' }}</div>
+                <p>Seuil indicatif : 24/40</p>
+                <button class="exam-btn" @click="resetExam">⟲ Nouvel essai</button>
+            </div>
+            <div style="margin-top:2rem;">
+                <h3>Vos réponses</h3>
+                <div v-for="(q, idx) in examQuestions" :key="idx" style="border-bottom:1px solid #ccc; padding:0.8rem 0;">
+                    <div><strong>{{idx+1}}. {{q.text}}</strong> <span style="font-size:0.85rem;">({{q.type}})</span></div>
+                    <div>votre choix : {{ examAnswers[idx] || '–' }} | bonne réponse : {{ q.correct }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <div style="background: #fafcff; border-radius: 24px; padding: 1.5rem; border: 1px solid #cdddec;">
+        <div style="font-weight:700; margin-bottom:0.6rem;">📋 Corrigés intégraux par thème</div>
+        <div style="display:flex; flex-wrap:wrap; gap:1.5rem;">
+            <div><span style="background:#e5ecf5; padding:0.2rem 0.8rem; border-radius:20px;">Thème 1</span> {{ corrigesParTheme[1] }}</div>
+            <div><span style="background:#e5ecf5; padding:0.2rem 0.8rem; border-radius:20px;">Thème 2</span> {{ corrigesParTheme[2] }}</div>
+            <div><span style="background:#e5ecf5; padding:0.2rem 0.8rem; border-radius:20px;">Thème 3</span> {{ corrigesParTheme[3] }}</div>
+            <div><span style="background:#e5ecf5; padding:0.2rem 0.8rem; border-radius:20px;">Thème 4</span> {{ corrigesParTheme[4] }}</div>
+            <div><span style="background:#e5ecf5; padding:0.2rem 0.8rem; border-radius:20px;">Thème 5</span> {{ corrigesParTheme[5] }}</div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+<script>
+(function() {
+    // ==================== DONNÉES COMPLÈTES DES 190 QUESTIONS ====================
+    // Thème 1 : Principes et valeurs de la République (37 questions)
+    const theme1 = [
+        { num:1, text:"À quoi correspond la date du 14 juillet ?", options:["La fin de la Première Guerre mondiale","L'élection du premier Président","La fête nationale française","La fête du Travail"], correct:"C" },
+        { num:2, text:"Quel est l’un des symboles de la République française ?", options:["L'Arc de Triomphe","La tour Eiffel","Le drapeau tricolore (bleu, blanc, rouge)","Le coq sportif"], correct:"C" },
+        { num:3, text:"Le principe d’égalité signifie que :", options:["Tout le monde gagne le même salaire","La loi est la même pour tous, avec les mêmes droits et devoirs","Tout le monde doit avoir la même religion","Les impôts sont les mêmes pour tous"], correct:"B" },
+        { num:4, text:"\"Liberté, égalité, fraternité\", c’est :", options:["La devise de la République française","Le titre de la Constitution","Le premier article de la loi de 1905","Le nom de l'hymne national"], correct:"A" },
+        { num:5, text:"A-t-on le droit d'insulter publiquement quelqu’un parce qu’il est différent ?", options:["Oui, au nom de la liberté d'expression","Oui, si c'est fait sur Internet","Non, c'est un délit puni par la loi","Non, sauf s'il a commencé"], correct:"C" },
+        { num:6, text:"Certains métiers peuvent-ils être réservés aux hommes ?", options:["Oui, les métiers de la construction","Oui, dans la police et l'armée","Non, la loi garantit l'égalité professionnelle entre les femmes et les hommes","Non, sauf si l'employeur le décide"], correct:"C" },
+        { num:7, text:"De quand date la Constitution de la Ve République ?", options:["1789","1905","1945","1958"], correct:"D" },
+        { num:8, text:"Le régime de la France est :", options:["Une monarchie constitutionnelle","Une dictature","Une République démocratique","Un empire"], correct:"C" },
+        { num:9, text:"Lequel de ces symboles représente officiellement la République française ?", options:["Marianne","Le Louvre","Le croissant de lune","L'aigle"], correct:"A" },
+        { num:10, text:"Où peut-on voir la devise de la République ?", options:["Sur les billets de banque","Sur le fronton des mairies et des écoles publiques","Uniquement au palais de l'Élysée","Sur les voitures de police"], correct:"B" },
+        { num:11, text:"Quels sont des symboles officiels de la République française ?", options:["Le vin, le fromage et la baguette","Le drapeau, la devise et l'hymne national","La tour Eiffel et Notre-Dame","Le président et les ministres"], correct:"B" },
+        { num:12, text:"Qu’est-ce que l’égalité ?", options:["Avoir la même taille de maison","Avoir les mêmes droits et être soumis aux mêmes devoirs","Avoir le droit de tout faire","Ne pas payer d'impôts"], correct:"B" },
+        { num:13, text:"Que signifie la liberté ?", options:["Pouvoir faire tout ce qui ne nuit pas aux autres, dans le respect des lois","Ne respecter aucune règle","Pouvoir insulter qui on veut","Conduire sans permis"], correct:"A" },
+        { num:14, text:"Que signifie le mot \"fraternité\" dans la devise française ?", options:["Qu'il faut avoir des frères et sœurs","La solidarité et l'entraide entre les citoyens","Que seules les familles nombreuses ont des aides","L'obligation d'aimer ses voisins"], correct:"B" },
+        { num:15, text:"Quel animal est un symbole de la France ?", options:["L'ours","L'aigle","Le coq","Le lion"], correct:"C" },
+        { num:16, text:"Quel est l’un des rôles des associations ?", options:["Remplacer le gouvernement","Gérer les impôts","Participer à la vie sociale, culturelle ou sportive et créer du lien","Voter les lois"], correct:"C" },
+        { num:17, text:"Quel est le nom de l'hymne national ?", options:["Le Chant des Partisans","La Parisienne","La Marseillaise","L'Ode à la joie"], correct:"C" },
+        { num:18, text:"Quel symbole de la République française est tricolore ?", options:["Marianne","L'écharpe des maires et le drapeau","Le sceau de l'État","L'hymne national"], correct:"B" },
+        { num:19, text:"Quelle est la date de la fête nationale française ?", options:["1er mai","8 mai","14 juillet","11 novembre"], correct:"C" },
+        { num:20, text:"Quelle est la devise de la République française ?", options:["Travail, Famille, Patrie","Paix, Justice, Solidarité","Liberté, Égalité, Fraternité","Un pour tous, tous pour un"], correct:"C" },
+        { num:21, text:"Quelle est la langue officielle de la République française ?", options:["Le breton","Le français","Le français et l'anglais","L'occitan"], correct:"B" },
+        { num:22, text:"Quelle est la place de la langue française dans la République ?", options:["C'est une langue facultative","C'est la langue officielle de la République, inscrite dans la Constitution","Elle n'est utilisée qu'à l'école","C'est la langue des élites uniquement"], correct:"B" },
+        { num:23, text:"Quelle liberté permet à chacun d’exprimer ses idées ?", options:["La liberté de circulation","La liberté syndicale","La liberté de culte","La liberté d'expression"], correct:"D" },
+        { num:24, text:"Quelle proposition est correcte ? La liberté d'expression :", options:["Permet de dire tout ce que l'on veut, même des injures racistes","N'existe pas en France","Permet d'exprimer ses idées dans le respect de la loi (sans diffamation ni incitation à la haine)","Est réservée aux journalistes"], correct:"C" },
+        { num:25, text:"Quelles sont les couleurs du drapeau français ?", options:["Vert, blanc, rouge","Bleu, blanc, rouge","Noir, jaune, rouge","Bleu, jaune, rouge"], correct:"B" },
+        { num:26, text:"Qu'est-ce que la Marseillaise ?", options:["Une habitante de Marseille","Le plat national","L'hymne national français","Le nom du Parlement"], correct:"C" },
+        { num:27, text:"Qu'est ce qui est traditionnellement organisé sur les Champs Élysées le 14 juillet ?", options:["Une course de vélos","Un défilé militaire","Un grand marché","Une manifestation syndicale"], correct:"B" },
+        { num:28, text:"Qui est Marianne ?", options:["Une figure symbolique qui incarne la République française","La première Présidente de la République","La femme qui a cousu le premier drapeau","L'épouse de Napoléon"], correct:"A" },
+        { num:29, text:"Une personne peut-elle changer librement de religion ?", options:["Non, c'est interdit","Oui, la liberté de conscience est garantie par la laïcité","Oui, mais seulement avec l'accord de la mairie","Uniquement si elle a plus de 21 ans"], correct:"B" },
+        { num:30, text:"\"La France est une République indivisible, ..., démocratique et sociale\". Complétez :", options:["Religieuse","Laïque","Militaire","Européenne"], correct:"B" },
+        { num:31, text:"En quelle année la loi de séparation des Églises et de l'État a-t-elle été votée ?", options:["1789","1848","1905","1958"], correct:"C" },
+        { num:32, text:"Que permet le principe de laïcité ?", options:["Il interdit toutes les religions","Il oblige tout le monde à être catholique","Il garantit la liberté de conscience et la séparation entre l'État et les religions","Il finance les lieux de culte"], correct:"C" },
+        { num:33, text:"Quel droit est garanti par la laïcité ?", options:["Le droit de ne pas payer d'impôts","La liberté de croire ou de ne pas croire","Le droit de construire sa maison sans permis","Le droit de vote des étrangers"], correct:"B" },
+        { num:34, text:"Pourquoi le principe de laïcité doit-il être respecté à l'école ?", options:["Pour que les enfants n'aient pas de devoirs","Pour protéger les élèves de tout prosélytisme et garantir l'égalité","Pour obliger les enfants à manger de tout","Pour supprimer les vacances scolaires"], correct:"B" },
+        { num:35, text:"Qu'est-ce que la laïcité ?", options:["La neutralité de l'État vis-à-vis des religions et la liberté de conscience pour les citoyens","Une religion officielle","L'interdiction de porter une croix à la maison","L'obligation d'aller à l'église"], correct:"A" },
+        { num:36, text:"Un enfant peut-il refuser d’aller à l’école pour une raison religieuse ?", options:["Oui, si les parents sont d'accord","Non, l'instruction est obligatoire pour tous et l'école est neutre","Oui, s'il apprend chez lui à la place","Oui, le vendredi seulement"], correct:"B" },
+        { num:37, text:"Une personne a-t-elle le droit de ne pas croire en une religion ?", options:["Non, il faut obligatoirement choisir une religion","Oui, c'est ce qu'on appelle l'athéisme, protégé par la liberté de conscience","Oui, mais elle n'a pas le droit de le dire","Non, la loi de 1905 l'interdit"], correct:"B" }
+    ];
+
+    // Thème 2 : Système institutionnel et politique (46 questions)
+    const theme2 = [
+        { num:1, text:"Qui nomme le Premier ministre ?", options:["L'Assemblée nationale","Le Sénat","Le Président de la République","Le Conseil constitutionnel"], correct:"C" },
+        { num:2, text:"Le Parlement est composé :", options:["Du Président et du Premier ministre","De l'Assemblée nationale et du Sénat","Des ministres et des préfets","Des maires et des conseillers régionaux"], correct:"B" },
+        { num:3, text:"Qu'est-ce que le pouvoir exécutif ?", options:["De voter les lois","De juger les infractions","D'appliquer les lois et de diriger l'État","De modifier la Constitution"], correct:"C" },
+        { num:4, text:"Les dirigeants sont élus par les citoyens dans :", options:["Une dictature","Une démocratie","Une monarchie absolue","Un empire"], correct:"B" },
+        { num:5, text:"A-t-on le droit de ne pas respecter une loi ?", options:["Oui, si on n'est pas d'accord avec elle","Oui, si on ne la connaît pas","Non, nul n'est censé ignorer la loi et tout le monde doit la respecter","Non, sauf le dimanche"], correct:"C" },
+        { num:6, text:"Qui doit respecter la loi ?", options:["Uniquement les citoyens français","Uniquement les personnes majeures","Tout le monde (citoyens, étrangers, élus, État)","Seulement les personnes condamnées par la justice"], correct:"C" },
+        { num:7, text:"Quel est le rôle de l'autorité judiciaire ?", options:["Voter le budget de l'État","Veiller au respect des lois et sanctionner les infractions","Diriger l'armée","Élire le Président de la République"], correct:"B" },
+        { num:8, text:"Quel pouvoir détient un juge ?", options:["Exécutif","Législatif","Judiciaire","Médiatique"], correct:"C" },
+        { num:9, text:"L'autorité judiciaire est exercée par :", options:["Les policiers","Les ministres","Les magistrats (juges et procureurs)","Les députés"], correct:"C" },
+        { num:10, text:"Que se passe-t-il si un ministre ne respecte pas la loi ?", options:["Il ne risque rien grâce à son statut","Il peut être jugé et condamné comme n'importe quel citoyen","Il doit seulement payer une amende","Il est exilé dans un autre pays"], correct:"B" },
+        { num:11, text:"Qui est élu lors des élections législatives ?", options:["Les sénateurs","Les maires","Les députés","Le Président de la République"], correct:"C" },
+        { num:12, text:"Combien de députés composent l’Assemblée nationale ?", options:["348","577","705","100"], correct:"B" },
+        { num:13, text:"Quand sont élus les sénateurs ?", options:["Lors des élections sénatoriales (au suffrage universel indirect)","Lors des élections municipales","Tous les 5 ans en même temps que le Président","Ils ne sont pas élus, ils sont nommés à vie"], correct:"A" },
+        { num:14, text:"Qui est élu lors des élections municipales ?", options:["Les députés","Les conseillers municipaux (qui élisent ensuite le maire)","Les conseillers régionaux","Les préfets"], correct:"B" },
+        { num:15, text:"Qui est élu lors des élections présidentielles ?", options:["Le Premier ministre","Le Président de l'Assemblée nationale","Le Président de la République","Les maires des grandes villes"], correct:"C" },
+        { num:16, text:"À partir de quel âge a-t-on le droit de voter ?", options:["16 ans","18 ans","21 ans","25 ans"], correct:"B" },
+        { num:17, text:"Pour combien de temps est élu le président de la République française ?", options:["4 ans","5 ans (un quinquennat)","7 ans","À vie"], correct:"B" },
+        { num:18, text:"Pour combien de temps sont élus les députés ?", options:["3 ans","5 ans","6 ans","7 ans"], correct:"B" },
+        { num:19, text:"Pour combien de temps sont élus les sénateurs ?", options:["5 ans","6 ans (renouvelables par moitié tous les 3 ans)","7 ans","9 ans"], correct:"B" },
+        { num:20, text:"Qui possède le pouvoir exécutif ?", options:["L'Assemblée nationale et le Sénat","Le Président de la République et le Gouvernement","Les juges et les tribunaux","Les maires et les préfets"], correct:"B" },
+        { num:21, text:"Quelle condition est nécessaire pour voter aux élections ?", options:["Payer beaucoup d'impôts","Avoir un diplôme universitaire","Être inscrit sur les listes électorales","Être propriétaire de son logement"], correct:"C" },
+        { num:22, text:"Qui peut voter aux élections en France ?", options:["Tous les résidents, quelle que soit leur nationalité","Les citoyens français majeurs inscrits sur les listes électorales (et les citoyens européens pour les élections municipales et européennes)","Uniquement les hommes de plus de 18 ans","Uniquement les personnes qui travaillent"], correct:"B" },
+        { num:23, text:"Que signifie « suffrage universel » ?", options:["Le droit de vote est réservé aux plus riches","Le droit de vote appartient à tous les citoyens en âge de voter, sans distinction","Le vote est obligatoire dans le monde entier","On vote en levant la main sur la place publique"], correct:"B" },
+        { num:24, text:"Concernant les partis politiques, quelle proposition est correcte ?", options:["Il n'y a qu'un seul parti politique autorisé en France","Ils sont interdits par la Constitution","Ils concourent à l'expression du suffrage et se forment librement","Ils sont financés uniquement par des pays étrangers"], correct:"C" },
+        { num:25, text:"Quel est le rôle des députés ?", options:["Représenter la nation, voter les lois et contrôler l'action du gouvernement","Juger les criminels","Diriger l'armée","Nommer le Premier ministre"], correct:"A" },
+        { num:26, text:"La séparation des pouvoirs est un principe fondamental. Quels sont les trois pouvoirs concernés ?", options:["La presse, l'armée, l'Église","L'exécutif, le législatif, le judiciaire","La police, la justice, la prison","L'État, la région, le département"], correct:"B" },
+        { num:27, text:"Qui possède le pouvoir législatif ?", options:["Le Président de la République","Le Parlement (Assemblée nationale et Sénat)","Le Conseil d'État","La Cour de cassation"], correct:"B" },
+        { num:28, text:"Qui sanctionne l'auteur d'un vol ?", options:["La victime","Le maire","La justice (un juge/un tribunal)","La police directement"], correct:"C" },
+        { num:29, text:"Qui élit les députés ?", options:["Le Président de la République","Les grands électeurs","Les citoyens inscrits sur les listes électorales (suffrage universel direct)","Les sénateurs"], correct:"C" },
+        { num:30, text:"Qui vote les lois ?", options:["Le Gouvernement","Le Président de la République","Le Parlement (Assemblée nationale et Sénat)","Les maires"], correct:"C" },
+        { num:31, text:"Qui réside au palais de l'Élysée ?", options:["Le Premier ministre","Le Président de l'Assemblée nationale","Le Président de la République","Le Maire de Paris"], correct:"C" },
+        { num:32, text:"Combien y a-t-il de départements en France ?", options:["50","95","101 (96 en métropole et 5 en outre-mer)","130"], correct:"C" },
+        { num:33, text:"Qui représente l'État dans un département ?", options:["Le député","Le préfet","Le maire","Le commissaire de police"], correct:"B" },
+        { num:34, text:"Qui dirige la commune ?", options:["Le préfet","Le maire (et son conseil municipal)","Le député","Le président de la région"], correct:"B" },
+        { num:35, text:"Est-ce que le président de la République a tous les pouvoirs ?", options:["Oui, il décide de tout seul","Non, les pouvoirs sont séparés (exécutif, législatif, judiciaire)","Oui, sauf pendant les vacances","Non, il n'a aucun pouvoir"], correct:"B" },
+        { num:36, text:"Qui est le préfet ?", options:["Le chef de la police municipale","Le représentant de l'État dans le département ou la région, nommé par le Président","Un juge d'instruction","Un élu local"], correct:"B" },
+        { num:37, text:"Quel est le rôle du Parlement ?", options:["Faire appliquer les lois","Voter les lois et contrôler le gouvernement","Arrêter les délinquants","Distribuer le courrier"], correct:"B" },
+        { num:38, text:"Quel est le régime politique de la France aujourd'hui ?", options:["La IVe République","La Ve République","Le Second Empire","La Restauration"], correct:"B" },
+        { num:39, text:"Combien d'États font partie de l'Union européenne au 1er janvier 2025 ?", options:["15","27","50","28"], correct:"B" },
+        { num:40, text:"Quel État n'est pas membre de l'Union européenne ?", options:["L'Espagne","L'Italie","Le Royaume-Uni (depuis le Brexit)","L'Allemagne"], correct:"C" },
+        { num:41, text:"Quelle condition est nécessaire pour voter aux élections européennes ?", options:["Parler au moins trois langues","Être citoyen d'un pays membre de l'Union européenne et être inscrit sur les listes électorales","Avoir un passeport diplomatique","Payer des impôts en Belgique"], correct:"B" },
+        { num:42, text:"À quelle fréquence les élections européennes sont-elles organisées ?", options:["Tous les 3 ans","Tous les 4 ans","Tous les 5 ans","Tous les 7 ans"], correct:"C" },
+        { num:43, text:"Quel pays est un pays fondateur de l'Union européenne ?", options:["Le Royaume-Uni","La France (avec l'Allemagne, l'Italie, la Belgique, les Pays-Bas et le Luxembourg)","L'Espagne","La Pologne"], correct:"B" },
+        { num:44, text:"Quelle est la monnaie utilisée en France ?", options:["Le Franc français","Le Dollar","L'Euro","La Livre sterling"], correct:"C" },
+        { num:45, text:"Qui élit les députés européens ?", options:["Les gouvernements de chaque pays","Les citoyens des États membres de l'Union européenne","Le Parlement de Strasbourg","La Commission européenne"], correct:"B" },
+        { num:46, text:"Quand célèbre-t-on la journée de l'Europe ?", options:["Le 1er janvier","Le 9 mai (en commémoration de la déclaration Schuman de 1950)","Le 14 juillet","Le 11 novembre"], correct:"B" }
+    ];
+
+    // Thème 3 : Droits et devoirs (30 questions)
+    const theme3 = [
+        { num:1, text:"Comment s’appelle la Constitution actuelle de la France ?", options:["La Constitution de la Déclaration des droits","La Constitution de la Révolution","La Constitution de la Ve République (datant de 1958)","La Constitution européenne"], correct:"C" },
+        { num:2, text:"Comment s'appelle le texte qui énonce les droits et devoirs des personnes résidant en France ?", options:["Le livret de famille","Le code pénal","La Charte des droits et devoirs du citoyen français","Le registre du commerce"], correct:"C" },
+        { num:3, text:"Concernant les droits individuels, quelle proposition est correcte ?", options:["Ils sont absolus et n'ont aucune limite","Ils sont garantis par la loi mais peuvent être limités pour protéger l'ordre public ou les droits des autres","Ils sont réservés uniquement aux personnes riches","Ils changent tous les mois"], correct:"B" },
+        { num:4, text:"De quelle année date la Déclaration des droits de l’homme et du citoyen ?", options:["1492","1789","1905","1945"], correct:"B" },
+        { num:5, text:"Lequel de ces droits est un droit fondamental en France ?", options:["Le droit de posséder une arme à feu librement","Le droit d'avoir une voiture de fonction","L'égalité devant la loi, la liberté d'expression et le droit à l'éducation","Le droit de ne pas payer d'impôts"], correct:"C" },
+        { num:6, text:"Parmi ces textes, lequel garantit les droits et libertés en France ?", options:["Le règlement de la copropriété","Le code de la route","La Constitution (et la Déclaration des droits de l'homme et du citoyen)","Le dictionnaire de l'Académie française"], correct:"C" },
+        { num:7, text:"Qu’est-ce que la liberté d’expression ?", options:["Le droit de dire, d'écrire ou de publier ses idées, dans le respect de la loi","Le droit d'insulter qui on veut","L'obligation de parler français tout le temps","Le droit de mentir devant un juge"], correct:"A" },
+        { num:8, text:"Quel droit permet à une personne de se défendre devant la justice ?", options:["Le droit de se venger","Le droit à la légitime défense illimitée","Le droit à un procès équitable et d'être assisté par un avocat","Le droit de menacer le juge"], correct:"C" },
+        { num:9, text:"Quel est le texte fondateur établissant en France les droits et les devoirs de chaque citoyen ?", options:["La Déclaration des droits de l'homme et du citoyen","Le code civil","Le traité de Versailles","Le programme scolaire"], correct:"A" },
+        { num:10, text:"Quel texte a été adopté pendant la Révolution française ?", options:["L'abolition de la peine de mort","Le droit de vote des femmes","La Déclaration des droits de l'homme et du citoyen","La loi sur les 35 heures"], correct:"C" },
+        { num:11, text:"Quelle liberté permet à une personne de ne pas avoir de religion ?", options:["La liberté de la presse","La liberté d'association","La liberté de conscience (ou de religion), garantie par le principe de laïcité","La liberté syndicale"], correct:"C" },
+        { num:12, text:"Une femme peut avorter :", options:["Uniquement si son mari est d'accord","Seulement si sa vie est en danger","C'est interdit en France","Librement, c'est un droit garanti par la loi (Interruption Volontaire de Grossesse - IVG)"], correct:"D" },
+        { num:13, text:"Est-il toujours possible de divorcer en France ?", options:["Non, le mariage est définitif","Oui, c'est un droit, qu'il y ait accord entre les époux ou non","Seulement si l'on est marié depuis plus de 10 ans","Uniquement avec l'autorisation du maire"], correct:"B" },
+        { num:14, text:"La peine de mort est :", options:["Réservée aux pires criminels","Suspendue temporairement","Abolie définitivement en France (depuis 1981)","Remplacée par le travail forcé"], correct:"C" },
+        { num:15, text:"Concernant les limites aux libertés individuelles, quelle proposition est correcte ?", options:["La liberté s'arrête là où commence celle des autres","Il n'y a aucune limite, chacun fait ce qu'il veut","Seul le président fixe les limites","Les limites ne s'appliquent qu'aux étrangers"], correct:"A" },
+        { num:16, text:"En France, est-ce légal d'être marié à plusieurs personnes en même temps ?", options:["Oui, jusqu'à 4 personnes","Oui, si tout le monde est d'accord","Non, la polygamie est strictement interdite par la loi","Seulement si c'est autorisé par sa religion"], correct:"C" },
+        { num:17, text:"Faut-il réduire ses déchets ?", options:["Non, il y a des éboueurs pour ça","Oui, c'est un devoir civique pour protéger l'environnement et la santé publique","Uniquement si on vit à la campagne","Seulement si on est payé pour le faire"], correct:"B" },
+        { num:18, text:"Jeter une bouteille dans la rue est :", options:["Une infraction passible d'une amende pour abandon de déchets","Légal si la poubelle est pleine","Puni par 5 ans de prison","Une bonne action pour donner du travail aux agents d'entretien"], correct:"A" },
+        { num:19, text:"Pourquoi les libertés individuelles peuvent-elles être limitées ?", options:["Pour ennuyer les citoyens","Pour protéger l'ordre public, la sécurité de tous et les droits des autres","Pour économiser de l'argent public","Parce que la France n'est pas une démocratie"], correct:"B" },
+        { num:20, text:"Que doit faire une personne en cas d’accident ?", options:["Filmer avec son téléphone","Fuir pour ne pas avoir de problèmes","Alerter les secours (15, 17, 18, 112) et protéger les victimes sans se mettre en danger","Attendre que quelqu'un d'autre s'en occupe"], correct:"C" },
+        { num:21, text:"Que permet la citoyenneté française ?", options:["Ne plus payer d'impôts","Avoir la priorité dans les hôpitaux","Exercer son droit de vote, être éligible et participer activement à la vie démocratique","Conduire sans respecter les limitations de vitesse"], correct:"C" },
+        { num:22, text:"Que risque une personne qui ne respecte pas la loi ?", options:["Elle perd automatiquement sa nationalité","Elle encourt des sanctions (amendes, peines de prison, travaux d'intérêt général) fixées par la justice","Elle doit simplement présenter des excuses","Elle ne risque rien si elle n'a pas été prise sur le fait"], correct:"B" },
+        { num:23, text:"Quel est le rôle de la gendarmerie ?", options:["Juger les coupables","Veiller à la sécurité, maintenir l'ordre public et appliquer la loi (principalement dans les zones rurales et périurbaines)","Voter le budget de l'État","Recouvrer les impôts"], correct:"B" },
+        { num:24, text:"Quel est le rôle de la police ?", options:["Gérer les hôpitaux publics","Écrire les lois","Veiller à la sécurité des personnes et des biens, prévenir la délinquance et appliquer la loi (principalement en zone urbaine)","Réparer les feux de circulation"], correct:"C" },
+        { num:25, text:"Qu'est-ce qu'une infraction ?", options:["Un comportement interdit par la loi et passible d'une sanction pénale","Une règle de politesse","Une maladie grave","Un impôt local"], correct:"A" },
+        { num:26, text:"Comment peut-on réduire ses déchets ?", options:["En les brûlant dans son jardin","En les jetant dans la nature","En triant, en recyclant, en compostant et en évitant le gaspillage","En les enterrant dans la forêt"], correct:"C" },
+        { num:27, text:"Déposer une machine à laver cassée sur le trottoir est :", options:["Légal, quelqu'un viendra la récupérer","Une infraction qualifiée de dépôt sauvage, passible d'une forte amende","Recommandé pour faire du tri chez soi","Un droit garanti par la Constitution"], correct:"B" },
+        { num:28, text:"En quoi consiste la traite des êtres humains ?", options:["À recruter, transporter ou héberger des personnes pour les exploiter (travail forcé, prostitution...), c'est un crime grave","À voyager à plusieurs dans le même véhicule","À faire travailler un artisan sans facture","À adopter un enfant à l'étranger"], correct:"A" },
+        { num:29, text:"Que doit faire une victime de violences ?", options:["Se venger elle-même","Garder le silence par peur de représailles","Alerter les autorités, porter plainte et/ou contacter des numéros d'urgence et d'aide (17, 114, 3919 pour les violences conjugales...)","Payer l'agresseur pour qu'il arrête"], correct:"C" },
+        { num:30, text:"Quelle est l'infraction la plus grave dans le droit pénal français ?", options:["La contravention (ex: mauvais stationnement)","Le délit (ex: vol, escroquerie)","L'incivilité (ex: parler fort au cinéma)","Le crime (ex: meurtre, assassinat, viol)"], correct:"D" }
+    ];
+
+    // Thème 4 : Histoire, géographie et culture (47 questions)
+    const theme4 = [
+        { num:1, text:"En quelle année a débuté la Révolution française ?", options:["1789","1848","1905","1945"], correct:"A" },
+        { num:2, text:"Qui était Napoléon Ier ?", options:["Le premier Président de la République","Un célèbre poète du Moyen Âge","Un général devenu Empereur des Français en 1804","L'inventeur de l'imprimerie"], correct:"C" },
+        { num:3, text:"Lequel de ces personnages historiques est français ?", options:["Christophe Colomb","Jeanne d'Arc","Jules César","Winston Churchill"], correct:"B" },
+        { num:4, text:"Dans quelle République est-on aujourd'hui ?", options:["La IIIe République","La IVe République","La Ve République","La VIe République"], correct:"C" },
+        { num:5, text:"Qu'est-ce que la Shoah ?", options:["Une célèbre pièce de théâtre","L'extermination systématique des Juifs par l'Allemagne nazie pendant la Seconde Guerre mondiale","Une région de l'est de la France","La fête de la libération de Paris"], correct:"B" },
+        { num:6, text:"Quel pays ou région du monde a été colonisé par la France ?", options:["L'Australie","L'Algérie","Le Japon","Le Brésil"], correct:"B" },
+        { num:7, text:"Qui a rendu l’école gratuite, laïque et obligatoire ?", options:["Jules Ferry","Charles de Gaulle","Victor Hugo","Louis XIV"], correct:"A" },
+        { num:8, text:"Quand a eu lieu la Seconde Guerre mondiale ?", options:["1870-1871","1914-1918","1939-1945","1954-1962"], correct:"C" },
+        { num:9, text:"Quand a eu lieu la Première Guerre mondiale ?", options:["1804-1815","1914-1918","1939-1945","1946-1954"], correct:"B" },
+        { num:10, text:"En quelle année a été créée la Communauté Économique Européenne (CEE) ?", options:["1918","1945","1957 (par le traité de Rome)","2000"], correct:"C" },
+        { num:11, text:"Le 11 novembre est un jour férié. À quoi correspond cette date ?", options:["La fête du travail","L'armistice de la Première Guerre mondiale (1918)","La victoire de la Seconde Guerre mondiale (1945)","La prise de la Bastille"], correct:"B" },
+        { num:12, text:"Qui a été le premier Président élu sous la Ve République ?", options:["François Mitterrand","Georges Pompidou","Charles de Gaulle","Emmanuel Macron"], correct:"C" },
+        { num:13, text:"En quelle année l'esclavage a-t-il été aboli définitivement en France ?", options:["1789","1848","1905","1968"], correct:"B" },
+        { num:14, text:"Depuis quelle année l'école publique est-elle gratuite ?", options:["1789","1881 (Lois Jules Ferry)","1945","2000"], correct:"B" },
+        { num:15, text:"Combien y a-t-il eu de républiques en France ?", options:["3","4","5","6"], correct:"C" },
+        { num:16, text:"Qui était le roi de France au moment de la Révolution française ?", options:["Louis XIV","Louis XV","Louis XVI","Henri IV"], correct:"C" },
+        { num:17, text:"Qui a fondé la Ve République ?", options:["Napoléon Bonaparte","Jean Moulin","Charles de Gaulle (en 1958)","Jules Ferry"], correct:"C" },
+        { num:18, text:"Que célèbre-t-on le 14 juillet ?", options:["La fin de la guerre","La naissance de la République","La fête nationale (en souvenir de la prise de la Bastille et de la fête de la Fédération)","La signature de l'Union européenne"], correct:"C" },
+        { num:19, text:"Quelle guerre a eu lieu entre 1914 et 1918 ?", options:["La guerre de Cent Ans","La guerre franco-prussienne","La Première Guerre mondiale","La Seconde Guerre mondiale"], correct:"C" },
+        { num:20, text:"Pourquoi l’année 1958 est-elle importante pour la France ?", options:["C'est la fin de la Seconde Guerre mondiale","C'est l'année de l'adoption de la Constitution de la Ve République","C'est l'abolition de la peine de mort","C'est la séparation des Églises et de l'État"], correct:"B" },
+        { num:21, text:"Quel fleuve coule en France ?", options:["Le Nil","La Tamise","La Seine","Le Danube"], correct:"C" },
+        { num:22, text:"Quelle ville est française ?", options:["Genève","Bruxelles","Lyon","Madrid"], correct:"C" },
+        { num:23, text:"Quel océan borde la côte ouest française ?", options:["L'océan Pacifique","L'océan Indien","L'océan Atlantique","L'océan Arctique"], correct:"C" },
+        { num:24, text:"Qu'est-ce que Paris ?", options:["Un pays d'Europe","La capitale de la France","Un grand fleuve","Une région d'outre-mer"], correct:"B" },
+        { num:25, text:"Quelle est la capitale de la France ?", options:["Marseille","Bordeaux","Paris","Strasbourg"], correct:"C" },
+        { num:26, text:"Sur quel continent se situe la France métropolitaine ?", options:["L'Afrique","L'Amérique","L'Europe","L'Asie"], correct:"C" },
+        { num:27, text:"Quelle île est un département d'outre-mer français ?", options:["La Sicile","La Corse","La Réunion","Madagascar"], correct:"C" },
+        { num:28, text:"Combien y a-t-il de régions en France métropolitaine ?", options:["5","13 (depuis la réforme de 2016)","22","96"], correct:"B" },
+        { num:29, text:"Quelle ville est un grand port maritime ?", options:["Paris","Lyon","Marseille","Toulouse"], correct:"C" },
+        { num:30, text:"Quelle est la mer au sud de la France métropolitaine ?", options:["La mer du Nord","La mer Méditerranée","La mer Rouge","La mer Noire"], correct:"B" },
+        { num:31, text:"Quelle ville est située au bord de la mer Méditerranée ?", options:["Lille","Brest","Nice","Strasbourg"], correct:"C" },
+        { num:32, text:"Où se situe la Corse ?", options:["Dans l'océan Atlantique","Dans la Manche","Dans la mer Méditerranée, au sud-est de la France continentale","Dans les Caraïbes"], correct:"C" },
+        { num:33, text:"Quelle chaîne de montagnes est située entre la France et l'Italie ?", options:["Les Pyrénées","Les Alpes","Le Massif central","Le Jura"], correct:"B" },
+        { num:34, text:"Qui était Molière ?", options:["Un célèbre dramaturge (auteur de théâtre) et comédien du 17e siècle","Un roi de France","L'architecte de la tour Eiffel","Un grand navigateur"], correct:"A" },
+        { num:35, text:"Qui était Charles Baudelaire ?", options:["Un célèbre poète français du 19e siècle (auteur des Fleurs du Mal)","Un général de la Révolution","Un scientifique","Un chanteur de rock"], correct:"A" },
+        { num:36, text:"Qui était George Sand ?", options:["Une célèbre femme de lettres et romancière du 19e siècle","Une reine d'Angleterre","Une actrice de cinéma","La créatrice du drapeau français"], correct:"A" },
+        { num:37, text:"Qui était Simone de Beauvoir ?", options:["Une chanteuse d'opéra","Une philosophe et romancière, grande figure du féminisme (auteure du Deuxième Sexe)","Une résistante fusillée pendant la guerre","La première femme ministre de la Défense"], correct:"B" },
+        { num:38, text:"Qui était Albert Camus ?", options:["Un célèbre peintre impressionniste","Un écrivain, philosophe et journaliste français, Prix Nobel de littérature","Un roi du Moyen Âge","Un explorateur polaire"], correct:"B" },
+        { num:39, text:"Qui était Paul Cézanne ?", options:["Un musicien","Un président de la République","Un célèbre peintre français (précurseur du cubisme)","L'inventeur de la photographie"], correct:"C" },
+        { num:40, text:"Qui était Marc Chagall ?", options:["Un célèbre peintre d'origine russe naturalisé français","Un général de Napoléon","Un architecte de châteaux","Un célèbre cuisinier"], correct:"A" },
+        { num:41, text:"Qui était Joséphine Baker ?", options:["Une actrice de l'époque muette","Une célèbre chanteuse, danseuse, résistante et militante antiraciste franco-américaine (entrée au Panthéon)","Une scientifique","La fondatrice de la Croix-Rouge"], correct:"B" },
+        { num:42, text:"Qui était une chanteuse française célèbre ?", options:["Marie Curie","Édith Piaf","Jeanne d'Arc","Olympe de Gouges"], correct:"B" },
+        { num:43, text:"Qu'est-ce que le Louvre ?", options:["Un grand stade de football","Le siège du gouvernement","L'un des plus grands musées d'art et d'antiquités du monde (situé à Paris)","Une gare parisienne"], correct:"C" },
+        { num:44, text:"Qui était Jean de la Fontaine ?", options:["L'inventeur de l'eau courante","Un célèbre poète français du 17e siècle, connu pour ses Fables (ex: Le Corbeau et le Renard)","Un ministre de Louis XIV","Un sculpteur"], correct:"B" },
+        { num:45, text:"Quel écrivain est français ?", options:["William Shakespeare","Miguel de Cervantes","Victor Hugo","Dante Alighieri"], correct:"C" },
+        { num:46, text:"Dans quelle ville se trouve la tour Eiffel ?", options:["Londres","Marseille","Lyon","Paris"], correct:"D" },
+        { num:47, text:"Quand célèbre-t-on Noël ?", options:["Le 14 juillet","Le 1er novembre","Le 25 décembre","Le 1er mai"], correct:"C" }
+    ];
+
+    // Thème 5 : Vivre dans la société française (30 questions)
+    const theme5 = [
+        { num:1, text:"Quel numéro d'urgence permet d'appeler le SAMU (urgences médicales) ?", options:["Le 15","Le 17","Le 18","Le 112"], correct:"A" },
+        { num:2, text:"Quel numéro d'urgence permet d'appeler les pompiers ?", options:["Le 15","Le 17","Le 18","Le 119"], correct:"C" },
+        { num:3, text:"Après avoir obtenu le permis de conduire, que faut-il faire pour pouvoir conduire sa voiture ?", options:["Rien du tout","La repeindre en jaune","Souscrire obligatoirement à une assurance automobile","Payer une taxe à la mairie"], correct:"C" },
+        { num:4, text:"À quelles conditions un mariage est-il reconnu juridiquement ?", options:["S'il est célébré uniquement à l'église ou à la mosquée","S'il est célébré civilement à la mairie par un officier d'état civil (le maire ou son adjoint)","S'il est célébré devant un notaire","S'il est célébré à la maison entre amis"], correct:"B" },
+        { num:5, text:"Quand faut-il déclarer son enfant au service d'état civil de la mairie ?", options:["Le jour même obligatoirement","Dans les 5 jours qui suivent la naissance","Dans le mois qui suit la naissance","Ce n'est pas obligatoire"], correct:"B" },
+        { num:6, text:"Le travail non déclaré (ou \"travail au noir\") est :", options:["Recommandé pour payer moins d'impôts","Légal si les deux parties sont d'accord","Illégal et puni par la loi (amendes et prison)","Obligatoire pendant la période d'essai"], correct:"C" },
+        { num:7, text:"Que doit faire un employeur pour fixer un salaire ?", options:["Il choisit le montant au hasard","Il doit respecter le salaire minimum légal (le SMIC)","Il le fixe en fonction de la taille du salarié","Il n'est pas obligé de payer le premier mois"], correct:"B" },
+        { num:8, text:"Qu'est-ce que le SMIC ?", options:["Le Syndicat Médical Indépendant des Chirurgiens","Le Salaire Minimum Interprofessionnel de Croissance","Le Service Municipal d'Intervention Civile","Une aide pour les étudiants"], correct:"B" },
+        { num:9, text:"Quelle est la première démarche à réaliser pour chercher un emploi ?", options:["S'acheter un costume neuf","S'inscrire à France Travail (anciennement Pôle emploi)","Attendre à la maison que quelqu'un appelle","Aller demander au maire"], correct:"B" },
+        { num:10, text:"Quelle est la durée légale du temps de travail par semaine (à temps plein) ?", options:["30 heures","35 heures","40 heures","48 heures"], correct:"B" },
+        { num:11, text:"Qui est aidé par France Travail ?", options:["Les personnes à la retraite","Les demandeurs d'emploi (pour l'accompagnement et l'indemnisation)","Les enfants de moins de 16 ans","Les étudiants uniquement"], correct:"B" },
+        { num:12, text:"Une personne étrangère en situation régulière peut créer son entreprise :", options:["Non, c'est interdit","Oui, sous certaines conditions liées à son titre de séjour","Uniquement si elle s'associe à un Français","Seulement pour ouvrir un restaurant"], correct:"B" },
+        { num:13, text:"Une femme peut-elle créer son entreprise ?", options:["Non, c'est réservé aux hommes","Oui, mais seulement avec l'autorisation de son mari","Oui, elle a exactement les mêmes droits que les hommes pour entreprendre","Seulement dans le domaine de la coiffure"], correct:"C" },
+        { num:14, text:"À partir de quel âge un mineur peut-il travailler (hors apprentissage et cas particuliers) ?", options:["12 ans","14 ans","16 ans (avec l'accord de ses représentants légaux)","18 ans"], correct:"C" },
+        { num:15, text:"Auprès de quel organisme faut-il demander le remboursement des frais de santé ?", options:["À la mairie","À la préfecture","À la Caisse Primaire d'Assurance Maladie (CPAM)","À la Caisse d'Allocations Familiales (CAF)"], correct:"C" },
+        { num:16, text:"Qu'est-ce qu'un numéro d'urgence (comme le 15, 17, 18, 112) ?", options:["Un numéro gratuit, joignable 24h/24 et 7j/7 pour obtenir des secours","Un numéro payant pour commander un taxi","Un numéro qui ne fonctionne qu'en journée","Un numéro pour joindre sa famille à l'étranger"], correct:"A" },
+        { num:17, text:"Concernant l'accès aux soins, quelle proposition est correcte ?", options:["Les soins sont réservés aux personnes les plus riches","Toute personne résidant en France de manière stable et régulière a droit à la prise en charge de ses frais de santé (Protection Universelle Maladie - PUMa)","Les étrangers n'ont pas le droit d'aller à l'hôpital","L'accès aux soins n'est gratuit que pour les enfants"], correct:"B" },
+        { num:18, text:"En cas de problème de santé non urgent, à qui faut-il s'adresser en premier ?", options:["Directement aux urgences de l'hôpital","Au SAMU (15)","À son médecin traitant (médecin généraliste)","À la pharmacie uniquement"], correct:"C" },
+        { num:19, text:"Quel est le rôle du médecin traitant ?", options:["Faire des opérations chirurgicales complexes","Vendre des médicaments","Assurer le suivi médical global du patient et l'orienter vers des spécialistes si besoin","Gérer la carte Vitale de ses patients"], correct:"C" },
+        { num:20, text:"Dans quelles situations doit-on se rendre aux urgences de l'hôpital ?", options:["Pour un simple rhume","Pour renouveler une ordonnance de lunettes","En cas de situation médicale grave ou d'urgence vitale","Pour faire un vaccin avant un voyage"], correct:"C" },
+        { num:21, text:"Quel est l'objectif des vaccinations obligatoires ?", options:["Protéger la santé de la personne vaccinée et empêcher la propagation des maladies dans la collectivité","Rendre les enfants malades","Punir les parents qui refusent","Financer les hôpitaux publics"], correct:"A" },
+        { num:22, text:"À quoi sert la carte Vitale ?", options:["À voyager gratuitement dans les transports en commun","À justifier de ses droits à l'Assurance Maladie pour être remboursé plus rapidement de ses frais de santé","À prouver son identité pour voter","À payer ses courses au supermarché"], correct:"B" },
+        { num:23, text:"À quoi sert une mutuelle santé (ou complémentaire santé) ?", options:["À remplacer l'Assurance Maladie","À compléter les remboursements de l'Assurance Maladie pour réduire ce qu'il reste à payer (le \"reste à charge\")","À payer le loyer en cas de maladie","À se faire rembourser ses impôts"], correct:"B" },
+        { num:24, text:"Jusqu'à quel âge l'école est-elle obligatoire ?", options:["Jusqu'à 14 ans","Jusqu'à 16 ans","Jusqu'à 18 ans","Jusqu'à la majorité (21 ans)"], correct:"B" },
+        { num:25, text:"L'autorité parentale prévoit l'obligation :", options:["De faire travailler l'enfant pour qu'il gagne de l'argent","De protéger l'enfant, d'assurer son éducation et de subvenir à ses besoins","De laisser l'enfant faire tout ce qu'il veut","De l'envoyer dans un autre pays"], correct:"B" },
+        { num:26, text:"Pour qui l'école (l'instruction) est-elle obligatoire ?", options:["Uniquement pour les garçons","Uniquement pour les filles","Pour tous les enfants (filles et garçons) âgés de 3 à 16 ans","Uniquement pour les enfants de nationalité française"], correct:"C" },
+        { num:27, text:"Quel diplôme obtient-on généralement à la fin du lycée ?", options:["Le Brevet des collèges","Le Baccalauréat","La Licence","Le Master"], correct:"B" },
+        { num:28, text:"Dans quels établissements scolaires vont les élèves après l'école élémentaire (primaire) ?", options:["Au lycée","À l'université","Au collège","À l'école maternelle"], correct:"C" },
+        { num:29, text:"Un enfant inscrit à l'école :", options:["Peut manquer les cours quand il en a envie","Est soumis à l'obligation d'assiduité (il doit être présent à tous les cours)","Ne fait ses devoirs que s'il est d'accord","Peut choisir ses professeurs"], correct:"B" },
+        { num:30, text:"Les enfants qui ne parlent pas français (nouvellement arrivés) :", options:["Ne peuvent pas aller à l'école en France","Sont obligatoirement scolarisés et bénéficient d'un enseignement adapté pour apprendre le français (ex: classes UPE2A)","Doivent payer une taxe supplémentaire pour apprendre la langue","Sont placés dans des écoles spéciales payantes"], correct:"B" }
+    ];
+
+    // Assemblage avec identifiants uniques
+    const allQuestions = [
+        ...theme1.map((q, index) => ({ ...q, theme: 1, id: `t1-${q.num}-${index}` })),
+        ...theme2.map((q, index) => ({ ...q, theme: 2, id: `t2-${q.num}-${index}` })),
+        ...theme3.map((q, index) => ({ ...q, theme: 3, id: `t3-${q.num}-${index}` })),
+        ...theme4.map((q, index) => ({ ...q, theme: 4, id: `t4-${q.num}-${index}` })),
+        ...theme5.map((q, index) => ({ ...q, theme: 5, id: `t5-${q.num}-${index}` }))
+    ];
+
+    const corrigesParTheme = {
+        1: "1.C | 2.C | 3.B | 4.A | 5.C | 6.C | 7.D | 8.C | 9.A | 10.B | 11.B | 12.B | 13.A | 14.B | 15.C | 16.C | 17.C | 18.B | 19.C | 20.C | 21.B | 22.B | 23.D | 24.C | 25.B | 26.C | 27.B | 28.A | 29.B | 30.B | 31.C | 32.C | 33.B | 34.B | 35.A | 36.B | 37.B",
+        2: "1.C | 2.B | 3.C | 4.B | 5.C | 6.C | 7.B | 8.C | 9.C | 10.B | 11.C | 12.B | 13.A | 14.B | 15.C | 16.B | 17.B | 18.B | 19.B | 20.B | 21.C | 22.B | 23.B | 24.C | 25.A | 26.B | 27.B | 28.C | 29.C | 30.C | 31.C | 32.C | 33.B | 34.B | 35.B | 36.B | 37.B | 38.B | 39.B | 40.C | 41.B | 42.C | 43.B | 44.C | 45.B | 46.B",
+        3: "1.C | 2.C | 3.B | 4.B | 5.C | 6.C | 7.A | 8.C | 9.A | 10.C | 11.C | 12.D | 13.B | 14.C | 15.A | 16.C | 17.B | 18.A | 19.B | 20.C | 21.C | 22.B | 23.B | 24.C | 25.A | 26.C | 27.B | 28.A | 29.C | 30.D",
+        4: "1.A | 2.C | 3.B | 4.C | 5.B | 6.B | 7.A | 8.C | 9.B | 10.C | 11.B | 12.C | 13.B | 14.B | 15.C | 16.C | 17.C | 18.C | 19.C | 20.B | 21.C | 22.C | 23.C | 24.B | 25.C | 26.C | 27.C | 28.B | 29.C | 30.B | 31.C | 32.C | 33.B | 34.A | 35.A | 36.A | 37.B | 38.B | 39.C | 40.A | 41.B | 42.B | 43.C | 44.B | 45.C | 46.D | 47.C",
+        5: "1.A | 2.C | 3.C | 4.B | 5.B | 6.C | 7.B | 8.B | 9.B | 10.B | 11.B | 12.B | 13.C | 14.C | 15.C | 16.A | 17.B | 18.C | 19.C | 20.C | 21.A | 22.B | 23.B | 24.B | 25.B | 26.C | 27.B | 28.C | 29.B | 30.B"
+    };
+
+    new Vue({
+        el: '#app',
+        data: {
+            activeTab: 'train',
+            allQuestions: allQuestions,
+            currentTheme: 0,
+            globalShowCorrection: false,
+            page: 1,
+            perPage: 10,
+            userSelections: {},
+            examActive: false,
+            examFinished: false,
+            examQuestions: [],
+            examAnswers: [],
+            examIndex: 0,
+            examTimer: 45*60,
+            timerInterval: null,
+            corrigesParTheme: corrigesParTheme
+        },
+        computed: {
+            filteredQuestions() {
+                if (this.currentTheme === 0) return this.allQuestions;
+                return this.allQuestions.filter(q => q.theme === this.currentTheme);
+            },
+            totalPages() {
+                return Math.ceil(this.filteredQuestions.length / this.perPage);
+            },
+            paginatedQuestions() {
+                const start = (this.page-1)*this.perPage;
+                return this.filteredQuestions.slice(start, start+this.perPage);
+            },
+            examTimerFormatted() {
+                const m = Math.floor(this.examTimer/60);
+                const s = this.examTimer%60;
+                return `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+            },
+            examScore() {
+                let correct = 0;
+                for (let i=0;i<this.examQuestions.length;i++) {
+                    if (this.examAnswers[i] && this.examAnswers[i] === this.examQuestions[i].correct) correct++;
+                }
+                return correct;
+            }
+        },
+        watch: {
+            currentTheme() {
+                this.page = 1;
+            }
+        },
+        methods: {
+            themeName(t) { return ['','Principes','Institutions','Droits & devoirs','Histoire & culture','Vie sociale'][t] || ''; },
+            selectOption(qid, letter) {
+                if (this.userSelections[qid] === letter) {
+                    this.$delete(this.userSelections, qid);
+                } else {
+                    this.$set(this.userSelections, qid, letter);
+                }
+            },
+            isSelected(qid, letter) { return this.userSelections[qid] === letter; },
+            getUserChoice(qid) { return this.userSelections[qid] || null; },
+            setTheme(t) { this.currentTheme = t; },
+            revealOne(qid) {
+                const q = this.allQuestions.find(q=>q.id===qid);
+                if (q) {
+                    this.$set(q, 'revealed', true);
+                    setTimeout(() => { this.$set(q, 'revealed', false); }, 2000);
+                }
+            },
+            startExam() {
+                const shuffled = this.shuffleArray([...this.allQuestions]);
+                const selected = shuffled.slice(0, 40);
+                this.examQuestions = selected.map((q, idx) => ({
+                    ...q,
+                    type: idx < 28 ? 'connaissance' : 'mise en situation'
+                }));
+                this.examAnswers = Array(40).fill(null);
+                this.examIndex = 0;
+                this.examActive = true;
+                this.examFinished = false;
+                this.examTimer = 45*60;
+                if (this.timerInterval) clearInterval(this.timerInterval);
+                this.timerInterval = setInterval(() => { 
+                    if (this.examActive && this.examTimer>0) this.examTimer--; 
+                }, 1000);
+            },
+            shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            },
+            setExamAnswer(letter) {
+                this.$set(this.examAnswers, this.examIndex, letter);
+            },
+            finishExam() {
+                this.examActive = false;
+                this.examFinished = true;
+                clearInterval(this.timerInterval);
+            },
+            resetExam() {
+                this.examActive = false;
+                this.examFinished = false;
+                this.examQuestions = [];
+                this.examAnswers = [];
+                this.examIndex = 0;
+                if (this.timerInterval) clearInterval(this.timerInterval);
+            }
+        }
+    });
+})();
+</script>
+</body>
+</html>
