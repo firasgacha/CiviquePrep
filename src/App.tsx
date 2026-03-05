@@ -5,6 +5,7 @@ import { Exam } from './components/Exam';
 import { LanguageSelector } from './components/LanguageSelector';
 import { ThemeToggle } from './components/ThemeToggle';
 import { ScrollToTop } from './components/ScrollToTop';
+import { InstallPrompt } from './components/InstallPrompt';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { allQuestions, corrigesParTheme } from './data/questions';
 import type { Tab } from './types';
@@ -77,6 +78,7 @@ function App() {
   return (
     <ThemeProvider>
       <AppContent />
+      <InstallPrompt />
     </ThemeProvider>
   );
 }
