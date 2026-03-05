@@ -15,11 +15,11 @@ export function Exam({ questions }: ExamProps) {
     const [examQuestions, setExamQuestions] = useState<Question[]>([]);
     const [examAnswers, setExamAnswers] = useState<(string | null)[]>([]);
     const [examIndex, setExamIndex] = useState<number>(0);
-    const [examTimer, setExamTimer] = useState<number>(45 * 60);
+    const [examTimer, setExamTimer] = useState<number>(35 * 60);
     const [timerInterval, setTimerInterval] = useState<ReturnType<typeof setInterval> | null>(null);
     const [flaggedQuestions, setFlaggedQuestions] = useState<Set<number>>(new Set());
     const [showFlaggedOnly, setShowFlaggedOnly] = useState<boolean>(false);
-    const [examHistory, setExamHistory] = useLocalStorage<Array<{ date: string; score: number; total: number; }>>('civique-exam-history', []);
+    const [examHistory, setExamHistory] = useLocalStorage<Array<{ id: string; date: string; score: number; total: number; }>>('civique-exam-history', []);
 
     const shuffleArray = <T,>(array: T[]): T[] => {
         const shuffled = [...array];
@@ -32,19 +32,19 @@ export function Exam({ questions }: ExamProps) {
 
     const startExam = useCallback(() => {
         const shuffled = shuffleArray([...questions]);
-        const selected = shuffled.slice(0, 40);
+        const selected = shuffled.slice(0, 50);
         const withTypes = selected.map((q, idx) => ({
             ...q,
-            type: idx < 28 ? 'connaissance' as const : 'mise en situation' as const
+            type: idx < 30 ? 'connaissance' as const : 'mise en situation' as const
         }));
         setExamQuestions(withTypes);
-        setExamAnswers(Array(40).fill(null));
+        setExamAnswers(Array(50).fill(null));
         setExamIndex(0);
         setFlaggedQuestions(new Set());
         setShowFlaggedOnly(false);
         setExamActive(true);
         setExamFinished(false);
-        setExamTimer(45 * 60);
+        setExamTimer(35 * 60);
 
         if (timerInterval) clearInterval(timerInterval);
         const interval = setInterval(() => {
@@ -61,7 +61,7 @@ export function Exam({ questions }: ExamProps) {
             return acc + (examAnswers[idx] === q.correct ? 1 : 0);
         }, 0);
 
-        setExamHistory(prev => [...prev, { date: new Date().toISOString(), score, total: 40 }]);
+        setExamHistory(prev => [...prev, { id: crypto.randomUUID(), date: new Date().toISOString(), score, total: 50 }]);
         setExamActive(false);
         setExamFinished(true);
         if (timerInterval) clearInterval(timerInterval);
@@ -152,6 +152,10 @@ export function Exam({ questions }: ExamProps) {
         return correct;
     }, [examQuestions, examAnswers]);
 
+    const deleteExamResult = (id: string) => {
+        setExamHistory(prev => prev.filter(entry => entry.id !== id));
+    };
+
     const themeName = (t: number) => THEME_NAMES[t] || '';
     const isFlagged = (idx: number) => flaggedQuestions.has(idx);
 
@@ -166,9 +170,27 @@ export function Exam({ questions }: ExamProps) {
                     {examHistory.length > 0 && (
                         <div style={{ marginBottom: '2rem', textAlign: 'left' }}>
                             <h3>📊 {t('history')}</h3>
-                            {examHistory.slice(-5).map((entry, idx) => (
-                                <div key={idx} style={{ padding: '0.5rem 0', borderBottom: '1px solid #eee' }}>
-                                    {new Date(entry.date).toLocaleDateString()}: {entry.score}/{entry.total}
+                            {examHistory.slice().reverse().map((entry) => (
+                                <div key={entry.id} style={{ padding: '0.5rem 0', borderBottom: '1px solid #eee', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <span>
+                                        {new Date(entry.date).toLocaleDateString()}: <strong>{entry.score}/{entry.total}</strong>
+                                        {entry.score >= entry.total * 0.6 ? ' ✅' : ' ❌'}
+                                    </span>
+                                    <button
+                                        onClick={() => deleteExamResult(entry.id)}
+                                        style={{
+                                            background: '#ff4444',
+                                            color: 'white',
+                                            border: 'none',
+                                            borderRadius: '4px',
+                                            padding: '4px 8px',
+                                            cursor: 'pointer',
+                                            fontSize: '0.8rem'
+                                        }}
+                                        title="Supprimer"
+                                    >
+                                        ✕
+                                    </button>
                                 </div>
                             ))}
                         </div>
@@ -264,9 +286,9 @@ export function Exam({ questions }: ExamProps) {
         return (
             <div className="tab-content">
                 <div className="result-box">
-                    <div className="score">{examScore} / 40</div>
+                    <div className="score">{examScore} / 50</div>
                     <div style={{ fontSize: '1.3rem', margin: '0.5rem 0' }}>
-                        {examScore >= 24 ? t('pass') : t('fail')}
+                        {examScore >= 30 ? t('pass') : t('fail')}
                     </div>
                     <p>{t('threshold')}</p>
                     <button className="exam-btn" onClick={resetExam}>{t('newAttempt')}</button>
