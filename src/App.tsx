@@ -76,6 +76,9 @@ function AppContent() {
         <Notes />
       )}
       <ScrollToTop />
+      <footer className="app-footer">
+        {t('copyright')} © {new Date().getFullYear()} {t('allRightsReserved')}
+      </footer>
     </div>
   );
 }
