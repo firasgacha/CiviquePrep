@@ -6,7 +6,8 @@ const languages = [
     { code: 'es', flag: '🇪🇸', name: 'Español' },
     { code: 'it', flag: '🇮🇹', name: 'Italiano' },
     { code: 'uk', flag: '🇺🇦', name: 'Українська' },
-    { code: 'ar', flag: '🇸🇦', name: 'العربية' }
+    { code: 'ar', flag: '🇸🇦', name: 'العربية' },
+    { code: 'zh', flag: '🇨🇳', name: '中文' }
 ];
 
 export function LanguageSelector() {
