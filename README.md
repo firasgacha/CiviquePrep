@@ -1,73 +1,67 @@
-# React + TypeScript + Vite
+# CiviquePrep - French Civic Exam Preparation App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center">
+  <img src="public/exam-svgrepo.svg" width="120" alt="CiviquePrep Logo" />
+</p>
 
-Currently, two official plugins are available:
+CiviquePrep is a comprehensive PWA (Progressive Web Application) designed to help people prepare for the French civic exam (examen civique français). It provides 190 real exam questions with various study modes, practice exams, flashcards, and gamification features.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📋 Quick Links
 
-## React Compiler
+- **[Full Documentation](docs/README.md)** - Complete application documentation
+- **[API Reference](docs/API.md)** - Hooks, types, and component APIs
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Quick Start
 
-## Expanding the ESLint configuration
+```bash
+# Install dependencies
+npm install
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Start development server
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## ✨ Features
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Training Mode** - Practice questions with immediate feedback
+- **Exam Mode** - Timed practice exams (Quick, Standard, Intensive, Custom, Mistakes Review)
+- **Flashcards** - Flip-card style learning
+- **Bookmarks & Notes** - Save questions for later
+- **Spaced Repetition** - SM-2 algorithm for optimal learning
+- **Gamification** - Streaks, badges, XP, and levels
+- **Multi-language** - French, English, Spanish, Italian, Arabic, Ukrainian, Chinese
+- **PWA** - Installable, works offline
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📁 Project Structure
+
 ```
+CiviquePrep/
+├── src/
+│   ├── components/     # React UI components
+│   ├── hooks/          # Custom React hooks
+│   ├── contexts/       # React Context providers
+│   ├── data/           # Question data
+│   ├── i18n/           # Translations
+│   └── types/          # TypeScript types
+├── docs/               # Documentation
+├── public/             # Static assets & PWA
+└── package.json
+```
+
+## Tech Stack
+
+| Layer      | Technology                        |
+| ---------- | --------------------------------- |
+| Framework  | React 19 + TypeScript             |
+| Build Tool | Vite 7                            |
+| Styling    | CSS                               |
+| i18n       | i18next                           |
+| PWA        | Service Worker + Web App Manifest |
+
+## 📄 License
+
+Copyright © 2024 CiviquePrep. All rights reserved.
+
+---
+
+_For detailed documentation, see [docs/README.md](docs/README.md)_
