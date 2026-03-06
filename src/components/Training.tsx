@@ -4,6 +4,7 @@ import type { Question, UserSelections } from '../types';
 import { THEME_NAMES } from '../types';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { useBookmarks } from '../hooks/useBookmarks';
+import { useSpacedRepetition } from '../hooks/useSpacedRepetition';
 
 interface TrainingProps {
     questions: Question[];
@@ -18,7 +19,9 @@ export function Training({ questions }: TrainingProps) {
     const [userSelections, setUserSelections] = useLocalStorage<UserSelections>('civique-training-selections', {});
     const [revealedQuestions, setRevealedQuestions] = useState<Set<string>>(new Set());
     const [searchQuery, setSearchQuery] = useState<string>('');
+    const [smartReview, setSmartReview] = useState<boolean>(false);
     const { isBookmarked, toggleBookmark } = useBookmarks();
+    const { recordAnswer, isDueForReview } = useSpacedRepetition();
     const perPage = 10;
 
     // Handle list selection
@@ -58,8 +61,15 @@ export function Training({ questions }: TrainingProps) {
             );
         }
 
+        // Smart Review: prioritize questions due for review
+        if (smartReview) {
+            const dueQuestions = filtered.filter(q => isDueForReview(q.id));
+            const notDue = filtered.filter(q => !isDueForReview(q.id));
+            filtered = [...dueQuestions, ...notDue];
+        }
+
         return filtered;
-    }, [questions, selectedList, currentTheme, searchQuery]);
+    }, [questions, selectedList, currentTheme, searchQuery, smartReview, isDueForReview]);
 
     const totalPages = Math.ceil(filteredQuestions.length / perPage);
 
@@ -94,6 +104,15 @@ export function Training({ questions }: TrainingProps) {
 
     const revealOne = (qid: string) => {
         setRevealedQuestions(prev => new Set(prev).add(qid));
+
+        // Record answer for spaced repetition
+        const userChoice = userSelections[qid];
+        const question = questions.find(q => q.id === qid);
+        if (question && userChoice) {
+            const isCorrect = userChoice === question.correct;
+            recordAnswer(qid, isCorrect);
+        }
+
         setTimeout(() => {
             setRevealedQuestions(prev => {
                 const next = new Set(prev);
@@ -197,6 +216,13 @@ export function Training({ questions }: TrainingProps) {
 
             <div className="controls">
                 <span className="counter">{filteredQuestions.length} {t('questions')}</span>
+                <button
+                    className={`smart-review-btn ${smartReview ? 'active' : ''}`}
+                    onClick={() => setSmartReview(!smartReview)}
+                    title={t('smartReviewDesc')}
+                >
+                    {t('smartReview')}
+                </button>
                 <button
                     className={`toggle-corrige ${!globalShowCorrection ? 'off' : ''}`}
                     onClick={() => setGlobalShowCorrection(!globalShowCorrection)}

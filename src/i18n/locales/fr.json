@@ -99,5 +99,11 @@
   "bookmarked": "Dans les favoris",
   "noBookmarks": "Aucun favori. Ajoutez des favoris pendant l'entraînement pour les revoir ici.",
   "removeBookmark": "Retirer des favoris",
-  "bookmarkCount": "Favoris"
+  "bookmarkCount": "Favoris",
+  "smartReview": "🎯 Révision intelligente",
+  "smartReviewDesc": "Afficher d'abord les questions à revoir",
+  "masteryLevel": "Niveau de maîtrise",
+  "overallMastery": "Maîtrise globale",
+  "dueForReview": "À revoir",
+  "questionsToReview": "questions à revoir"
 }

@@ -98,5 +98,11 @@
   "bookmarked": "Bookmarked",
   "noBookmarks": "No bookmarks yet. Bookmark questions during training to review them here.",
   "removeBookmark": "Remove bookmark",
-  "bookmarkCount": "Bookmarks"
+  "bookmarkCount": "Bookmarks",
+  "smartReview": "🎯 Smart Review",
+  "smartReviewDesc": "Show questions due for review first",
+  "masteryLevel": "Mastery Level",
+  "overallMastery": "Overall Mastery",
+  "dueForReview": "Due for review",
+  "questionsToReview": "questions to review"
 }

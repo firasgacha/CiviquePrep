@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { useBookmarks } from '../hooks/useBookmarks';
+import { useSpacedRepetition } from '../hooks/useSpacedRepetition';
 import type { Question, UserSelections } from '../types';
 import { THEME_NAMES } from '../types';
 
@@ -21,6 +22,7 @@ export function Resume({ questions }: ResumeProps) {
     const [trainingSelections] = useLocalStorage<UserSelections>('civique-training-selections', {});
     const [examHistory] = useLocalStorage<ExamHistoryItem[]>('civique-exam-history', []);
     const { bookmarkCount } = useBookmarks();
+    const { getOverallMastery } = useSpacedRepetition();
 
     const stats = useMemo(() => {
         const answeredQuestions = Object.keys(trainingSelections).length;
@@ -96,8 +98,8 @@ export function Resume({ questions }: ResumeProps) {
                         <div className="stat-label">{t('completionRate')}</div>
                     </div>
                     <div className="stat-item">
-                        <div className="stat-value">{stats.bestScore}/{40}</div>
-                        <div className="stat-label">{t('bestExamScore')}</div>
+                        <div className="stat-value">{getOverallMastery}%</div>
+                        <div className="stat-label">{t('overallMastery')}</div>
                     </div>
                     <div className="stat-item">
                         <div className="stat-value">{bookmarkCount}</div>
