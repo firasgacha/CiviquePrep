@@ -13,6 +13,8 @@ import { InstallPrompt } from './components/InstallPrompt';
 import { UpdateNotification } from './components/UpdateNotification';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { allQuestions } from './data/questions';
+import { useLocalStorage } from './hooks/useLocalStorage';
+import { useGamification } from './hooks/useGamification';
 import type { Tab } from './types';
 import './i18n';
 import './App.css';
@@ -20,6 +22,9 @@ import './App.css';
 function AppContent() {
   const { t, i18n } = useTranslation();
   const [activeTab, setActiveTab] = useState<Tab>('info');
+  const [examHistory] = useLocalStorage<Array<{ id: string; date: string; score: number; total: number; }>>('civique-exam-history', []);
+  const [trainingSelections] = useLocalStorage<Record<string, string>>('civique-training-selections', {});
+  const { streak, earnedBadges } = useGamification(Object.keys(trainingSelections).length, examHistory);
 
   // Set direction based on language (Arabic is RTL)
   const isRTL = i18n.language === 'ar';
@@ -28,6 +33,16 @@ function AppContent() {
     <div className="container" dir={isRTL ? 'rtl' : 'ltr'}>
       {/* Header Controls */}
       <div className="header-controls">
+        {streak.currentStreak > 0 && (
+          <div className="streak-display" title={`${streak.currentStreak} ${t('dayStreak')}`}>
+            🔥 {streak.currentStreak}
+          </div>
+        )}
+        {earnedBadges.length > 0 && (
+          <div className="badges-display">
+            🏆 {earnedBadges.length}
+          </div>
+        )}
         <LanguageSelector />
         <ThemeToggle />
       </div>

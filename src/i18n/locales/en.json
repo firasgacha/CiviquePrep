@@ -116,5 +116,20 @@
   "diff_quick": "Quick Practice",
   "diff_standard": "Standard",
   "diff_intensive": "Intensive",
-  "questions": "questions"
+  "badge_first_question": "First Step",
+  "badge_first_question_desc": "Answer your first question",
+  "badge_hundred": "Centurion",
+  "badge_hundred_desc": "Answer 100 questions",
+  "badge_streak_7": "Week Warrior",
+  "badge_streak_7_desc": "Maintain a 7-day streak",
+  "badge_streak_30": "Monthly Master",
+  "badge_streak_30_desc": "Maintain a 30-day streak",
+  "badge_perfect": "Perfect Score",
+  "badge_perfect_desc": "Get 100% on an exam",
+  "badge_first_exam": "First Exam",
+  "badge_first_exam_desc": "Complete your first mock exam",
+  "questions": "questions",
+  "streak": "Streak",
+  "dayStreak": "day streak",
+  "daysStreak": "day streak"
 }

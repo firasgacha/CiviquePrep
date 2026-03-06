@@ -117,5 +117,20 @@
   "diff_quick": "Rapide",
   "diff_standard": "Standard",
   "diff_intensive": "Intensif",
-  "questions": "questions"
+  "badge_first_question": "Premier pas",
+  "badge_first_question_desc": "Répondez à votre première question",
+  "badge_hundred": "Centurion",
+  "badge_hundred_desc": "Répondez à 100 questions",
+  "badge_streak_7": "Guerrier de la semaine",
+  "badge_streak_7_desc": "Maintenez une série de 7 jours",
+  "badge_streak_30": "Maître du mois",
+  "badge_streak_30_desc": "Maintenez une série de 30 jours",
+  "badge_perfect": "Score parfait",
+  "badge_perfect_desc": "Obtenez 100% à un examen",
+  "badge_first_exam": "Premier examen",
+  "badge_first_exam_desc": "Complétez votre premier examen blanc",
+  "questions": "questions",
+  "streak": "Série",
+  "dayStreak": "jour de série",
+  "daysStreak": "jours de série"
 }
