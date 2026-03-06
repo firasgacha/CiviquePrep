@@ -65,5 +65,10 @@
   "clearDataConfirm": "¿Estás seguro de que quieres borrar todos los datos? Esta acción no se puede deshacer.",
   "notes": "📝 Notas",
   "notesTitle": "Apuntes",
-  "notesDescription": "Puntos clave para recordar en cada tema para ayudarte a preparar el examen cívico."
+  "notesDescription": "Puntos clave para recordar en cada tema para ayudarte a preparar el examen cívico.",
+  "selectQuestionList": "Elige tu lista de preguntas",
+  "cspList": "Tarjeta de residencia plurianual (CSP)",
+  "crList": "Tarjeta de residente (CR)",
+  "comingSoon": "Próximamente",
+  "backToList": "Volver a la lista"
 }

@@ -65,5 +65,10 @@
   "clearDataConfirm": "Êtes-vous sûr de vouloir effacer toutes les données ? Cette action est irréversible.",
   "notes": "📝 Notes",
   "notesTitle": "Cours & Fiches",
-  "notesDescription": "Points clés à retenir pour chaque thème afin de vous aider à préparer l'examen civique."
+  "notesDescription": "Points clés à retenir pour chaque thème afin de vous aider à préparer l'examen civique.",
+  "selectQuestionList": "Choisissez votre liste de questions",
+  "cspList": "Carte de séjour pluriannuel (CSP)",
+  "crList": "Carte de résident (CR)",
+  "comingSoon": "Bientôt disponible",
+  "backToList": "Retour à la liste"
 }

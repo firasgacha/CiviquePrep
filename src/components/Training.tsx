@@ -10,6 +10,7 @@ interface TrainingProps {
 
 export function Training({ questions }: TrainingProps) {
     const { t } = useTranslation();
+    const [selectedList, setSelectedList] = useState<'csp' | 'cr' | null>(null);
     const [currentTheme, setCurrentTheme] = useState<number>(0);
     const [globalShowCorrection, setGlobalShowCorrection] = useState<boolean>(false);
     const [page, setPage] = useState<number>(1);
@@ -17,6 +18,23 @@ export function Training({ questions }: TrainingProps) {
     const [revealedQuestions, setRevealedQuestions] = useState<Set<string>>(new Set());
     const [searchQuery, setSearchQuery] = useState<string>('');
     const perPage = 10;
+
+    // Handle list selection
+    const handleListSelect = (list: 'csp' | 'cr') => {
+        if (list === 'cr') {
+            // CR is not yet available
+            return;
+        }
+        setSelectedList(list);
+    };
+
+    // Reset to list selection
+    const handleBackToList = () => {
+        setSelectedList(null);
+        setCurrentTheme(0);
+        setSearchQuery('');
+        setPage(1);
+    };
 
     const filteredQuestions = useMemo(() => {
         let filtered = questions;
@@ -82,8 +100,39 @@ export function Training({ questions }: TrainingProps) {
 
     const themeName = (tnum: number) => THEME_NAMES[tnum] || '';
 
+    // Render list selection screen
+    if (selectedList === null) {
+        return (
+            <div className="tab-content">
+                <h2 className="list-selection-title">{t('selectQuestionList')}</h2>
+                <div className="list-selection-grid">
+                    <button
+                        className="list-selection-btn csp"
+                        onClick={() => handleListSelect('csp')}
+                    >
+                        <span className="list-name">{t('cspList')}</span>
+                        <span className="list-count">{questions.length} {t('questions')}</span>
+                    </button>
+                    <button
+                        className="list-selection-btn cr disabled"
+                        onClick={() => handleListSelect('cr')}
+                        disabled
+                    >
+                        <span className="list-name">{t('crList')}</span>
+                        <span className="list-count">{t('comingSoon')}</span>
+                    </button>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="tab-content">
+            {/* Back Button */}
+            <button className="back-btn" onClick={handleBackToList}>
+                ← {t('backToList')}
+            </button>
+
             {/* Search Bar */}
             <div className="search-container">
                 <input

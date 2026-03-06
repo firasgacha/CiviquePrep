@@ -33,7 +33,6 @@
   "yourAnswers": "Your answers",
   "corrections": "📋 Full corrections by theme",
   "search": "🔍 Search a question...",
-  "history": "History",
   "flag": "🚩 Flag",
   "unflag": "🚩 Flagged",
   "reviewFlagged": "Flagged questions",
@@ -65,5 +64,10 @@
   "clearDataConfirm": "Are you sure you want to clear all progress data? This cannot be undone.",
   "notes": "📝 Notes",
   "notesTitle": "Study Notes",
-  "notesDescription": "Key points to remember for each theme to help you prepare for the civic exam."
+  "notesDescription": "Key points to remember for each theme to help you prepare for the civic exam.",
+  "selectQuestionList": "Choose your question list",
+  "cspList": "Carte de séjour pluriannuel (CSP)",
+  "crList": "Carte de résident (CR)",
+  "comingSoon": "Coming soon",
+  "backToList": "Back to list"
 }

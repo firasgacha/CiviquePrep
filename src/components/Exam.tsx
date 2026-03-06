@@ -10,6 +10,7 @@ interface ExamProps {
 
 export function Exam({ questions }: ExamProps) {
     const { t } = useTranslation();
+    const [selectedList, setSelectedList] = useState<'csp' | 'cr' | null>(null);
     const [examActive, setExamActive] = useState<boolean>(false);
     const [examFinished, setExamFinished] = useState<boolean>(false);
     const [examQuestions, setExamQuestions] = useState<Question[]>([]);
@@ -20,6 +21,26 @@ export function Exam({ questions }: ExamProps) {
     const [flaggedQuestions, setFlaggedQuestions] = useState<Set<number>>(new Set());
     const [showFlaggedOnly, setShowFlaggedOnly] = useState<boolean>(false);
     const [examHistory, setExamHistory] = useLocalStorage<Array<{ id: string; date: string; score: number; total: number; }>>('civique-exam-history', []);
+
+    // Handle list selection
+    const handleListSelect = (list: 'csp' | 'cr') => {
+        if (list === 'cr') {
+            // CR is not yet available
+            return;
+        }
+        setSelectedList(list);
+    };
+
+    // Reset to list selection
+    const handleBackToList = () => {
+        setSelectedList(null);
+        setExamActive(false);
+        setExamFinished(false);
+        setExamQuestions([]);
+        setExamAnswers([]);
+        setExamIndex(0);
+        if (timerInterval) clearInterval(timerInterval);
+    };
 
     const shuffleArray = <T,>(array: T[]): T[] => {
         const shuffled = [...array];
@@ -68,6 +89,8 @@ export function Exam({ questions }: ExamProps) {
     }, [examQuestions, examAnswers, timerInterval, setExamHistory]);
 
     const resetExam = useCallback(() => {
+        // Go back to list selection
+        setSelectedList(null);
         setExamActive(false);
         setExamFinished(false);
         setExamQuestions([]);
@@ -159,9 +182,39 @@ export function Exam({ questions }: ExamProps) {
     const themeName = (t: number) => THEME_NAMES[t] || '';
     const isFlagged = (idx: number) => flaggedQuestions.has(idx);
 
+    // Render list selection screen
+    if (selectedList === null) {
+        return (
+            <div className="tab-content">
+                <h2 className="list-selection-title">{t('selectQuestionList')}</h2>
+                <div className="list-selection-grid">
+                    <button
+                        className="list-selection-btn csp"
+                        onClick={() => handleListSelect('csp')}
+                    >
+                        <span className="list-name">{t('cspList')}</span>
+                        <span className="list-count">{questions.length} {t('questions')}</span>
+                    </button>
+                    <button
+                        className="list-selection-btn cr disabled"
+                        onClick={() => handleListSelect('cr')}
+                        disabled
+                    >
+                        <span className="list-name">{t('crList')}</span>
+                        <span className="list-count">{t('comingSoon')}</span>
+                    </button>
+                </div>
+            </div>
+        );
+    }
+
     if (!examActive && !examFinished) {
         return (
             <div className="tab-content">
+                <button className="back-btn" onClick={handleBackToList}>
+                    ← {t('backToList')}
+                </button>
+
                 <div style={{ textAlign: 'center', padding: '2.5rem' }}>
                     <h2 style={{ color: '#0b2b4a', marginBottom: '1rem' }}>{t('examTitle')}</h2>
                     <p style={{ marginBottom: '2rem' }}>{t('examDescription')}</p>
@@ -285,6 +338,10 @@ export function Exam({ questions }: ExamProps) {
     if (examFinished) {
         return (
             <div className="tab-content">
+                <button className="back-btn" onClick={handleBackToList}>
+                    ← {t('backToList')}
+                </button>
+
                 <div className="result-box">
                     <div className="score">{examScore} / 50</div>
                     <div style={{ fontSize: '1.3rem', margin: '0.5rem 0' }}>

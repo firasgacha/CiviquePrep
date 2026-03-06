@@ -166,6 +166,102 @@ h1 {
   box-shadow: 0 10px 30px var(--shadow);
 }
 
+/* List Selection Screen */
+.list-selection-title {
+  text-align: center;
+  margin-bottom: 24px;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+}
+
+.list-selection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.list-selection-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  border-radius: 16px;
+  border: 2px solid var(--border-color);
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 120px;
+}
+
+.list-selection-btn:hover:not(.disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--shadow);
+}
+
+.list-selection-btn.csp {
+  border-color: #3b82f6;
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.1) 0%,
+    var(--bg-card) 100%
+  );
+}
+
+.list-selection-btn.csp:hover {
+  border-color: #2563eb;
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.2) 0%,
+    var(--bg-card) 100%
+  );
+}
+
+.list-selection-btn.cr {
+  border-color: #6b7280;
+}
+
+.list-selection-btn.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.list-selection-btn.disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.list-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.list-count {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.back-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.back-btn:hover {
+  background: var(--bg-primary);
+}
+
 /* Search */
 .search-container {
   margin-bottom: 1.5rem;
