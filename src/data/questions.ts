@@ -1,28 +1,28 @@
 import type { Question } from "../types";
 
-// Thème 1 : Principes et valeurs de la République (37 questions)
+// Theme 1: Principes et valeurs de la République (38 questions)
 const theme1 = [
   {
     num: 1,
     text: "À quoi correspond la date du 14 juillet ?",
     options: [
-      "La prise de la Bastille et la fête nationale",
-      "L'armistice de la Première Guerre mondiale",
-      "Le jour de la-Saint-Louis",
-      "L'intronisation du premier président de la République",
+      "La fin de la Première Guerre mondiale",
+      "L'élection du premier Président",
+      "La fête nationale française",
+      "La fête du Travail",
     ],
-    correct: "A",
+    correct: "C",
   },
   {
     num: 2,
     text: "Quel est l'un des symboles de la République française ?",
     options: [
-      "La tour Eiffel",
-      "Marianne",
-      "Le coq gaulois",
       "L'Arc de Triomphe",
+      "La tour Eiffel",
+      "Le drapeau tricolore (bleu, blanc, rouge)",
+      "Le coq sportif",
     ],
-    correct: "B",
+    correct: "C",
   },
   {
     num: 3,
@@ -48,7 +48,7 @@ const theme1 = [
   },
   {
     num: 5,
-    text: "A-t-on le droit d'insulter publiquement quelqu'un parce qu'il est différent ?",
+    text: "A-t-on le droit d'insulter publiquement quelqu'un parce qu'il est différent (handicap, apparence physique, sexe…) ?",
     options: [
       "Oui, au nom de la liberté d'expression",
       "Oui, si c'est fait sur Internet",
@@ -109,7 +109,7 @@ const theme1 = [
       "Le vin, le fromage et la baguette",
       "Le drapeau, la devise et l'hymne national",
       "La tour Eiffel et Notre-Dame",
-      "Le président et les ministres",
+      "Le président et les ministros",
     ],
     correct: "B",
   },
@@ -128,10 +128,10 @@ const theme1 = [
     num: 13,
     text: "Que signifie la liberté ?",
     options: [
-      "Pouvoir faire tout ce qui ne nuit pas aux autres, dans le respect des lois et des droits d'autrui",
+      "Pouvoir faire tout ce qui ne nuit pas aux autres, dans le respect des lois",
       "Ne respecter aucune règle",
-      "Pouvoir insulter qui on veut sans conséquence",
-      "Avoir le droit de contourner la loi pour des raisons personnelles",
+      "Pouvoir insulter qui on veut",
+      "Conduire sans permis",
     ],
     correct: "A",
   },
@@ -206,10 +206,10 @@ const theme1 = [
     num: 21,
     text: "Quelle est la langue officielle de la République française ?",
     options: [
-      "Le français et les langues régionales",
-      "Le français uniquement",
+      "Le breton",
+      "Le français",
       "Le français et l'anglais",
-      "Le français, l'anglais et l'allemand",
+      "L'occitan",
     ],
     correct: "B",
   },
@@ -242,7 +242,7 @@ const theme1 = [
       "Permet de dire tout ce que l'on veut, même des injures racistes",
       "N'existe pas en France",
       "Permet d'exprimer ses idées dans le respect de la loi (sans diffamation ni incitation à la haine)",
-      "Est réservée aux journalistes et aux hommes politiques",
+      "Est réservée aux journalistes",
     ],
     correct: "C",
   },
@@ -270,7 +270,7 @@ const theme1 = [
   },
   {
     num: 27,
-    text: "Qu'est ce qui est traditionnellement organisé sur les Champs Élysées le 14 juillet ?",
+    text: "Qu'est ce qui est traditionnellement organisé sur les Champs Élysées le 14 juillet pour célébrer la fête nationale ?",
     options: [
       "Une course de vélos",
       "Un défilé militaire",
@@ -303,7 +303,7 @@ const theme1 = [
   },
   {
     num: 30,
-    text: '"La France est une République indivisible, ..., démocratique et sociale". Complétez :',
+    text: '"La France est une République indivisible, ..., démocratique et sociale". Complétez cette phrase extraite de l\'article 1er de la Constitution :',
     options: ["Religieuse", "Laïque", "Militaire", "Européenne"],
     correct: "B",
   },
@@ -379,15 +379,26 @@ const theme1 = [
     ],
     correct: "B",
   },
+  {
+    num: 38,
+    text: "Qu'est-ce que la Marseillaise ?",
+    options: [
+      "Une chanson populaire",
+      "Le nom d'un régiment",
+      "L'hymne national français",
+      "Une danse traditionnelle",
+    ],
+    correct: "C",
+  },
 ];
 
-// Thème 2 : Système institutionnel et politique (46 questions)
+// Theme 2: Système institutionnel et politique (46 questions)
 const theme2 = [
   {
     num: 1,
     text: "Qui nomme le Premier ministre ?",
     options: [
-      "L'Assemblée nationale",
+      "L'assemblée nationale",
       "Le Sénat",
       "Le Président de la République",
       "Le Conseil constitutionnel",
@@ -399,15 +410,15 @@ const theme2 = [
     text: "Le Parlement est composé :",
     options: [
       "Du Président et du Premier ministre",
-      "De l'Assemblée nationale et du Sénat",
-      "Des ministres et des préfets",
-      "Des maires et des conseillers régionaux",
+      "De l'assemblée nationale et du Sénat",
+      "Des ministre et des préfets",
+      "Des maire et des conseillers régionaux",
     ],
     correct: "B",
   },
   {
     num: 3,
-    text: "Qu'est-ce que le pouvoir exécutif ?",
+    text: "Qu'est-ce que le pouvoir exécutif ? Le pouvoir :",
     options: [
       "De voter les lois",
       "De juger les infractions",
@@ -444,7 +455,7 @@ const theme2 = [
     options: [
       "Uniquement les citoyens français",
       "Uniquement les personnes majeures",
-      "Tout le monde (citoyens, étrangers, élus, personnalités publiques)",
+      "Tout le monde (citoyens, étrangers, élus, État)",
       "Seulement les personnes condamnées par la justice",
     ],
     correct: "C",
@@ -462,7 +473,7 @@ const theme2 = [
   },
   {
     num: 8,
-    text: "Quel pouvoir détient un juge ?",
+    text: "Quel pouvoir détient un juge ? Le pouvoir :",
     options: ["Exécutif", "Législatif", "Judiciaire", "Médiatique"],
     correct: "C",
   },
@@ -471,9 +482,9 @@ const theme2 = [
     text: "L'autorité judiciaire est exercée par :",
     options: [
       "Les policiers",
-      "Les ministres",
+      "Les ministre",
       "Les magistrats (juges et procureurs)",
-      "Les députés",
+      "Les député",
     ],
     correct: "C",
   },
@@ -493,15 +504,15 @@ const theme2 = [
     text: "Qui est élu lors des élections législatives ?",
     options: [
       "Les sénateurs",
-      "Les maires",
-      "Les députés",
+      "Les maire",
+      "Les député",
       "Le Président de la République",
     ],
     correct: "C",
   },
   {
     num: 12,
-    text: "Combien de députés composent l'Assemblée nationale ?",
+    text: "Combien de député composant l'assemblée nationale ?",
     options: ["348", "577", "705", "100"],
     correct: "B",
   },
@@ -510,7 +521,7 @@ const theme2 = [
     text: "Quand sont élus les sénateurs ?",
     options: [
       "Lors des élections sénatoriales (au suffrage universel indirect)",
-      "Lors des élections municipales",
+      "Lors des elections municipales",
       "Tous les 5 ans en même temps que le Président",
       "Ils ne sont pas élus, ils sont nommés à vie",
     ],
@@ -518,9 +529,9 @@ const theme2 = [
   },
   {
     num: 14,
-    text: "Qui est élu lors des élections municipales ?",
+    text: "Qui est élu lors des elections municipales ?",
     options: [
-      "Les députés",
+      "Les député",
       "Les conseillers municipaux (qui élisent ensuite le maire)",
       "Les conseillers régionaux",
       "Les préfets",
@@ -529,19 +540,19 @@ const theme2 = [
   },
   {
     num: 15,
-    text: "Qui est élu lors des élections présidentielles ?",
+    text: "Qui est élu lors des elections présidentielles ?",
     options: [
       "Le Premier ministre",
-      "Le Président de l'Assemblée nationale",
+      "Le Président de l'assemblée nationale",
       "Le Président de la République",
-      "Les maires des grandes villes",
+      "Les maire des grandes villes",
     ],
     correct: "C",
   },
   {
     num: 16,
     text: "À partir de quel âge a-t-on le droit de voter ?",
-    options: ["16 ans", "18 ans", "21 ans", "23 ans"],
+    options: ["16 ans", "18 ans", "21 ans", "25 ans"],
     correct: "B",
   },
   {
@@ -552,7 +563,7 @@ const theme2 = [
   },
   {
     num: 18,
-    text: "Pour combien de temps sont élus les députés ?",
+    text: "Pour combien de temps sont élus les député ?",
     options: ["3 ans", "5 ans", "6 ans", "7 ans"],
     correct: "B",
   },
@@ -571,16 +582,16 @@ const theme2 = [
     num: 20,
     text: "Qui possède le pouvoir exécutif ?",
     options: [
-      "L'Assemblée nationale et le Sénat",
+      "L'assemblée nationale et le Sénat",
       "Le Président de la République et le Gouvernement",
       "Les juges et les tribunaux",
-      "Les maires et les préfets",
+      "Les maire et les préfets",
     ],
     correct: "B",
   },
   {
     num: 21,
-    text: "Quelle condition est nécessaire pour voter aux élections ?",
+    text: "Quelle condition est nécessaire pour voter aux elections ?",
     options: [
       "Payer beaucoup d'impôts",
       "Avoir un diplôme universitaire",
@@ -591,10 +602,10 @@ const theme2 = [
   },
   {
     num: 22,
-    text: "Qui peut voter aux élections en France ?",
+    text: "Qui peut voter aux elections en France ?",
     options: [
       "Tous les résidents, quelle que soit leur nationalité",
-      "Les citoyens français majeurs inscrits sur les listes électorales (et les citoyens européens pour les élections municipales et européennes)",
+      "Les citoyens français majeurs inscrits sur les listes électorales (et les citoyens européens pour les elections municipales et européennes)",
       "Uniquement les hommes de plus de 18 ans",
       "Uniquement les personnes qui travaillent",
     ],
@@ -616,15 +627,15 @@ const theme2 = [
     text: "Concernant les partis politiques, quelle proposition est correcte ?",
     options: [
       "Il n'y a qu'un seul parti politique autorisé en France",
-      "Ils sont contrôlés directement par le Président",
+      "Ils sont interdits par la Constitution",
       "Ils concourent à l'expression du suffrage et se forment librement",
-      "Ils sont financés uniquement par l'État sans conditions",
+      "Ils sont financés uniquement par des pays étrangers",
     ],
     correct: "C",
   },
   {
     num: 25,
-    text: "Quel est le rôle des députés ?",
+    text: "Quel est le rôle des deputé ?",
     options: [
       "Représenter la nation, voter les lois et contrôler l'action du gouvernement",
       "Juger les criminels",
@@ -649,7 +660,7 @@ const theme2 = [
     text: "Qui possède le pouvoir législatif ?",
     options: [
       "Le Président de la République",
-      "Le Parlement (Assemblée nationale et Sénat)",
+      "Le Parlement (assemblée nationale et Sénat)",
       "Le Conseil d'État",
       "La Cour de cassation",
     ],
@@ -668,7 +679,7 @@ const theme2 = [
   },
   {
     num: 29,
-    text: "Qui élit les députés ?",
+    text: "Qui élit les deputé ?",
     options: [
       "Le Président de la République",
       "Les grands électeurs",
@@ -683,8 +694,8 @@ const theme2 = [
     options: [
       "Le Gouvernement",
       "Le Président de la République",
-      "Le Parlement (Assemblée nationale et Sénat)",
-      "Les maires",
+      "Le Parlement (assemblée nationale et Sénat)",
+      "Les maire",
     ],
     correct: "C",
   },
@@ -693,7 +704,7 @@ const theme2 = [
     text: "Qui réside au palais de l'Élysée ?",
     options: [
       "Le Premier ministre",
-      "Le Président de l'Assemblée nationale",
+      "Le Président de l'assemblée nationale",
       "Le Président de la République",
       "Le Maire de Paris",
     ],
@@ -701,14 +712,14 @@ const theme2 = [
   },
   {
     num: 32,
-    text: "Combien y a-t-il de départements en France ?",
-    options: ["96", "95", "101 (96 en métropole et 5 en outre-mer)", "100"],
+    text: "Combien y a-t-il de departements en France ?",
+    options: ["50", "95", "101 (96 en métropole et 5 en outre-mer)", "130"],
     correct: "C",
   },
   {
     num: 33,
     text: "Qui représente l'État dans un département ?",
-    options: ["Le député", "Le préfet", "Le maire", "Le commissaire de police"],
+    options: ["Le deputé", "Le préfet", "Le maire", "Le commissaire de police"],
     correct: "B",
   },
   {
@@ -717,7 +728,7 @@ const theme2 = [
     options: [
       "Le préfet",
       "Le maire (et son conseil municipal)",
-      "Le député",
+      "Le deputé",
       "Le président de la région",
     ],
     correct: "B",
@@ -785,7 +796,7 @@ const theme2 = [
   },
   {
     num: 41,
-    text: "Quelle condition est nécessaire pour voter aux élections européennes ?",
+    text: "Quelle condition est nécessaire pour voter aux elections européennes ?",
     options: [
       "Parler au moins trois langues",
       "Être citoyen d'un pays membre de l'Union européenne et être inscrit sur les listes électorales",
@@ -796,7 +807,7 @@ const theme2 = [
   },
   {
     num: 42,
-    text: "À quelle fréquence les élections européennes sont-elles organisées ?",
+    text: "À quelle fréquence les elections européennes sont-elles organisées ?",
     options: [
       "Tous les 3 ans",
       "Tous les 4 ans",
@@ -824,7 +835,7 @@ const theme2 = [
   },
   {
     num: 45,
-    text: "Qui élit les députés européens ?",
+    text: "Qui élit les deputés européens ?",
     options: [
       "Les gouvernements de chaque pays",
       "Les citoyens des États membres de l'Union européenne",
@@ -846,7 +857,7 @@ const theme2 = [
   },
 ];
 
-// Thème 3 : Droits et devoirs (30 questions)
+// Theme 3: Droits et devoirs (31 questions)
 const theme3 = [
   {
     num: 1,
@@ -875,16 +886,16 @@ const theme3 = [
     text: "Concernant les droits individuels, quelle proposition est correcte ?",
     options: [
       "Ils sont absolus et n'ont aucune limite",
-      "Ils sont garantis par la Constitution mais peuvent être limités pour protéger l'ordre public ou les droits des autres",
-      "Ils sont réservés uniquement aux personnes ayant la nationalité française",
-      "Ils sont valables seulement sur le territoire métropolitain",
+      "Ils sont garantis par la loi mais peuvent être limités pour protéger l'ordre public ou les droits des autres",
+      "Ils sont réservés uniquement aux personnes riches",
+      "Ils changent tous les mois",
     ],
     correct: "B",
   },
   {
     num: 4,
     text: "De quelle année date la Déclaration des droits de l'homme et du citoyen ?",
-    options: ["1689", "1789", "1889", "1989"],
+    options: ["1492", "1789", "1905", "1945"],
     correct: "B",
   },
   {
@@ -902,10 +913,10 @@ const theme3 = [
     num: 6,
     text: "Parmi ces textes, lequel garantit les droits et libertés en France ?",
     options: [
-      "Le règlement intérieur des mairies",
+      "Le règlement de la copropriété",
       "Le code de la route",
       "La Constitution (et la Déclaration des droits de l'homme et du citoyen)",
-      "Le code civil",
+      "Le dictionnaire de l'Académie française",
     ],
     correct: "C",
   },
@@ -979,10 +990,10 @@ const theme3 = [
     num: 13,
     text: "Est-il toujours possible de divorcer en France ?",
     options: [
-      "Non, le mariage est définitif et indissoluble",
+      "Non, le mariage est définitif",
       "Oui, c'est un droit, qu'il y ait accord entre les époux ou non",
-      "Seulement si l'on est marié depuis plus de 15 ans",
-      "Uniquement avec l'autorisation du juge aux affaires familiales",
+      "Seulement si l'on est marié depuis plus de 10 ans",
+      "Uniquement avec l'autorisation du maire",
     ],
     correct: "B",
   },
@@ -990,10 +1001,10 @@ const theme3 = [
     num: 14,
     text: "La peine de mort est :",
     options: [
-      "Réservée aux crimes les plus graves (terrorisme, crimes contre l'humanité)",
+      "Réservée aux pires criminels",
       "Suspendue temporairement",
       "Abolie définitivement en France (depuis 1981)",
-      "Remplacée par la réclusion criminelle à perpétuité",
+      "Remplacée par le travail forcé",
     ],
     correct: "C",
   },
@@ -1020,13 +1031,13 @@ const theme3 = [
     correct: "C",
   },
   {
-    num: 6,
+    num: 17,
     text: "Faut-il réduire ses déchets ?",
     options: [
       "Non, il y a des éboueurs pour ça",
       "Oui, c'est un devoir civique pour protéger l'environnement et la santé publique",
-      "Uniquement si on vit en ville",
-      "Seulement si on est propriétaire",
+      "Uniquement si on vit à la campagne",
+      "Seulement si on est payé pour le faire",
     ],
     correct: "B",
   },
@@ -1081,7 +1092,7 @@ const theme3 = [
       "Elle perd automatiquement sa nationalité",
       "Elle encourt des sanctions (amendes, peines de prison, travaux d'intérêt général) fixées par la justice",
       "Elle doit simplement présenter des excuses",
-      "Elle ne risque rien si elle n'a pas été arrêtée par la police",
+      "Elle ne risque rien si elle n'a pas été prise sur le fait",
     ],
     correct: "B",
   },
@@ -1125,7 +1136,7 @@ const theme3 = [
       "En les brûlant dans son jardin",
       "En les jetant dans la nature",
       "En triant, en recyclant, en compostant et en évitant le gaspillage",
-      "En les gardant chez soi",
+      "En les enterrant dans la forêt",
     ],
     correct: "C",
   },
@@ -1166,20 +1177,26 @@ const theme3 = [
     num: 30,
     text: "Quelle est l'infraction la plus grave dans le droit pénal français ?",
     options: [
-      "La contravention (ex: stationnement interdit)",
+      "La contravention (ex: mauvais stationnement)",
       "Le délit (ex: vol, escroquerie)",
       "L'incivilité (ex: parler fort au cinéma)",
       "Le crime (ex: meurtre, assassinat, viol)",
     ],
     correct: "D",
   },
+  {
+    num: 31,
+    text: "Quelle est l'infraction la plus grave ?",
+    options: ["La contravention", "Le délit", "Le crime", "L'amende"],
+    correct: "C",
+  },
 ];
 
-// Thème 4 : Histoire, géographie et culture (47 questions)
+// Theme 4: Histoire, géographie et culture (47 questions)
 const theme4 = [
   {
     num: 1,
-    text: "En quelle année a débuté la Révolution française ?",
+    text: "En quelle année a débute la Révolution française ?",
     options: ["1789", "1848", "1905", "1945"],
     correct: "A",
   },
@@ -1187,7 +1204,7 @@ const theme4 = [
     num: 2,
     text: "Qui était Napoléon Ier ?",
     options: [
-      "Le premier Président de la République française",
+      "Le premier Président de la République",
       "Un célèbre poète du Moyen Âge",
       "Un général devenu Empereur des Français en 1804",
       "L'inventeur de l'imprimerie",
@@ -1201,7 +1218,7 @@ const theme4 = [
       "Christophe Colomb",
       "Jeanne d'Arc",
       "Jules César",
-      "Napoléon Bonaparte",
+      "Winston Churchill",
     ],
     correct: "B",
   },
@@ -1242,8 +1259,8 @@ const theme4 = [
   {
     num: 8,
     text: "Quand a eu lieu la Seconde Guerre mondiale ?",
-    options: ["1914-1918", "1939-1945", "1945-1962", "1954-1962"],
-    correct: "B",
+    options: ["1870-1871", "1914-1918", "1939-1945", "1954-1962"],
+    correct: "C",
   },
   {
     num: 9,
@@ -1275,7 +1292,7 @@ const theme4 = [
       "François Mitterrand",
       "Georges Pompidou",
       "Charles de Gaulle",
-      "Valéry Giscard d'Estaing",
+      "Emmanuel Macron",
     ],
     correct: "C",
   },
@@ -1350,13 +1367,13 @@ const theme4 = [
   {
     num: 21,
     text: "Quel fleuve coule en France ?",
-    options: ["Le Nil", "La Tamise", "La Seine", "Le Rhin"],
+    options: ["Le Nil", "La Tamise", "La Seine", "Le Danube"],
     correct: "C",
   },
   {
     num: 22,
     text: "Quelle ville est française ?",
-    options: ["Genève", "Bruxelles", "Lyon", "Andorre-la-Vieille"],
+    options: ["Genève", "Bruxelles", "Lyon", "Madrid"],
     correct: "C",
   },
   {
@@ -1374,10 +1391,10 @@ const theme4 = [
     num: 24,
     text: "Qu'est-ce que Paris ?",
     options: [
-      "Une région administrative de France",
+      "Un pays d'Europe",
       "La capitale de la France",
-      "Un fleuve",
-      "Un département d'outre-mer",
+      "Un grand fleuve",
+      "Une région d'outre-mer",
     ],
     correct: "B",
   },
@@ -1463,7 +1480,7 @@ const theme4 = [
       "Un célèbre poète français du 19e siècle (auteur des Fleurs du Mal)",
       "Un général de la Révolution",
       "Un scientifique",
-      "Un chanteur de rock",
+      "Un chanteuse de rock",
     ],
     correct: "A",
   },
@@ -1484,7 +1501,7 @@ const theme4 = [
     options: [
       "Une chanteuse d'opéra",
       "Une philosophe et romancière, grande figure du féminisme (auteure du Deuxième Sexe)",
-      "Une résistante fusillée pendant la guerre",
+      "Une résistance fusillée pendant la guerre",
       "La première femme ministre de la Défense",
     ],
     correct: "B",
@@ -1591,7 +1608,7 @@ const theme4 = [
   },
 ];
 
-// Thème 5 : Vivre dans la société française (30 questions)
+// Theme 5: Vivre dans la société française (32 questions)
 const theme5 = [
   {
     num: 1,
@@ -1621,7 +1638,7 @@ const theme5 = [
     text: "À quelles conditions un mariage est-il reconnu juridiquement ?",
     options: [
       "S'il est célébré uniquement à l'église ou à la mosquée",
-      "S'il est célébré civilement à la mairie par un officier d'état civil (le maire ou son adjoint)",
+      "S'il est célébré civilement à la mairie par un officiel d'état civil (le maire ou son adjoint)",
       "S'il est célébré devant un notaire",
       "S'il est célébré à la maison entre amis",
     ],
@@ -1633,8 +1650,8 @@ const theme5 = [
     options: [
       "Le jour même obligatoirement",
       "Dans les 5 jours qui suivent la naissance",
-      "Dans le mois qui suivent la naissance",
-      "Dans les 3 mois qui suivent la naissance",
+      "Dans le mois qui suit la naissance",
+      "Ce n'est pas obligatoire",
     ],
     correct: "B",
   },
@@ -1656,7 +1673,7 @@ const theme5 = [
       "Il choisit le montant au hasard",
       "Il doit respecter le salaire minimum légal (le SMIC)",
       "Il le fixe en fonction de la taille du salarié",
-      "Il n'est pas obligé de payer le premier mois",
+      "Il n'est pas obligatoire de payer le premier mois",
     ],
     correct: "B",
   },
@@ -1685,7 +1702,7 @@ const theme5 = [
   {
     num: 10,
     text: "Quelle est la durée légale du temps de travail par semaine (à temps plein) ?",
-    options: ["32 heures", "35 heures", "39 heures", "42 heures"],
+    options: ["30 heures", "35 heures", "40 heures", "48 heures"],
     correct: "B",
   },
   {
@@ -1725,10 +1742,10 @@ const theme5 = [
     num: 14,
     text: "À partir de quel âge un mineur peut-il travailler (hors apprentissage et cas particuliers) ?",
     options: [
-      "13 ans",
+      "12 ans",
       "14 ans",
       "16 ans (avec l'accord de ses représentants légaux)",
-      "17 ans",
+      "18 ans",
     ],
     correct: "C",
   },
@@ -1760,8 +1777,8 @@ const theme5 = [
     options: [
       "Les soins sont réservés aux personnes les plus riches",
       "Toute personne résidant en France de manière stable et régulière a droit à la prise en charge de ses frais de santé (Protection Universelle Maladie - PUMa)",
-      "Les étrangers n'ont pas le droit d'être soignés à l'hôpital",
-      "L'accès aux soins n'est gratuit que pour les enfants de moins de 6 ans",
+      "Les étrangers n'ont pas le droit d'aller à l'hôpital",
+      "L'accès aux soins n'est gratuit que pour les enfants",
     ],
     correct: "B",
   },
@@ -1827,7 +1844,7 @@ const theme5 = [
       "À remplacer l'Assurance Maladie",
       "À compléter les remboursements de l'Assurance Maladie pour réduire ce qu'il reste à payer (le \"reste à charge\")",
       "À payer le loyer en cas de maladie",
-      "À se faire rembourser ses impôts",
+      "À se faire remboursement ses impôts",
     ],
     correct: "B",
   },
@@ -1838,7 +1855,7 @@ const theme5 = [
       "Jusqu'à 14 ans",
       "Jusqu'à 16 ans",
       "Jusqu'à 18 ans",
-      "Jusqu'à la majorité civile (21 ans)",
+      "Jusqu'à la majorité (21 ans)",
     ],
     correct: "B",
   },
@@ -1870,7 +1887,7 @@ const theme5 = [
     options: [
       "Le Brevet des collèges",
       "Le Baccalauréat",
-      "La Licence universitaire",
+      "La Licence",
       "Le Master",
     ],
     correct: "B",
@@ -1908,9 +1925,31 @@ const theme5 = [
     ],
     correct: "B",
   },
+  {
+    num: 31,
+    text: "Pour qui l'école est-elle obligatoire ?",
+    options: [
+      "Pour tous les enfants",
+      "Uniquement pour les français",
+      "Uniquement pour les riches",
+      "Pour les garçons seulement",
+    ],
+    correct: "A",
+  },
+  {
+    num: 32,
+    text: "Les enfants qui ne parlent pas français :",
+    options: [
+      "Ne peuvent pas aller à l'école",
+      "Sont obligatoirement scolarisés",
+      "Doivent payer pour apprendre le français",
+      "Vont dans des écoles privées",
+    ],
+    correct: "B",
+  },
 ];
 
-// Assemblage avec identifiants uniques
+// Assemble with unique identifiers
 export const allQuestions: Question[] = [
   ...theme1.map((q, index) => ({ ...q, theme: 1, id: `t1-${q.num}-${index}` })),
   ...theme2.map((q, index) => ({ ...q, theme: 2, id: `t2-${q.num}-${index}` })),
@@ -1920,9 +1959,9 @@ export const allQuestions: Question[] = [
 ];
 
 export const corrigesParTheme: { [key: number]: string } = {
-  1: "1.C | 2.C | 3.B | 4.A | 5.C | 6.C | 7.D | 8.C | 9.A | 10.B | 11.B | 12.B | 13.A | 14.B | 15.C | 16.C | 17.C | 18.B | 19.C | 20.C | 21.B | 22.B | 23.D | 24.C | 25.B | 26.C | 27.B | 28.A | 29.B | 30.B | 31.C | 32.C | 33.B | 34.B | 35.A | 36.B | 37.B",
+  1: "1.C | 2.C | 3.B | 4.A | 5.C | 6.C | 7.D | 8.C | 9.A | 10.B | 11.B | 12.B | 13.A | 14.B | 15.C | 16.C | 17.C | 18.B | 19.C | 20.C | 21.B | 22.B | 23.D | 24.C | 25.B | 26.C | 27.B | 28.A | 29.B | 30.B | 31.C | 32.C | 33.B | 34.B | 35.A | 36.B | 37.B | 38.C",
   2: "1.C | 2.B | 3.C | 4.B | 5.C | 6.C | 7.B | 8.C | 9.C | 10.B | 11.C | 12.B | 13.A | 14.B | 15.C | 16.B | 17.B | 18.B | 19.B | 20.B | 21.C | 22.B | 23.B | 24.C | 25.A | 26.B | 27.B | 28.C | 29.C | 30.C | 31.C | 32.C | 33.B | 34.B | 35.B | 36.B | 37.B | 38.B | 39.B | 40.C | 41.B | 42.C | 43.B | 44.C | 45.B | 46.B",
-  3: "1.C | 2.C | 3.B | 4.B | 5.C | 6.C | 7.A | 8.C | 9.A | 10.C | 11.C | 12.D | 13.B | 14.C | 15.A | 16.C | 17.B | 18.A | 19.B | 20.C | 21.C | 22.B | 23.B | 24.C | 25.A | 26.C | 27.B | 28.A | 29.C | 30.D",
+  3: "1.C | 2.C | 3.B | 4.B | 5.C | 6.C | 7.A | 8.C | 9.A | 10.C | 11.C | 12.D | 13.B | 14.C | 15.A | 16.C | 17.B | 18.A | 19.B | 20.C | 21.C | 22.B | 23.B | 24.C | 25.A | 26.C | 27.B | 28.A | 29.C | 30.D | 31.C",
   4: "1.A | 2.C | 3.B | 4.C | 5.B | 6.B | 7.A | 8.C | 9.B | 10.C | 11.B | 12.C | 13.B | 14.B | 15.C | 16.C | 17.C | 18.C | 19.C | 20.B | 21.C | 22.C | 23.C | 24.B | 25.C | 26.C | 27.C | 28.B | 29.C | 30.B | 31.C | 32.C | 33.B | 34.A | 35.A | 36.A | 37.B | 38.B | 39.C | 40.A | 41.B | 42.B | 43.C | 44.B | 45.C | 46.D | 47.C",
-  5: "1.A | 2.C | 3.C | 4.B | 5.B | 6.C | 7.B | 8.B | 9.B | 10.B | 11.B | 12.B | 13.C | 14.C | 15.C | 16.A | 17.B | 18.C | 19.C | 20.C | 21.A | 22.B | 23.B | 24.B | 25.B | 26.C | 27.B | 28.C | 29.B | 30.B",
+  5: "1.A | 2.C | 3.C | 4.B | 5.B | 6.C | 7.B | 8.B | 9.B | 10.B | 11.B | 12.B | 13.C | 14.C | 15.C | 16.A | 17.B | 18.C | 19.C | 20.C | 21.A | 22.B | 23.B | 24.B | 25.B | 26.C | 27.B | 28.C | 29.B | 30.B | 31.A | 32.B",
 };
