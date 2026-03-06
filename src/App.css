@@ -500,6 +500,13 @@ hr {
   margin-bottom: 1.5rem;
 }
 
+.notes-themes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
 .notes-theme-btn {
   padding: 0.5rem 1rem;
   border: 1px solid var(--border-color);
@@ -519,6 +526,7 @@ hr {
   background: var(--primary-color);
   color: var(--text-color);
   border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px var(--primary-color);
 }
 
 .notes-content {
