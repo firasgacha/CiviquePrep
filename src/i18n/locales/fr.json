@@ -76,5 +76,22 @@
   "updateAvailable": "Nouvelle version disponible !",
   "updateNow": "Mettre à jour",
   "copyright": "",
-  "allRightsReserved": "Tous droits réservés"
+  "allRightsReserved": "Tous droits réservés",
+  "infoTitle": "Mise en place de'examen civique",
+  "infoIntro": "A partir du 1er janvier 2026, l'examen civique sera exigé pour les personnes sollicitant une carte de séjour pluriannuelle (CSP) ou une carte de résident (CR).",
+  "infoMarianneTitle": "🇫🇷 Marianne",
+  "infoMarianneContent": "La loi du 26 janvier 2024 pour contrôler l'immigration, améliorer l'intégration a renforcé les exigences en matière de maîtrise du français et d'intégration républicaine des étrangers primo-arrivants souhaitant demeurer durablement en France. Cette loi prévoit ainsi la création d'un examen civique qui vise à vérifier la connaissance par le candidat des principes et des valeurs de la République, le mode d'organisation de la République et le fonctionnement de la société française.",
+  "infoExamLocationsTitle": "Où passer l'examen civique et comment s'inscrire ?",
+  "infoExamLocationsIntro": "Deux organismes ont été agréés par le ministère de l'intérieur pour la mise en œuvre de l'examen civique :",
+  "infoCcipTitle": "🏢 La Chambre de commerce et d'industrie de Paris (CCIP)",
+  "infoCcipText": "Trouvez les centres agréés et les procédures d'inscription au lien suivant :",
+  "infoCcipLink": "Inscription CCIP - Examen civique ↗",
+  "infoFeiTitle": "🎓 France Éducation International (FEI)",
+  "infoFeiText": "Trouvez les centres de passation :",
+  "infoFeiLink": "Centres de passation de'examen civique - FEI ↗",
+  "infoFeiRegisterText": "Lien pour s'inscrire à l'examen :",
+  "infoFeiRegisterLink": "Inscription à l'examen civique - FEI ↗",
+  "infoNaturalisationTitle": "📚 Pour l'examen civique mention naturalisation",
+  "infoNaturalisationText": "Trouvez toutes les informations et la liste officielle des questions de connaissance :",
+  "infoNaturalisationLink": "Informations officielles - Examen civique naturalisation ↗"
 }

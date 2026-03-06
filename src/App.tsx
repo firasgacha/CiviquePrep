@@ -17,11 +17,14 @@ import './i18n';
 import './App.css';
 
 function AppContent() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [activeTab, setActiveTab] = useState<Tab>('info');
 
+  // Set direction based on language (Arabic is RTL)
+  const isRTL = i18n.language === 'ar';
+
   return (
-    <div className="container">
+    <div className="container" dir={isRTL ? 'rtl' : 'ltr'}>
       {/* Header Controls */}
       <div className="header-controls">
         <LanguageSelector />

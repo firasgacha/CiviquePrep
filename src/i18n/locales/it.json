@@ -76,5 +76,22 @@
   "updateAvailable": "Nuova versione disponibile!",
   "updateNow": "Aggiorna ora",
   "copyright": "",
-  "allRightsReserved": "Tutti i diritti riservati"
+  "allRightsReserved": "Tutti i diritti riservati",
+  "infoTitle": "Implementazione dell'esame civico",
+  "infoIntro": "A partire dal 1° gennaio 2026, l'esame civico sarà richiesto per le persone che richiedono un permesso di soggiorno pluriennale (CSP) o una carta di residente (CR).",
+  "infoMarianneTitle": "🇫🇷 Marianne",
+  "infoMarianneContent": "La legge del 26 gennaio 2024 per controllare l'immigrazione, migliorare l'integrazione ha rafforzato i requisiti per la padronanza del francese e l'integrazione repubblicana degli stranieri di prima arrivo che desiderano rimanere permanentemente in Francia. Questa legge prevede la creazione di un esame civico che mira a verificare la conoscenza da parte del candidato dei principi e dei valori della Repubblica, dell'organizzazione della Repubblica e del funzionamento della società francese.",
+  "infoExamLocationsTitle": "Dove sostenere l'esame civico e come registrarsi?",
+  "infoExamLocationsIntro": "Due organizzazioni sono state approvate dal Ministero dell'Interno per l'implementazione dell'esame civico:",
+  "infoCcipTitle": "🏢 La Camera di Commercio e d'Industria di Parigi (CCIP)",
+  "infoCcipText": "Trova i centri approvati e le procedure di registrazione al seguente link:",
+  "infoCcipLink": "Registrazione CCIP - Esame civico ↗",
+  "infoFeiTitle": "🎓 Francia Educazione Internazionale (FEI)",
+  "infoFeiText": "Trova i centri d'esame:",
+  "infoFeiLink": "Centri d'esame civico - FEI ↗",
+  "infoFeiRegisterText": "Link per iscriversi all'esame:",
+  "infoFeiRegisterLink": "Iscrizione all'esame civico - FEI ↗",
+  "infoNaturalisationTitle": "📚 Per l'esame civico menzione naturalizzazione",
+  "infoNaturalisationText": "Trova tutte le informazioni e la lista ufficiale delle domande di conoscenza:",
+  "infoNaturalisationLink": "Informazioni ufficiali - Esame civico naturalizzazione ↗"
 }

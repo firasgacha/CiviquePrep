@@ -75,5 +75,22 @@
   "updateAvailable": "New version available!",
   "updateNow": "Update Now",
   "copyright": "",
-  "allRightsReserved": "All rights reserved"
+  "allRightsReserved": "All rights reserved",
+  "infoTitle": "Implementation of the civic exam",
+  "infoIntro": "Starting from January 1, 2026, the civic exam will be required for people applying for a pluriannual residence permit (CSP) or a resident card (CR).",
+  "infoMarianneTitle": "🇫🇷 Marianne",
+  "infoMarianneContent": "The law of January 26, 2024 to control immigration, improve integration has strengthened the requirements for French mastery and republican integration of first-time foreign arrivals wishing to stay permanently in France. This law provides for the creation of a civic exam that aims to verify the candidate's knowledge of the principles and values of the Republic, the organization of the Republic, and the functioning of French society.",
+  "infoExamLocationsTitle": "Where to take the civic exam and how to register?",
+  "infoExamLocationsIntro": "Two organizations have been approved by the Ministry of the Interior for the implementation of the civic exam:",
+  "infoCcipTitle": "🏢 The Chamber of Commerce and Industry of Paris (CCIP)",
+  "infoCcipText": "Find approved centers and registration procedures at the following link:",
+  "infoCcipLink": "CCIP Registration - Civic Exam ↗",
+  "infoFeiTitle": "🎓 France Éducation International (FEI)",
+  "infoFeiText": "Find test centers:",
+  "infoFeiLink": "Civic exam test centers - FEI ↗",
+  "infoFeiRegisterText": "Link to register for the exam:",
+  "infoFeiRegisterLink": "Civic exam registration - FEI ↗",
+  "infoNaturalisationTitle": "📚 For the civic exam mention naturalization",
+  "infoNaturalisationText": "Find all information and the official list of knowledge questions:",
+  "infoNaturalisationLink": "Official information - Naturalization civic exam ↗"
 }

@@ -7,6 +7,7 @@ import translationEN from "./locales/en.json";
 import translationUK from "./locales/uk.json";
 import translationES from "./locales/es.json";
 import translationIT from "./locales/it.json";
+import translationAR from "./locales/ar.json";
 
 const resources = {
   fr: {
@@ -23,6 +24,9 @@ const resources = {
   },
   it: {
     translation: translationIT,
+  },
+  ar: {
+    translation: translationAR,
   },
 };
 

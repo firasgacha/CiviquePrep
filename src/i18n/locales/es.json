@@ -76,5 +76,22 @@
   "updateAvailable": "¡Nueva versión disponible!",
   "updateNow": "Actualizar ahora",
   "copyright": "",
-  "allRightsReserved": "Todos los derechos reservados"
+  "allRightsReserved": "Todos los derechos reservados",
+  "infoTitle": "Implementación del examen cívico",
+  "infoIntro": "A partir del 1 de enero de 2026, se requerirá el examen cívico para las personas que soliciten una tarjeta de residencia plurianual (CSP) o una tarjeta de residente (CR).",
+  "infoMarianneTitle": "🇫🇷 Marianne",
+  "infoMarianneContent": "La ley del 26 de enero de 2024 para controlar la inmigración, mejorar la integración ha fortalecido los requisitos de dominio del francés e integración republicana de los extranjeros de primera vez que desean permanecer permanentemente en Francia. Esta ley prévoit la creación de un examen cívico que tiene como objetivo verificar el conocimiento del candidato sobre los principios y valores de la República, la organización de la República y el funcionamiento de la sociedad francesa.",
+  "infoExamLocationsTitle": "¿Dónde realizar el examen cívico y cómo registrarse?",
+  "infoExamLocationsIntro": "Dos organizaciones han sido aprobadas por el Ministerio del Interior para la implementación del examen cívico:",
+  "infoCcipTitle": "🏢 La Cámara de Comercio e Industria de París (CCIP)",
+  "infoCcipText": "Encuentre los centros aprobados y los procedimientos de registro en el siguiente enlace:",
+  "infoCcipLink": "Registro CCIP - Examen cívico ↗",
+  "infoFeiTitle": "🎓 Francia Educación Internacional (FEI)",
+  "infoFeiText": "Encuentre los centros de examen:",
+  "infoFeiLink": "Centros de examen cívico - FEI ↗",
+  "infoFeiRegisterText": "Enlace para inscribirse al examen:",
+  "infoFeiRegisterLink": "Inscripción al examen cívico - FEI ↗",
+  "infoNaturalisationTitle": "📚 Para el examen cívico mención naturalización",
+  "infoNaturalisationText": "Encuentre toda la información y la lista oficial de preguntas de conocimiento:",
+  "infoNaturalisationLink": "Información oficial - Examen cívico naturalización ↗"
 }
