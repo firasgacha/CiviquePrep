@@ -8,9 +8,51 @@ interface ExamProps {
     questions: Question[];
 }
 
+export type ExamDifficulty = 'quick' | 'standard' | 'intensive' | 'custom';
+
+interface ExamConfig {
+    name: string;
+    questionCount: number;
+    timeLimit: number; // minutes
+    questionTypes: { connaissance: number; miseEnSituation: number; };
+    passingScore: number;
+}
+
+export const EXAM_CONFIGS: Record<ExamDifficulty, ExamConfig> = {
+    quick: {
+        name: 'Quick Practice',
+        questionCount: 20,
+        timeLimit: 15,
+        questionTypes: { connaissance: 15, miseEnSituation: 5 },
+        passingScore: 60
+    },
+    standard: {
+        name: 'Standard',
+        questionCount: 50,
+        timeLimit: 35,
+        questionTypes: { connaissance: 30, miseEnSituation: 20 },
+        passingScore: 60
+    },
+    intensive: {
+        name: 'Intensive',
+        questionCount: 80,
+        timeLimit: 60,
+        questionTypes: { connaissance: 50, miseEnSituation: 30 },
+        passingScore: 65
+    },
+    custom: {
+        name: 'Custom',
+        questionCount: 30,
+        timeLimit: 25,
+        questionTypes: { connaissance: 20, miseEnSituation: 10 },
+        passingScore: 60
+    }
+};
+
 export function Exam({ questions }: ExamProps) {
     const { t } = useTranslation();
     const [selectedList, setSelectedList] = useState<'csp' | 'cr' | null>(null);
+    const [examDifficulty, setExamDifficulty] = useState<ExamDifficulty>('standard');
     const [examActive, setExamActive] = useState<boolean>(false);
     const [examFinished, setExamFinished] = useState<boolean>(false);
     const [examQuestions, setExamQuestions] = useState<Question[]>([]);
@@ -55,22 +97,25 @@ export function Exam({ questions }: ExamProps) {
     };
 
     const startExam = useCallback(() => {
+        // Get config for selected difficulty
+        const config = EXAM_CONFIGS[examDifficulty];
+
         // Filter questions by selected list
         const listQuestions = questions.filter(q => q.list === selectedList);
         const shuffled = shuffleArray([...listQuestions]);
-        const selected = shuffled.slice(0, 50);
+        const selected = shuffled.slice(0, config.questionCount);
         const withTypes = selected.map((q, idx) => ({
             ...q,
-            type: idx < 30 ? 'connaissance' as const : 'mise en situation' as const
+            type: idx < config.questionTypes.connaissance ? 'connaissance' as const : 'mise en situation' as const
         }));
         setExamQuestions(withTypes);
-        setExamAnswers(Array(50).fill(null));
+        setExamAnswers(Array(config.questionCount).fill(null));
         setExamIndex(0);
         setFlaggedQuestions(new Set());
         setShowFlaggedOnly(false);
         setExamActive(true);
         setExamFinished(false);
-        setExamTimer(35 * 60);
+        setExamTimer(config.timeLimit * 60);
 
         if (timerInterval) clearInterval(timerInterval);
         const interval = setInterval(() => {
@@ -80,18 +125,19 @@ export function Exam({ questions }: ExamProps) {
             });
         }, 1000);
         setTimerInterval(interval);
-    }, [questions, timerInterval, selectedList]);
+    }, [questions, timerInterval, selectedList, examDifficulty]);
 
     const finishExam = useCallback(() => {
+        const config = EXAM_CONFIGS[examDifficulty];
         const score = examQuestions.reduce((acc, q, idx) => {
             return acc + (examAnswers[idx] === q.correct ? 1 : 0);
         }, 0);
 
-        setExamHistory(prev => [...prev, { id: crypto.randomUUID(), date: new Date().toISOString(), score, total: 50 }]);
+        setExamHistory(prev => [...prev, { id: crypto.randomUUID(), date: new Date().toISOString(), score, total: config.questionCount }]);
         setExamActive(false);
         setExamFinished(true);
         if (timerInterval) clearInterval(timerInterval);
-    }, [examQuestions, examAnswers, timerInterval, setExamHistory]);
+    }, [examQuestions, examAnswers, timerInterval, setExamHistory, examDifficulty]);
 
     const resetExam = useCallback(() => {
         // Go back to list selection
@@ -221,6 +267,26 @@ export function Exam({ questions }: ExamProps) {
 
                 <div style={{ textAlign: 'center', padding: '2.5rem' }}>
                     <h2 style={{ color: '#0b2b4a', marginBottom: '1rem' }}>{t('examTitle')}</h2>
+
+                    {/* Difficulty Selection */}
+                    <div className="exam-difficulty-selector">
+                        <p style={{ marginBottom: '1rem' }}>{t('selectDifficulty') || 'Select difficulty:'}</p>
+                        <div className="difficulty-options">
+                            {(['quick', 'standard', 'intensive'] as ExamDifficulty[]).map(diff => (
+                                <button
+                                    key={diff}
+                                    className={`difficulty-btn ${examDifficulty === diff ? 'active' : ''}`}
+                                    onClick={() => setExamDifficulty(diff)}
+                                >
+                                    <span className="diff-name">{t(`diff_${diff}`) || EXAM_CONFIGS[diff].name}</span>
+                                    <span className="diff-details">
+                                        {EXAM_CONFIGS[diff].questionCount} {t('questions')} · {EXAM_CONFIGS[diff].timeLimit} min
+                                    </span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
                     <p style={{ marginBottom: '2rem' }}>{t('examDescription')}</p>
 
                     {/* Exam History */}

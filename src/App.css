@@ -1515,3 +1515,51 @@ hr {
 .theme-accuracy-fill.hard {
   background: #dc3545;
 }
+
+/* Exam Difficulty Selector Styles */
+.exam-difficulty-selector {
+  margin-bottom: 2rem;
+}
+
+.difficulty-options {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.difficulty-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 140px;
+}
+
+.difficulty-btn:hover {
+  border-color: #007bff;
+  transform: translateY(-2px);
+}
+
+.difficulty-btn.active {
+  border-color: #007bff;
+  background: #e7f1ff;
+}
+
+.difficulty-btn .diff-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 0.25rem;
+}
+
+.difficulty-btn .diff-details {
+  font-size: 0.8rem;
+  color: #666;
+}

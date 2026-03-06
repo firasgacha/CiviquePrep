@@ -111,5 +111,10 @@
   "recommendation": "Study Recommendation",
   "studyThisTheme": "Focus on",
   "accuracy": "Accuracy",
-  "noDataYet": "No data yet. Start practicing to see your analysis!"
+  "noDataYet": "No data yet. Start practicing to see your analysis!",
+  "selectDifficulty": "Select difficulty:",
+  "diff_quick": "Quick Practice",
+  "diff_standard": "Standard",
+  "diff_intensive": "Intensive",
+  "questions": "questions"
 }

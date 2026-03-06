@@ -112,5 +112,10 @@
   "recommendation": "Recommandation",
   "studyThisTheme": "Concentrez-vous sur",
   "accuracy": "Précision",
-  "noDataYet": "Pas encore de données. Commencez à pratiquer pour voir votre analyse !"
+  "noDataYet": "Pas encore de données. Commencez à pratiquer pour voir votre analyse !",
+  "selectDifficulty": "Sélectionnez la difficulté :",
+  "diff_quick": "Rapide",
+  "diff_standard": "Standard",
+  "diff_intensive": "Intensif",
+  "questions": "questions"
 }
