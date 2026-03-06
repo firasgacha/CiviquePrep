@@ -517,7 +517,7 @@ hr {
 
 .notes-theme-btn.active {
   background: var(--primary-color);
-  color: white;
+  color: var(--text-color);
   border-color: var(--primary-color);
 }
 
