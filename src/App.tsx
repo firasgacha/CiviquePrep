@@ -75,28 +75,6 @@ function AppContent() {
       ) : (
         <Notes />
       )}
-
-      <hr />
-      <div className="corriges-box">
-        <div style={{ fontWeight: 700, marginBottom: '0.6rem' }}>{t('corrections')}</div>
-        <div className="corriges-grid">
-          <div>
-            <span className="corriges-tag">{t('theme')} 1</span> {corrigesParTheme[1]}
-          </div>
-          <div>
-            <span className="corriges-tag">{t('theme')} 2</span> {corrigesParTheme[2]}
-          </div>
-          <div>
-            <span className="corriges-tag">{t('theme')} 3</span> {corrigesParTheme[3]}
-          </div>
-          <div>
-            <span className="corriges-tag">{t('theme')} 4</span> {corrigesParTheme[4]}
-          </div>
-          <div>
-            <span className="corriges-tag">{t('theme')} 5</span> {corrigesParTheme[5]}
-          </div>
-        </div>
-      </div>
       <ScrollToTop />
     </div>
   );
