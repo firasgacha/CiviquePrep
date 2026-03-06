@@ -4,6 +4,7 @@ import { Training } from './components/Training';
 import { Exam } from './components/Exam';
 import { Resume } from './components/Resume';
 import { Notes } from './components/Notes';
+import { Info } from './components/Info';
 import { LanguageSelector } from './components/LanguageSelector';
 import { ThemeToggle } from './components/ThemeToggle';
 import { ScrollToTop } from './components/ScrollToTop';
@@ -17,7 +18,7 @@ import './App.css';
 
 function AppContent() {
   const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState<Tab>('train');
+  const [activeTab, setActiveTab] = useState<Tab>('info');
 
   return (
     <div className="container">
@@ -31,6 +32,12 @@ function AppContent() {
       <div style={{ marginBottom: '1rem' }}>{t('subtitle')}</div>
 
       <div className="nav-tabs">
+        <div
+          className={`nav-tab ${activeTab === 'info' ? 'active' : ''}`}
+          onClick={() => setActiveTab('info')}
+        >
+          {t('info')}
+        </div>
         <div
           className={`nav-tab ${activeTab === 'train' ? 'active' : ''}`}
           onClick={() => setActiveTab('train')}
@@ -57,7 +64,9 @@ function AppContent() {
         </div>
       </div>
 
-      {activeTab === 'train' ? (
+      {activeTab === 'info' ? (
+        <Info />
+      ) : activeTab === 'train' ? (
         <Training questions={allQuestions} />
       ) : activeTab === 'exam' ? (
         <Exam questions={allQuestions} />
