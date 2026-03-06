@@ -1,4 +1,9 @@
-export type ExamDifficulty = "quick" | "standard" | "intensive" | "custom";
+export type ExamDifficulty =
+  | "quick"
+  | "standard"
+  | "intensive"
+  | "custom"
+  | "mistakes";
 
 export interface ExamConfig {
   name: string;
@@ -36,5 +41,12 @@ export const EXAM_CONFIGS: Record<ExamDifficulty, ExamConfig> = {
     timeLimit: 25,
     questionTypes: { connaissance: 20, miseEnSituation: 10 },
     passingScore: 60,
+  },
+  mistakes: {
+    name: "Mistakes Review",
+    questionCount: 0, // Will be set dynamically based on mistakes
+    timeLimit: 30,
+    questionTypes: { connaissance: 0, miseEnSituation: 0 },
+    passingScore: 100,
   },
 };

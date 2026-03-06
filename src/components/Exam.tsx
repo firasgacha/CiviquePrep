@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import type { Question } from '../types';
 import { THEME_NAMES } from '../types';
 import { useLocalStorage } from '../hooks/useLocalStorage';
+import { useSpacedRepetition } from '../hooks/useSpacedRepetition';
 import type { ExamDifficulty } from './ExamConfigs';
 import { EXAM_CONFIGS } from './ExamConfigs';
 
@@ -27,6 +28,7 @@ export function Exam({ questions }: ExamProps) {
     const [flaggedQuestions, setFlaggedQuestions] = useState<Set<number>>(new Set());
     const [showFlaggedOnly, setShowFlaggedOnly] = useState<boolean>(false);
     const [examHistory, setExamHistory] = useLocalStorage<Array<{ id: string; date: string; score: number; total: number; }>>('civique-exam-history', []);
+    const { spacedData } = useSpacedRepetition();
 
     // Handle list selection
     const handleListSelect = (list: 'csp' | 'cr') => {
@@ -60,7 +62,46 @@ export function Exam({ questions }: ExamProps) {
         return shuffled;
     };
 
+    // Get count of mistakes for the selected list
+    const mistakesCount = useMemo(() => {
+        if (!selectedList) return 0;
+        const listQuestions = questions.filter(q => q.list === selectedList);
+        return listQuestions.filter(q => {
+            const stats = spacedData[q.id];
+            return stats && stats.timesShown > 0 && stats.timesCorrect < stats.timesShown;
+        }).length;
+    }, [questions, selectedList, spacedData]);
+
     const startExam = useCallback(() => {
+        // Handle mistakes review mode
+        if (examDifficulty === 'mistakes') {
+            const listQuestions = questions.filter(q => q.list === selectedList);
+            // Filter to only questions that have been answered incorrectly
+            const mistakeQuestions = listQuestions.filter(q => {
+                const stats = spacedData[q.id];
+                return stats && stats.timesShown > 0 && stats.timesCorrect < stats.timesShown;
+            });
+
+            if (mistakeQuestions.length === 0) {
+                alert(t('noMistakes'));
+                return;
+            }
+
+            const shuffled = shuffleArray([...mistakeQuestions]);
+            setExamQuestions(shuffled);
+            setExamAnswers(Array(shuffled.length).fill(null));
+            setExamIndex(0);
+            setFlaggedQuestions(new Set());
+            setShowFlaggedOnly(false);
+            setExamActive(true);
+            setExamFinished(false);
+            // No timer for mistakes review mode - user can take their time
+            setExamTimer(0);
+
+            if (timerInterval) clearInterval(timerInterval);
+            return;
+        }
+
         // Get config for selected difficulty
         const config = EXAM_CONFIGS[examDifficulty];
 
@@ -89,7 +130,7 @@ export function Exam({ questions }: ExamProps) {
             });
         }, 1000);
         setTimerInterval(interval);
-    }, [questions, timerInterval, selectedList, examDifficulty]);
+    }, [questions, timerInterval, selectedList, examDifficulty, spacedData, t]);
 
     const finishExam = useCallback(() => {
         const config = EXAM_CONFIGS[examDifficulty];
@@ -251,6 +292,25 @@ export function Exam({ questions }: ExamProps) {
                         </div>
                     </div>
 
+                    {/* Mistakes Review Mode */}
+                    <div className="exam-difficulty-selector" style={{ marginTop: '1.5rem' }}>
+                        <p style={{ marginBottom: '1rem' }}>{t('reviewMistakes') || 'Review your mistakes:'}</p>
+                        <div className="difficulty-options">
+                            <button
+                                className={`difficulty-btn ${examDifficulty === 'mistakes' ? 'active' : ''}`}
+                                onClick={() => setExamDifficulty('mistakes')}
+                                disabled={mistakesCount === 0}
+                            >
+                                <span className="diff-name">{t('diff_mistakes') || 'Review Mistakes'}</span>
+                                <span className="diff-details">
+                                    {mistakesCount > 0
+                                        ? `${mistakesCount} ${t('questionsToReview').toLowerCase()}`
+                                        : t('noMistakesYet')}
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
                     <p style={{ marginBottom: '2rem' }}>{t('examDescription')}</p>
 
                     {/* Exam History */}
@@ -283,7 +343,9 @@ export function Exam({ questions }: ExamProps) {
                         </div>
                     )}
 
-                    <button className="exam-btn" onClick={startExam}>{t('startExam')}</button>
+                    <button className="exam-btn" onClick={startExam}>
+                        {examDifficulty === 'mistakes' ? t('startMistakesReview') : t('startExam')}
+                    </button>
                 </div>
             </div>
         );
@@ -292,12 +354,14 @@ export function Exam({ questions }: ExamProps) {
     if (examActive && examQuestions.length > 0) {
         const currentQuestion = examQuestions[examIndex];
         const flaggedCount = flaggedQuestions.size;
+        const isMistakesMode = examDifficulty === 'mistakes';
 
         return (
             <div className="tab-content">
                 <div className="exam-header">
                     <span className="exam-progress">{t('question')} {examIndex + 1} / {examQuestions.length}</span>
-                    <span className="timer">{examTimerFormatted}</span>
+                    {!isMistakesMode && <span className="timer">{examTimerFormatted}</span>}
+                    {isMistakesMode && <span style={{ fontWeight: 500, color: '#e74c3c' }}>{t('mistakesReviewMode')}</span>}
                     <span style={{ fontWeight: 500 }}>{currentQuestion.type === 'connaissance' ? t('knowledge') : t('situation')}</span>
                 </div>
 
