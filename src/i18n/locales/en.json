@@ -172,5 +172,22 @@
   "smartReviewFlashcards": "🎯 Smart Review",
   "flashcardDesc": "Quick memorization mode with flip cards",
   "noFlashcardBookmarks": "No flashcard bookmarks yet. Bookmark cards during flashcard sessions to review them here.",
-  "flashcardBookmarks": "📇 Flashcard Bookmarks"
+  "flashcardBookmarks": "📇 Flashcard Bookmarks",
+  "infoExamFormatTitle": "📋 Exam Format",
+  "infoExamFormatQuestions": "40 questions in total",
+  "infoExamFormatConnaissance": "28 knowledge questions",
+  "infoExamFormatSituation": "12 situational scenarios",
+  "infoExamFormatDuration": "Duration: 45 minutes",
+  "infoExamFormatPassing": "Passing score: 32/40 (80%)",
+  "infoFaqTitle": "❓ Frequently Asked Questions",
+  "infoFaqDocTitle": "What documents do I need to bring?",
+  "infoFaqDocContent": "You must bring a valid identity document (passport or residence permit).",
+  "infoFaqCostTitle": "How much does the exam cost?",
+  "infoFaqCostContent": "The fee for the civic exam is set by each organization. Please visit the website of your chosen organization to find the exact price.",
+  "infoFaqResultTitle": "When will I receive the results?",
+  "infoFaqResultContent": "Results are usually communicated within a few business days. They are sent by email and available on your candidate portal.",
+  "infoFaqValidityTitle": "How long is the certificate valid?",
+  "infoFaqValidityContent": "The civic exam certificate is valid indefinitely once obtained.",
+  "infoFaqRetakeTitle": "Can I retake the exam if I fail?",
+  "infoFaqRetakeContent": "Yes, you can retake the exam as many times as needed. There is no limit on the number of attempts."
 }
