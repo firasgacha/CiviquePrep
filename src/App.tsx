@@ -7,6 +7,7 @@ import { Notes } from './components/Notes';
 import { Bookmarks } from './components/Bookmarks';
 import { About } from './components/About';
 import { Info } from './components/Info';
+import { Flashcards } from './components/Flashcards';
 import { LanguageSelector } from './components/LanguageSelector';
 import { ThemeToggle } from './components/ThemeToggle';
 import { ScrollToTop } from './components/ScrollToTop';
@@ -77,6 +78,12 @@ function AppContent() {
           {t('bookmarks')}
         </div>
         <div
+          className={`nav-tab ${activeTab === 'flashcards' ? 'active' : ''}`}
+          onClick={() => setActiveTab('flashcards')}
+        >
+          {t('flashcards')}
+        </div>
+        <div
           className={`nav-tab ${activeTab === 'resume' ? 'active' : ''}`}
           onClick={() => setActiveTab('resume')}
         >
@@ -104,6 +111,8 @@ function AppContent() {
         <Exam questions={allQuestions} />
       ) : activeTab === 'bookmarks' ? (
         <Bookmarks questions={allQuestions} />
+      ) : activeTab === 'flashcards' ? (
+        <Flashcards questions={allQuestions} />
       ) : activeTab === 'about' ? (
         <About />
       ) : activeTab === 'resume' ? (

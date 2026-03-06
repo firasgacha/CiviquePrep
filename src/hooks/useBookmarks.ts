@@ -12,10 +12,13 @@ export interface UserBookmarks {
 }
 
 const STORAGE_KEY = "civique-bookmarks";
+const FLASH_CARDS_KEY = "civique-flashcard-bookmarks";
 
-export function useBookmarks() {
+export function useBookmarks(type: "questions" | "flashcards" = "questions") {
+  const storageKey = type === "flashcards" ? FLASH_CARDS_KEY : STORAGE_KEY;
+
   const [bookmarks, setBookmarks] = useLocalStorage<UserBookmarks>(
-    STORAGE_KEY,
+    storageKey,
     {},
   );
 

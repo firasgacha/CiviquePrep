@@ -17,7 +17,8 @@ export type Tab =
   | "notes"
   | "info"
   | "bookmarks"
-  | "about";
+  | "about"
+  | "flashcards";
 
 export interface ExamState {
   active: boolean;
