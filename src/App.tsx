@@ -80,7 +80,7 @@ function AppContent() {
       )}
       <ScrollToTop />
       <footer className="app-footer">
-        {t('copyright')} © {new Date().getFullYear()} {t('allRightsReserved')}
+        {t('copyright')} © {new Date().getFullYear()} {t('allRightsReserved')} 🦦
       </footer>
     </div>
   );
