@@ -5,6 +5,7 @@ import { Exam } from './components/Exam';
 import { Resume } from './components/Resume';
 import { Notes } from './components/Notes';
 import { Bookmarks } from './components/Bookmarks';
+import { About } from './components/About';
 import { Info } from './components/Info';
 import { LanguageSelector } from './components/LanguageSelector';
 import { ThemeToggle } from './components/ThemeToggle';
@@ -87,6 +88,12 @@ function AppContent() {
         >
           {t('notes')}
         </div>
+        <div
+          className={`nav-tab ${activeTab === 'about' ? 'active' : ''}`}
+          onClick={() => setActiveTab('about')}
+        >
+          {t('aboutTitle')}
+        </div>
       </div>
 
       {activeTab === 'info' ? (
@@ -97,6 +104,8 @@ function AppContent() {
         <Exam questions={allQuestions} />
       ) : activeTab === 'bookmarks' ? (
         <Bookmarks questions={allQuestions} />
+      ) : activeTab === 'about' ? (
+        <About />
       ) : activeTab === 'resume' ? (
         <Resume questions={allQuestions} />
       ) : (
