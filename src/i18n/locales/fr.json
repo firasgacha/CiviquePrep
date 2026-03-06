@@ -105,5 +105,12 @@
   "masteryLevel": "Niveau de maîtrise",
   "overallMastery": "Maîtrise globale",
   "dueForReview": "À revoir",
-  "questionsToReview": "questions à revoir"
+  "questionsToReview": "questions à revoir",
+  "weakAreas": "🎯 Points faibles",
+  "strongAreas": "💪 Points forts",
+  "needsWork": "À travailler davantage",
+  "recommendation": "Recommandation",
+  "studyThisTheme": "Concentrez-vous sur",
+  "accuracy": "Précision",
+  "noDataYet": "Pas encore de données. Commencez à pratiquer pour voir votre analyse !"
 }

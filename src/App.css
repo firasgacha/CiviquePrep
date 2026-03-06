@@ -1432,3 +1432,86 @@ hr {
   color: white;
   opacity: 1;
 }
+
+/* Weak Areas Analysis Styles */
+.weak-areas-section {
+  margin-top: 1rem;
+}
+
+.recommendation {
+  background: var(--card-bg, #f5f5f5);
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.theme-accuracy-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.theme-accuracy-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.theme-accuracy-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.theme-accuracy-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.theme-accuracy-badge {
+  font-size: 0.8rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.theme-accuracy-badge.easy {
+  background: #d4edda;
+  color: #155724;
+}
+
+.theme-accuracy-badge.medium {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.theme-accuracy-badge.hard {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.theme-accuracy-bar {
+  height: 8px;
+  background: #e9ecef;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.theme-accuracy-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.theme-accuracy-fill.easy {
+  background: #28a745;
+}
+
+.theme-accuracy-fill.medium {
+  background: #ffc107;
+}
+
+.theme-accuracy-fill.hard {
+  background: #dc3545;
+}

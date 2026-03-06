@@ -104,5 +104,12 @@
   "masteryLevel": "Mastery Level",
   "overallMastery": "Overall Mastery",
   "dueForReview": "Due for review",
-  "questionsToReview": "questions to review"
+  "questionsToReview": "questions to review",
+  "weakAreas": "🎯 Weak Areas",
+  "strongAreas": "💪 Strong Areas",
+  "needsWork": "Needs more practice",
+  "recommendation": "Study Recommendation",
+  "studyThisTheme": "Focus on",
+  "accuracy": "Accuracy",
+  "noDataYet": "No data yet. Start practicing to see your analysis!"
 }

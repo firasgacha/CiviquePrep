@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { useBookmarks } from '../hooks/useBookmarks';
 import { useSpacedRepetition } from '../hooks/useSpacedRepetition';
+import { useWeakAreas } from '../hooks/useWeakAreas';
 import type { Question, UserSelections } from '../types';
 import { THEME_NAMES } from '../types';
 
@@ -23,6 +24,7 @@ export function Resume({ questions }: ResumeProps) {
     const [examHistory] = useLocalStorage<ExamHistoryItem[]>('civique-exam-history', []);
     const { bookmarkCount } = useBookmarks();
     const { getOverallMastery } = useSpacedRepetition();
+    const weakAreas = useWeakAreas(questions, THEME_NAMES);
 
     const stats = useMemo(() => {
         const answeredQuestions = Object.keys(trainingSelections).length;
@@ -143,6 +145,40 @@ export function Resume({ questions }: ResumeProps) {
                     })}
                 </div>
             </div>
+
+            {/* Weak Areas Analysis */}
+            {weakAreas.allThemes.length > 0 && (
+                <div className="resume-card">
+                    <h3>🎯 {t('weakAreas')}</h3>
+
+                    {weakAreas.weakestThemes.length > 0 && (
+                        <div className="weak-areas-section">
+                            <p className="recommendation">
+                                <strong>{t('recommendation')}:</strong> {t('studyThisTheme')} "{weakAreas.weakestThemes[0].themeName}" ({weakAreas.weakestThemes[0].accuracyRate}% {t('accuracy')})
+                            </p>
+
+                            <div className="theme-accuracy-chart">
+                                {weakAreas.allThemes.map(theme => (
+                                    <div key={theme.themeId} className="theme-accuracy-item">
+                                        <div className="theme-accuracy-header">
+                                            <span className="theme-accuracy-name">{theme.themeName}</span>
+                                            <span className={`theme-accuracy-badge ${theme.difficulty}`}>
+                                                {theme.accuracyRate}%
+                                            </span>
+                                        </div>
+                                        <div className="theme-accuracy-bar">
+                                            <div
+                                                className={`theme-accuracy-fill ${theme.difficulty}`}
+                                                style={{ width: `${theme.accuracyRate}%` }}
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </div>
+            )}
 
             {/* Exam History */}
             <div className="resume-card">
