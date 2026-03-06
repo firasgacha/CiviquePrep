@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next';
 import type { Question } from '../types';
 import { THEME_NAMES } from '../types';
 import { useLocalStorage } from '../hooks/useLocalStorage';
-import { ExamDifficulty, EXAM_CONFIGS } from './ExamConfigs';
+import type { ExamDifficulty } from './ExamConfigs';
+import { EXAM_CONFIGS } from './ExamConfigs';
 
 interface ExamProps {
     questions: Question[];
