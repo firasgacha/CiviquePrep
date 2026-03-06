@@ -10,7 +10,7 @@ export interface Question {
   list?: "csp" | "cr";
 }
 
-export type Tab = "train" | "exam" | "resume" | "notes" | "info";
+export type Tab = "train" | "exam" | "resume" | "notes" | "info" | "bookmarks";
 
 export interface ExamState {
   active: boolean;

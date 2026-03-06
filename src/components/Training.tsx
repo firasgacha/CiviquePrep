@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import type { Question, UserSelections } from '../types';
 import { THEME_NAMES } from '../types';
 import { useLocalStorage } from '../hooks/useLocalStorage';
+import { useBookmarks } from '../hooks/useBookmarks';
 
 interface TrainingProps {
     questions: Question[];
@@ -17,6 +18,7 @@ export function Training({ questions }: TrainingProps) {
     const [userSelections, setUserSelections] = useLocalStorage<UserSelections>('civique-training-selections', {});
     const [revealedQuestions, setRevealedQuestions] = useState<Set<string>>(new Set());
     const [searchQuery, setSearchQuery] = useState<string>('');
+    const { isBookmarked, toggleBookmark } = useBookmarks();
     const perPage = 10;
 
     // Handle list selection
@@ -220,7 +222,16 @@ export function Training({ questions }: TrainingProps) {
             ) : (
                 paginatedQuestions.map(q => (
                     <div key={q.id} className="question-card">
-                        <span className="theme-tag">{themeName(q.theme)} · {t('theme')} {q.theme}</span>
+                        <div className="question-header">
+                            <span className="theme-tag">{themeName(q.theme)} · {t('theme')} {q.theme}</span>
+                            <button
+                                className={`bookmark-btn ${isBookmarked(q.id) ? 'active' : ''}`}
+                                onClick={() => toggleBookmark(q.id)}
+                                title={isBookmarked(q.id) ? t('bookmarked') : t('bookmark')}
+                            >
+                                {isBookmarked(q.id) ? '⭐' : '☆'}
+                            </button>
+                        </div>
                         <div className="q-text">{q.num}. {q.text}</div>
                         <div className="options">
                             {q.options.map((opt, idx) => {

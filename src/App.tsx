@@ -4,6 +4,7 @@ import { Training } from './components/Training';
 import { Exam } from './components/Exam';
 import { Resume } from './components/Resume';
 import { Notes } from './components/Notes';
+import { Bookmarks } from './components/Bookmarks';
 import { Info } from './components/Info';
 import { LanguageSelector } from './components/LanguageSelector';
 import { ThemeToggle } from './components/ThemeToggle';
@@ -54,6 +55,12 @@ function AppContent() {
           {t('exam')}
         </div>
         <div
+          className={`nav-tab ${activeTab === 'bookmarks' ? 'active' : ''}`}
+          onClick={() => setActiveTab('bookmarks')}
+        >
+          {t('bookmarks')}
+        </div>
+        <div
           className={`nav-tab ${activeTab === 'resume' ? 'active' : ''}`}
           onClick={() => setActiveTab('resume')}
         >
@@ -73,6 +80,8 @@ function AppContent() {
         <Training questions={allQuestions} />
       ) : activeTab === 'exam' ? (
         <Exam questions={allQuestions} />
+      ) : activeTab === 'bookmarks' ? (
+        <Bookmarks questions={allQuestions} />
       ) : activeTab === 'resume' ? (
         <Resume questions={allQuestions} />
       ) : (

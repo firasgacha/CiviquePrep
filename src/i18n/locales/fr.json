@@ -93,5 +93,11 @@
   "infoFeiRegisterLink": "Inscription à l'examen civique - FEI ↗",
   "infoNaturalisationTitle": "📚 Pour l'examen civique mention naturalisation",
   "infoNaturalisationText": "Trouvez toutes les informations et la liste officielle des questions de connaissance :",
-  "infoNaturalisationLink": "Informations officielles - Examen civique naturalisation ↗"
+  "infoNaturalisationLink": "Informations officielles - Examen civique naturalisation ↗",
+  "bookmarks": "⭐ Favoris",
+  "bookmark": "Ajouter aux favoris",
+  "bookmarked": "Dans les favoris",
+  "noBookmarks": "Aucun favori. Ajoutez des favoris pendant l'entraînement pour les revoir ici.",
+  "removeBookmark": "Retirer des favoris",
+  "bookmarkCount": "Favoris"
 }

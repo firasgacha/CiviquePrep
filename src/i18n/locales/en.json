@@ -92,5 +92,11 @@
   "infoFeiRegisterLink": "Civic exam registration - FEI ↗",
   "infoNaturalisationTitle": "📚 For the civic exam mention naturalization",
   "infoNaturalisationText": "Find all information and the official list of knowledge questions:",
-  "infoNaturalisationLink": "Official information - Naturalization civic exam ↗"
+  "infoNaturalisationLink": "Official information - Naturalization civic exam ↗",
+  "bookmarks": "⭐ Bookmarks",
+  "bookmark": "Bookmark",
+  "bookmarked": "Bookmarked",
+  "noBookmarks": "No bookmarks yet. Bookmark questions during training to review them here.",
+  "removeBookmark": "Remove bookmark",
+  "bookmarkCount": "Bookmarks"
 }
