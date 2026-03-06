@@ -71,5 +71,7 @@
   "crList": "Carte de résident (CR)",
   "comingSoon": "Bientôt disponible",
   "backToList": "Retour à la liste",
-  "daily": "Vie quotidienne"
+  "daily": "Vie quotidienne",
+  "updateAvailable": "Nouvelle version disponible !",
+  "updateNow": "Mettre à jour"
 }

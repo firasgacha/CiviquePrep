@@ -8,6 +8,7 @@ import { LanguageSelector } from './components/LanguageSelector';
 import { ThemeToggle } from './components/ThemeToggle';
 import { ScrollToTop } from './components/ScrollToTop';
 import { InstallPrompt } from './components/InstallPrompt';
+import { UpdateNotification } from './components/UpdateNotification';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { allQuestions, corrigesParTheme } from './data/questions';
 import type { Tab } from './types';
@@ -97,6 +98,7 @@ function App() {
     <ThemeProvider>
       <AppContent />
       <InstallPrompt />
+      <UpdateNotification />
     </ThemeProvider>
   );
 }
