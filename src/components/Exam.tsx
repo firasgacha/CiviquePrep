@@ -1,7 +1,6 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { Question } from '../types';
-import { THEME_NAMES } from '../types';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { useSpacedRepetition } from '../hooks/useSpacedRepetition';
 import type { ExamDifficulty } from './ExamConfigs';
@@ -241,7 +240,16 @@ export function Exam({ questions }: ExamProps) {
         setExamHistory(prev => prev.filter(entry => entry.id !== id));
     };
 
-    const themeName = (t: number) => THEME_NAMES[t] || '';
+    const themeName = (themeId: number) => {
+        const themeKeys: { [key: number]: string; } = {
+            1: 'principles',
+            2: 'institutions',
+            3: 'rights',
+            4: 'history',
+            5: 'social',
+        };
+        return t(themeKeys[themeId] || '');
+    };
     const isFlagged = (idx: number) => flaggedQuestions.has(idx);
 
     // Render list selection screen

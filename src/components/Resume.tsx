@@ -26,6 +26,18 @@ export function Resume({ questions }: ResumeProps) {
     const { getOverallMastery } = useSpacedRepetition();
     const weakAreas = useWeakAreas(questions, THEME_NAMES);
 
+    // Helper to get translated theme name by ID
+    const getThemeName = (themeId: number): string => {
+        const themeKeys: { [key: number]: string; } = {
+            1: 'principles',
+            2: 'institutions',
+            3: 'rights',
+            4: 'history',
+            5: 'social',
+        };
+        return t(themeKeys[themeId] || 'all');
+    };
+
     const stats = useMemo(() => {
         const answeredQuestions = Object.keys(trainingSelections).length;
         const totalQuestions = questions.length;
@@ -130,7 +142,7 @@ export function Resume({ questions }: ResumeProps) {
                         return (
                             <div key={theme} className="theme-progress-item">
                                 <div className="theme-header">
-                                    <span className="theme-name">{t(THEME_NAMES[theme].toLowerCase().replace(' & ', '_').replace(' ', '_'))}</span>
+                                    <span className="theme-name">{t(theme === 1 ? 'principles' : theme === 2 ? 'institutions' : theme === 3 ? 'rights' : theme === 4 ? 'history' : theme === 5 ? 'social' : 'all')}</span>
                                     <span className="theme-count">{progress.answered}/{progress.total}</span>
                                 </div>
                                 <div className="theme-progress-bar">
@@ -154,14 +166,14 @@ export function Resume({ questions }: ResumeProps) {
                     {weakAreas.weakestThemes.length > 0 && (
                         <div className="weak-areas-section">
                             <p className="recommendation">
-                                <strong>{t('recommendation')}:</strong> {t('studyThisTheme')} "{weakAreas.weakestThemes[0].themeName}" ({weakAreas.weakestThemes[0].accuracyRate}% {t('accuracy')})
+                                <strong>{t('recommendation')}:</strong> {t('studyThisTheme')} "{getThemeName(weakAreas.weakestThemes[0].themeId)}" ({weakAreas.weakestThemes[0].accuracyRate}% {t('accuracy')})
                             </p>
 
                             <div className="theme-accuracy-chart">
                                 {weakAreas.allThemes.map(theme => (
                                     <div key={theme.themeId} className="theme-accuracy-item">
                                         <div className="theme-accuracy-header">
-                                            <span className="theme-accuracy-name">{theme.themeName}</span>
+                                            <span className="theme-accuracy-name">{getThemeName(theme.themeId)}</span>
                                             <span className={`theme-accuracy-badge ${theme.difficulty}`}>
                                                 {theme.accuracyRate}%
                                             </span>

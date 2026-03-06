@@ -1,7 +1,6 @@
 import { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { Question, UserSelections } from '../types';
-import { THEME_NAMES } from '../types';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { useBookmarks } from '../hooks/useBookmarks';
 import { useSpacedRepetition } from '../hooks/useSpacedRepetition';
@@ -122,7 +121,17 @@ export function Training({ questions }: TrainingProps) {
         }, 2000);
     };
 
-    const themeName = (tnum: number) => THEME_NAMES[tnum] || '';
+    const themeName = (tnum: number) => {
+        const themeKeys: { [key: number]: string; } = {
+            0: 'all',
+            1: 'principles',
+            2: 'institutions',
+            3: 'rights',
+            4: 'history',
+            5: 'social',
+        };
+        return t(themeKeys[tnum] || 'all');
+    };
 
     // Render list selection screen
     if (selectedList === null) {

@@ -2,7 +2,6 @@ import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useBookmarks } from '../hooks/useBookmarks';
 import type { Question } from '../types';
-import { THEME_NAMES } from '../types';
 
 interface BookmarksProps {
     questions: Question[];
@@ -25,7 +24,17 @@ export function Bookmarks({ questions }: BookmarksProps) {
         return bookmarkedQuestions.filter(q => q.theme === selectedTheme);
     }, [bookmarkedQuestions, selectedTheme]);
 
-    const themeName = (tnum: number) => THEME_NAMES[tnum] || '';
+    const themeName = (tnum: number) => {
+        const themeKeys: { [key: number]: string; } = {
+            0: 'all',
+            1: 'principles',
+            2: 'institutions',
+            3: 'rights',
+            4: 'history',
+            5: 'social',
+        };
+        return t(themeKeys[tnum] || 'all');
+    };
 
     if (bookmarkCount === 0) {
         return (
