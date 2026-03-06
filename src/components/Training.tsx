@@ -57,7 +57,7 @@ export function Training({ questions }: TrainingProps) {
         }
 
         return filtered;
-    }, [questions, currentTheme, searchQuery]);
+    }, [questions, selectedList, currentTheme, searchQuery]);
 
     const totalPages = Math.ceil(filteredQuestions.length / perPage);
 

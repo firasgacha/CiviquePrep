@@ -11,7 +11,7 @@ import { ScrollToTop } from './components/ScrollToTop';
 import { InstallPrompt } from './components/InstallPrompt';
 import { UpdateNotification } from './components/UpdateNotification';
 import { ThemeProvider } from './contexts/ThemeContext';
-import { allQuestions, corrigesParTheme } from './data/questions';
+import { allQuestions } from './data/questions';
 import type { Tab } from './types';
 import './i18n';
 import './App.css';

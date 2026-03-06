@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useSyncExternalStore } from 'react';
 
 interface BeforeInstallPromptEvent extends Event {
     readonly platforms: string[];
@@ -9,19 +9,30 @@ interface BeforeInstallPromptEvent extends Event {
     prompt(): Promise<void>;
 }
 
+// Store for standalone mode that can be accessed during render
+const standaloneStore = {
+    getSnapshot: () => {
+        if (typeof window === 'undefined') return false;
+        return window.matchMedia('(display-mode: standalone)').matches;
+    },
+    getServerSnapshot: () => false,
+    subscribe: (callback: () => void) => {
+        const mediaQuery = window.matchMedia('(display-mode: standalone)');
+        mediaQuery.addEventListener('change', callback);
+        return () => mediaQuery.removeEventListener('change', callback);
+    },
+};
+
 export function InstallPrompt() {
     const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
-    const [isInstalled, setIsInstalled] = useState(false);
     const [showPrompt, setShowPrompt] = useState(false);
+    const isStandalone = useSyncExternalStore(
+        standaloneStore.subscribe,
+        standaloneStore.getSnapshot,
+        standaloneStore.getServerSnapshot
+    );
 
     useEffect(() => {
-        // Check if already installed
-        const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
-        if (isStandalone) {
-            setIsInstalled(true);
-            return;
-        }
-
         // Listen for the beforeinstallprompt event
         const handler = (e: Event) => {
             // Prevent Chrome 67 and earlier from automatically showing the prompt
@@ -36,7 +47,6 @@ export function InstallPrompt() {
 
         // Also listen for appinstalled event
         const handleAppInstalled = () => {
-            setIsInstalled(true);
             setShowPrompt(false);
         };
 
@@ -55,11 +65,7 @@ export function InstallPrompt() {
         await deferredPrompt.prompt();
 
         // Wait for the user to respond
-        const { outcome } = await deferredPrompt.userChoice;
-
-        if (outcome === 'accepted') {
-            setIsInstalled(true);
-        }
+        await deferredPrompt.userChoice;
 
         // Clear the stored event
         setDeferredPrompt(null);
@@ -73,26 +79,16 @@ export function InstallPrompt() {
     };
 
     // Don't show if already installed or dismissed
-    if (isInstalled || !showPrompt || sessionStorage.getItem('installPromptDismissed') === 'true') {
+    if (isStandalone || !showPrompt || sessionStorage.getItem('installPromptDismissed') === 'true') {
         return null;
     }
 
     return (
         <div className="install-prompt">
-            <div className="install-prompt-content">
-                <div className="install-prompt-icon">📲</div>
-                <div className="install-prompt-text">
-                    <strong>Installer QCM Civique</strong>
-                    <p>Accédez rapidement à vos révisions depuis l'écran d'accueil</p>
-                </div>
-                <div className="install-prompt-buttons">
-                    <button className="install-button" onClick={handleInstall}>
-                        Installer
-                    </button>
-                    <button className="dismiss-button" onClick={handleDismiss}>
-                        Plus tard
-                    </button>
-                </div>
+            <p>Installez l'application sur votre appareil pour un accès rapide !</p>
+            <div className="install-prompt-buttons">
+                <button onClick={handleInstall}>Installer</button>
+                <button onClick={handleDismiss}>Plus tard</button>
             </div>
         </div>
     );
