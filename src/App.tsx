@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Training } from './components/Training';
 import { Exam } from './components/Exam';
+import { Resume } from './components/Resume';
+import { Notes } from './components/Notes';
 import { LanguageSelector } from './components/LanguageSelector';
 import { ThemeToggle } from './components/ThemeToggle';
 import { ScrollToTop } from './components/ScrollToTop';
@@ -40,12 +42,28 @@ function AppContent() {
         >
           {t('exam')}
         </div>
+        <div
+          className={`nav-tab ${activeTab === 'resume' ? 'active' : ''}`}
+          onClick={() => setActiveTab('resume')}
+        >
+          {t('resume')}
+        </div>
+        <div
+          className={`nav-tab ${activeTab === 'notes' ? 'active' : ''}`}
+          onClick={() => setActiveTab('notes')}
+        >
+          {t('notes')}
+        </div>
       </div>
 
       {activeTab === 'train' ? (
         <Training questions={allQuestions} />
-      ) : (
+      ) : activeTab === 'exam' ? (
         <Exam questions={allQuestions} />
+      ) : activeTab === 'resume' ? (
+        <Resume questions={allQuestions} />
+      ) : (
+        <Notes />
       )}
 
       <hr />

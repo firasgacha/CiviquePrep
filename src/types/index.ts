@@ -9,7 +9,7 @@ export interface Question {
   type?: "connaissance" | "mise en situation";
 }
 
-export type Tab = "train" | "exam";
+export type Tab = "train" | "exam" | "resume" | "notes";
 
 export interface ExamState {
   active: boolean;
