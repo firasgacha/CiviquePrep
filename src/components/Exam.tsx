@@ -28,6 +28,7 @@ export function Exam({ questions }: ExamProps) {
     const [flaggedQuestions, setFlaggedQuestions] = useState<Set<number>>(new Set());
     const [showFlaggedOnly, setShowFlaggedOnly] = useState<boolean>(false);
     const [examHistory, setExamHistory] = useLocalStorage<Array<{ id: string; date: string; score: number; total: number; }>>('civique-exam-history', []);
+    const [showAnswerFeedback, setShowAnswerFeedback] = useState<boolean>(false);
     const { spacedData } = useSpacedRepetition();
 
     // Handle list selection
@@ -171,11 +172,14 @@ export function Exam({ questions }: ExamProps) {
     }, [examTimer, examActive, finishExam]);
 
     const setExamAnswer = (letter: string) => {
+        if (showAnswerFeedback) return; // Prevent changing answer after feedback
         setExamAnswers(prev => {
             const next = [...prev];
             next[examIndex] = letter;
             return next;
         });
+        // Show immediate feedback
+        setShowAnswerFeedback(true);
     };
 
     const toggleFlag = () => {
@@ -191,6 +195,7 @@ export function Exam({ questions }: ExamProps) {
     };
 
     const goToNext = () => {
+        setShowAnswerFeedback(false); // Reset feedback for next question
         if (showFlaggedOnly) {
             // Find next flagged question
             const flaggedArray = Array.from(flaggedQuestions).sort((a, b) => a - b);
@@ -204,6 +209,7 @@ export function Exam({ questions }: ExamProps) {
     };
 
     const goToPrev = () => {
+        setShowAnswerFeedback(false); // Reset feedback for previous question
         if (showFlaggedOnly) {
             const flaggedArray = Array.from(flaggedQuestions).sort((a, b) => a - b);
             const currentPos = flaggedArray.indexOf(examIndex);
@@ -355,6 +361,11 @@ export function Exam({ questions }: ExamProps) {
         const currentQuestion = examQuestions[examIndex];
         const flaggedCount = flaggedQuestions.size;
         const isMistakesMode = examDifficulty === 'mistakes';
+        const totalQuestions = examQuestions.length;
+        const currentPosition = examIndex + 1;
+
+        // Generate progress bar segments (filled = answered correctly so far, empty = remaining)
+        const progressSegments = '█'.repeat(examIndex) + '░'.repeat(totalQuestions - examIndex);
 
         return (
             <div className="tab-content">
@@ -363,6 +374,12 @@ export function Exam({ questions }: ExamProps) {
                     {!isMistakesMode && <span className="timer">{examTimerFormatted}</span>}
                     {isMistakesMode && <span style={{ fontWeight: 500, color: '#e74c3c' }}>{t('mistakesReviewMode')}</span>}
                     <span style={{ fontWeight: 500 }}>{currentQuestion.type === 'connaissance' ? t('knowledge') : t('situation')}</span>
+                </div>
+
+                {/* Visual Progress Bar */}
+                <div className="progress-bar-container">
+                    <div className="progress-segments">{progressSegments}</div>
+                    <div className="progress-text">{currentPosition} / {totalQuestions}</div>
                 </div>
 
                 {/* Flag controls */}
@@ -394,11 +411,25 @@ export function Exam({ questions }: ExamProps) {
                     <div className="options">
                         {currentQuestion.options.map((opt, idx) => {
                             const letter = String.fromCharCode(65 + idx);
+                            const isSelected = examAnswers[examIndex] === letter;
+                            const isCorrect = letter === currentQuestion.correct;
+
+                            // Determine CSS class based on state
+                            let optionClass = 'option';
+                            if (isSelected) optionClass += ' selected';
+                            if (showAnswerFeedback && isSelected) {
+                                optionClass += isCorrect ? ' answer-correct' : ' answer-incorrect';
+                            }
+                            if (showAnswerFeedback && isCorrect) {
+                                optionClass += ' correct-highlight';
+                            }
+
                             return (
                                 <div
                                     key={idx}
-                                    className={`option ${examAnswers[examIndex] === letter ? 'selected' : ''}`}
+                                    className={optionClass}
                                     onClick={() => setExamAnswer(letter)}
+                                    style={{ cursor: showAnswerFeedback ? 'default' : 'pointer' }}
                                 >
                                     {letter}) {opt}
                                 </div>

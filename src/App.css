@@ -401,6 +401,85 @@ h1 {
   box-shadow: 0 0 0 2px var(--correct-border);
 }
 
+/* Answer Feedback Animations */
+.option.answer-correct {
+  background: #4ade80 !important;
+  border-color: #16a34a !important;
+  color: #064e3b !important;
+  font-weight: 600;
+  animation: correctPulse 0.5s ease-out;
+}
+
+.option.answer-incorrect {
+  background: #f87171 !important;
+  border-color: #dc2626 !important;
+  color: #450a0a !important;
+  font-weight: 600;
+  animation: incorrectShake 0.5s ease-out;
+}
+
+@keyframes correctPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes incorrectShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-8px);
+  }
+  40% {
+    transform: translateX(8px);
+  }
+  60% {
+    transform: translateX(-4px);
+  }
+  80% {
+    transform: translateX(4px);
+  }
+}
+
+/* Progress Bar */
+.progress-bar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 1rem;
+  background: var(--bg-card);
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.progress-segments {
+  font-family: "Courier New", monospace;
+  font-size: 1.1rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: var(--accent-blue);
+  user-select: none;
+}
+
+.progress-text {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .progress-segments {
+  color: var(--accent-blue);
+}
+
 .footer-card {
   margin-top: 1rem;
   display: flex;
@@ -1367,7 +1446,9 @@ hr {
   font-size: 1.2rem;
   padding: 0.25rem 0.5rem;
   opacity: 0.6;
-  transition: opacity 0.2s, transform 0.2s;
+  transition:
+    opacity 0.2s,
+    transform 0.2s;
 }
 
 .bookmark-btn:hover {
@@ -1609,7 +1690,9 @@ hr {
   border-radius: 12px;
   margin-bottom: 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .service-card:hover {
