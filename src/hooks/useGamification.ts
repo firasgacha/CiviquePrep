@@ -192,7 +192,7 @@ export function useGamification(
         earnedBadges: [...prev.earnedBadges, ...newBadges],
       }));
     }
-  }, [answeredQuestionsCount, examHistory, gamification]);
+  }, [answeredQuestionsCount, examHistory, gamification, setGamification]);
 
   const getEarnedBadges = useMemo(() => {
     return BADGES.filter((b) => gamification.earnedBadges.includes(b.id));
