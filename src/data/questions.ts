@@ -1950,13 +1950,670 @@ const theme5 = [
 ];
 
 // Assemble with unique identifiers
-export const allQuestions: Question[] = [
-  ...theme1.map((q, index) => ({ ...q, theme: 1, id: `t1-${q.num}-${index}` })),
-  ...theme2.map((q, index) => ({ ...q, theme: 2, id: `t2-${q.num}-${index}` })),
-  ...theme3.map((q, index) => ({ ...q, theme: 3, id: `t3-${q.num}-${index}` })),
-  ...theme4.map((q, index) => ({ ...q, theme: 4, id: `t4-${q.num}-${index}` })),
-  ...theme5.map((q, index) => ({ ...q, theme: 5, id: `t5-${q.num}-${index}` })),
+export const cspQuestions: Question[] = [
+  ...theme1.map((q, index) => ({
+    ...q,
+    theme: 1,
+    id: `t1-${q.num}-${index}`,
+    list: "csp" as const,
+  })),
+  ...theme2.map((q, index) => ({
+    ...q,
+    theme: 2,
+    id: `t2-${q.num}-${index}`,
+    list: "csp" as const,
+  })),
+  ...theme3.map((q, index) => ({
+    ...q,
+    theme: 3,
+    id: `t3-${q.num}-${index}`,
+    list: "csp" as const,
+  })),
+  ...theme4.map((q, index) => ({
+    ...q,
+    theme: 4,
+    id: `t4-${q.num}-${index}`,
+    list: "csp" as const,
+  })),
+  ...theme5.map((q, index) => ({
+    ...q,
+    theme: 5,
+    id: `t5-${q.num}-${index}`,
+    list: "csp" as const,
+  })),
 ];
+
+// CR Questions - Carte de Résident
+const crTheme1 = [
+  // Principes et valeurs de la République
+  {
+    num: 1,
+    text: 'Que représentent les principes de "Liberté, Égalité, Fraternité" ?',
+    options: [
+      "La devise de l'Union européenne.",
+      "La devise de la République française.",
+      "Le nom des trois partis politiques principaux.",
+      "Les règles d'un club sportif.",
+    ],
+    correct: "B",
+  },
+  {
+    num: 2,
+    text: "Que permet la liberté d'expression en France ?",
+    options: [
+      "Dire tout ce que l'on veut, sans aucune limite.",
+      "Insulter une personne en public si l'on est en colère.",
+      "Exprimer ses idées, sans inciter à la haine ou à la violence.",
+      "Uniquement s'exprimer dans la langue française.",
+    ],
+    correct: "C",
+  },
+  {
+    num: 3,
+    text: "La liberté de circulation en France signifie que l'on peut :",
+    options: [
+      "Conduire sans permis de conduire sur tout le territoire.",
+      "Se déplacer librement et s'installer où on le souhaite.",
+      "Voyager gratuitement dans tous les transports en commun.",
+      "Uniquement circuler dans sa commune de résidence.",
+    ],
+    correct: "B",
+  },
+  {
+    num: 4,
+    text: "Quel est le symbole officiel de la République française que l'on trouve souvent sur les pièces de monnaie et les timbres ?",
+    options: [
+      "La tour Eiffel.",
+      "Le coq gaulois.",
+      "Marianne.",
+      "Le bonnet phrygien.",
+    ],
+    correct: "C",
+  },
+  {
+    num: 5,
+    text: "La Marseillaise est un chant de guerre révolutionnaire. Quels en sont les premiers mots ?",
+    options: [
+      '"Sous le ciel de Paris..."',
+      '"Allons enfants de la Patrie, le jour de gloire est arrivé".',
+      '"Douce France, cher pays de mon enfance..."',
+      '"Un jour, je serai, le meilleur dresseur..."',
+    ],
+    correct: "B",
+  },
+  {
+    num: 6,
+    text: "En France, la liberté individuelle garantit qu'une personne peut :",
+    options: [
+      "Choisir son mode de vie, son domicile ou ses opinions.",
+      "Faire tout ce qu'elle veut sans jamais être punie.",
+      "Ignorer toutes les lois de la République.",
+      "Refuser de payer ses impôts si elle n'est pas d'accord.",
+    ],
+    correct: "A",
+  },
+  {
+    num: 7,
+    text: "Comment peut-on pratiquer sa religion en France ?",
+    options: [
+      "Uniquement dans la religion catholique.",
+      "Libre dans le cadre privé, en respectant l'ordre public et la laïcité.",
+      "En portant des signes religieux ostensibles à l'école.",
+      "En imposant ses croyances à ses collègues de travail.",
+    ],
+    correct: "B",
+  },
+  {
+    num: 8,
+    text: "Brûler un drapeau français lors d'une manifestation publique est :",
+    options: [
+      "Un geste artistique protégé par la liberté d'expression.",
+      "Un outrage aux symboles de la République, passible de sanctions.",
+      "Autorisé si l'on est mécontent du gouvernement.",
+      "Une tradition républicaine pour célébrer la liberté.",
+    ],
+    correct: "B",
+  },
+  {
+    num: 9,
+    text: "Comment l'État français lutte-t-il contre les discriminations ?",
+    options: [
+      "En laissant les entreprises décider seules de leurs règles d'embauche.",
+      "En supprimant toutes les différences entre les citoyens.",
+      "En créant des lois protectrices et des organismes comme le Défenseur des droits.",
+      "En interdisant aux personnes étrangères de travailler.",
+    ],
+    correct: "C",
+  },
+  {
+    num: 10,
+    text: "Que signifie le principe de laïcité à l'école publique ?",
+    options: [
+      "L'enseignement de la religion catholique est obligatoire.",
+      "Les élèves peuvent porter tous les signes religieux qu'ils souhaitent.",
+      "Protéger la liberté de conscience des élèves et assurer la neutralité de l'enseignement.",
+      "Les parents peuvent exiger des cours de religion pour leurs enfants.",
+    ],
+    correct: "C",
+  },
+  {
+    num: 11,
+    text: "Selon la loi française, une personne a-t-elle le droit de ne pas croire en Dieu (athéisme) ?",
+    options: [
+      "Non, la République est catholique.",
+      "Oui, la liberté de conscience inclut l'athéisme.",
+      " Seulement si elle est née en France.",
+      "Non, il faut obligatoirement avoir une religion.",
+    ],
+    correct: "B",
+  },
+  {
+    num: 12,
+    text: "En tant qu'usager dans une mairie ou une préfecture, comment les agents publics doivent-ils se comporter ?",
+    options: [
+      "Ils doivent afficher leurs opinions politiques.",
+      "Ils doivent être strictement neutres et impartiaux.",
+      "Ils peuvent refuser de servir une personne voilée.",
+      "Ils doivent porter un signe religieux pour représenter la diversité.",
+    ],
+    correct: "B",
+  },
+];
+
+const crTheme2 = [
+  // Participation citoyenne et institutions
+  {
+    num: 1,
+    text: "Participer à la vie citoyenne, c'est par exemple :",
+    options: [
+      "Regarder les informations à la télévision.",
+      "Payer ses impôts uniquement quand on le décide.",
+      "Voter aux élections ou s'engager dans une association.",
+      "Ne pas s'intéresser à la politique.",
+    ],
+    correct: "C",
+  },
+  {
+    num: 2,
+    text: "Un étranger qui vit en France a besoin d'un document officiel pour résider légalement. Comment s'appelle-t-il ?",
+    options: [
+      "Un passeport.",
+      "Une carte d'identité nationale.",
+      "Un titre de séjour.",
+      "Un permis de conduire.",
+    ],
+    correct: "C",
+  },
+  {
+    num: 3,
+    text: "Que garantit l'État de droit ?",
+    options: [
+      "Que seul le Président est au-dessus des lois.",
+      "Que tout le monde, y compris l'État, est soumis à la loi.",
+      "Que la police peut agir sans contrôle en cas de danger.",
+      "Que les citoyens peuvent faire la loi eux-mêmes.",
+    ],
+    correct: "B",
+  },
+  {
+    num: 4,
+    text: "Qui dirige le gouvernement français ?",
+    options: [
+      "Le Président de la République.",
+      "Le Maire de Paris.",
+      "Le Premier ministre.",
+      "Le Président du Sénat.",
+    ],
+    correct: "C",
+  },
+  {
+    num: 5,
+    text: "Quel est le rôle du Parlement (Assemblée nationale et Sénat) ?",
+    options: [
+      "Juger les criminels.",
+      "Voter les lois et contrôler le gouvernement.",
+      "Nommer les maires de toutes les communes.",
+      "Représenter la France à l'étranger.",
+    ],
+    correct: "B",
+  },
+  {
+    num: 6,
+    text: "Pourquoi la séparation des pouvoirs (législatif, exécutif, judiciaire) est-elle importante ?",
+    options: [
+      "Pour rendre le travail du gouvernement plus lent.",
+      "Pour éviter la tyrannie et garantir la démocratie.",
+      "Pour que le Président ait tous les pouvoirs.",
+      "Pour que les juges puissent faire la loi.",
+    ],
+    correct: "B",
+  },
+  {
+    num: 7,
+    text: "Qui est le représentant de l'État dans un département ?",
+    options: [
+      "Le Maire.",
+      "Le Défenseur des droits.",
+      "Le Préfet.",
+      "Le Député.",
+    ],
+    correct: "C",
+  },
+  {
+    num: 8,
+    text: "Que se passe-t-il si un ministre ne respecte pas la loi dans le cadre de ses fonctions ?",
+    options: [
+      "Rien, il est protégé par son statut.",
+      "Il peut être démis de ses fonctions et jugé par la Cour de Justice de la République.",
+      "Seul le Président peut le juger.",
+      "Il doit démissionner mais ne peut pas être jugé.",
+    ],
+    correct: "B",
+  },
+  {
+    num: 9,
+    text: "Un citoyen français peut-il décider de rester au pouvoir après la fin de son mandat选举 ?",
+    options: [
+      "Oui, s'il est populaire.",
+      "Non, il doit respecter la durée de son mandat (ex: 5 ans pour le Président).",
+      "Oui, s'il organise un référendum pour le demander.",
+      "Non, car il doit obligatoirement devenir Premier ministre après.",
+    ],
+    correct: "B",
+  },
+  {
+    num: 10,
+    text: "Combien de deputies sont élus à l'Assemblée nationale ?",
+    options: ["577.", "350.", "101.", "1000."],
+    correct: "A",
+  },
+  {
+    num: 11,
+    text: "Qui peut voter aux élections municipales en France ?",
+    options: [
+      "Toute personne majeure vivant dans la commune.",
+      "Les citoyens français majeurs, et les citoyens de l'UE résidant en France.",
+      "Uniquement les propriétaires immobiliers de la commune.",
+      "Tous les habitants de la commune, y compris les mineurs de 16 ans.",
+    ],
+    correct: "B",
+  },
+];
+
+const crTheme3 = [
+  // L'Union européenne
+  {
+    num: 1,
+    text: "Quelle est la devise de l'Union européenne ?",
+    options: [
+      "Liberté, Égalité, Fraternité.",
+      "Unie dans la diversité.",
+      "Pour une Europe toujours plus forte.",
+      "L'union fait la force.",
+    ],
+    correct: "B",
+  },
+  {
+    num: 2,
+    text: "Combien d'étoiles compte le drapeau européen ?",
+    options: [
+      "15, une pour chaque pays fondateur.",
+      "27, une pour chaque état membre.",
+      "12, un nombre symbolique qui représente la perfection et l'unité.",
+      "Une grande étoile centrale entourée de petites étoiles.",
+    ],
+    correct: "C",
+  },
+  {
+    num: 3,
+    text: "Où se trouve le siège principal du Parlement européen ?",
+    options: ["Bruxelles.", "Strasbourg.", "Luxembourg.", "Francfort."],
+    correct: "B",
+  },
+  {
+    num: 4,
+    text: "Lequel de ces pays n'est PAS membre de l'Union européenne ?",
+    options: ["L'Allemagne.", "L'Espagne.", "La Suisse.", "La Pologne."],
+    correct: "C",
+  },
+  {
+    num: 5,
+    text: "Depuis quelle année utilise-t-on l'euro (en pièces et billets) en France ?",
+    options: ["1992.", "1999.", "2002.", "2010."],
+    correct: "C",
+  },
+  {
+    num: 6,
+    text: "À quelle fréquence les citoyens français élisent-ils leurs deputies européens ?",
+    options: [
+      "Tous les 3 ans.",
+      "Tous les 5 ans.",
+      "Tous les 6 ans.",
+      "Tous les 7 ans.",
+    ],
+    correct: "B",
+  },
+];
+
+const crTheme4 = [
+  // Droits et devoirs des citoyens
+  {
+    num: 1,
+    text: "Selon la Déclaration des Droits de l'Homme de 1789, les hommes :",
+    options: [
+      "Sont divisés en plusieurs catégories sociales.",
+      "Naissent et demeurent libres et égaux en droits.",
+      "Doivent travailler pour gagner leur liberté.",
+      "Sont tous sujets du Roi.",
+    ],
+    correct: "B",
+  },
+  {
+    num: 2,
+    text: "La peine de mort est-elle autorisée en France ?",
+    options: [
+      "Oui, pour les crimes les plus graves.",
+      "Non, elle est abolie (interdite).",
+      "Oui, mais uniquement en temps de guerre.",
+      "Non, mais elle peut être rétablie par un juge.",
+    ],
+    correct: "B",
+  },
+  {
+    num: 3,
+    text: 'Qu\'est-ce que la "dignité humaine" ?',
+    options: [
+      "Le fait d'être riche et respecté.",
+      "Le fait qu'un être humain ne doit jamais être traité comme une chose.",
+      "Un titre honorifique donné par le Président.",
+      "Le droit de porter des vêtements de marque.",
+    ],
+    correct: "B",
+  },
+  {
+    num: 4,
+    text: "Le droit de grève permet de :",
+    options: [
+      "Ne jamais aller au travail.",
+      "Cesser le travail collectivement pour défendre des revendications professionnelles.",
+      "Se mettre en colère contre son patron sans raison.",
+      "Bloquer les routes de manière sauvage.",
+    ],
+    correct: "B",
+  },
+  {
+    num: 5,
+    text: "Jeter un mégot de cigarette par terre est :",
+    options: [
+      "Autorisé, c'est tout petit.",
+      "Une incivilité passible d'une amende.",
+      "Autorisé uniquement si personne ne vous voit.",
+      "Un geste citoyen pour nettoyer les caniveaux.",
+    ],
+    correct: "B",
+  },
+  {
+    num: 6,
+    text: "Que doit faire une personne victime de violences ?",
+    options: [
+      "Ne pas en parler pour éviter les problèmes.",
+      "Se venger par elle-même plus tard.",
+      "Porter plainte et demander de l'aide (ex: appeler le 3919).",
+      "Poster un message sur les réseaux sociaux.",
+    ],
+    correct: "C",
+  },
+  {
+    num: 7,
+    text: "Quelle est l'obligation d'un conducteur envers un piéton qui traverse sur un passage protégé ?",
+    options: [
+      "Accélérer pour passer avant lui.",
+      "Lui céder le passage.",
+      "Lui faire peur avec son klaxon.",
+      "S'arrêter uniquement s'il y a un agent de police.",
+    ],
+    correct: "B",
+  },
+  {
+    num: 8,
+    text: "Quelle est l'infraction la plus grave selon la loi française ?",
+    options: [
+      "La contravention (ex: stationnement gênant).",
+      "Le délit (ex: vol).",
+      "Le crime (ex: meurtre).",
+      "L'incivilité (ex: bruit excessif).",
+    ],
+    correct: "C",
+  },
+  {
+    num: 9,
+    text: "En France, le mariage religieux est-il suffisant pour être reconnu par l'État ?",
+    options: [
+      "Oui, toutes les religions sont reconnues.",
+      "Non, il doit être précédé ou suivi du mariage civil à la mairie.",
+      "Oui, si les parents sont d'accord.",
+      "Non, seul le mariage à l'église catholique est reconnu.",
+    ],
+    correct: "B",
+  },
+];
+
+const crTheme5 = [
+  // Histoire, géographie et culture
+  {
+    num: 1,
+    text: "Quel roi a été exécuté pendant la Révolution française ?",
+    options: ["Louis XIV.", "Louis XVI.", "Napoléon Bonaparte.", "Henri IV."],
+    correct: "B",
+  },
+  {
+    num: 2,
+    text: "En quelle année les femmes ont-elles obtenu le droit de vote en France ?",
+    options: [
+      "1918 (juste après la 1ère Guerre mondiale).",
+      "1936 (avec le Front Populaire).",
+      "1944 (à la fin de la Seconde Guerre mondiale).",
+      "1968 (après les événements de mai).",
+    ],
+    correct: "C",
+  },
+  {
+    num: 3,
+    text: "Qui a lancé l'appel du 18 juin 1940 pour appeler à résister contre l'occupation allemande ?",
+    options: [
+      "Le maréchal Pétain.",
+      "Le général de Gaulle.",
+      "Jean Moulin.",
+      "François Mitterrand.",
+    ],
+    correct: "B",
+  },
+  {
+    num: 4,
+    text: "Quelle mer ou quel océan ne borde pas la France métropolitaine ?",
+    options: [
+      "L'océan Atlantique.",
+      "La mer Méditerranée.",
+      "La mer du Nord.",
+      "L'océan Pacifique.",
+    ],
+    correct: "D",
+  },
+  {
+    num: 5,
+    text: "Quel est le fleuve qui traverse Paris ?",
+    options: ["Le Rhône.", "La Loire.", "La Garonne.", "La Seine."],
+    correct: "D",
+  },
+  {
+    num: 6,
+    text: "Quel pays est frontalier de la France au nord-est ?",
+    options: ["L'Italie.", "L'Espagne.", "La Belgique.", "L'Allemagne."],
+    correct: "D",
+  },
+  {
+    num: 7,
+    text: 'Quel est le musée le plus célèbre de Paris, connu pour abriter "La Joconde" ?',
+    options: [
+      "Le Centre Pompidou.",
+      "Le musée d'Orsay.",
+      "Le Louvre.",
+      "Le château de Versailles.",
+    ],
+    correct: "C",
+  },
+  {
+    num: 8,
+    text: "Que célèbre-t-on le 14 juillet en France ?",
+    options: [
+      "La fin de la Seconde Guerre mondiale.",
+      "La Fête nationale (la prise de la Bastille).",
+      "La victoire de la coupe du monde de football.",
+      "La fête du travail.",
+    ],
+    correct: "B",
+  },
+];
+
+const crTheme6 = [
+  // Vivre dans la société française au quotidien
+  {
+    num: 1,
+    text: "Pour inscrir son enfant à l'école publique, il faut s'adresser :",
+    options: [
+      "À l'école directement, le jour de la rentrée.",
+      "À la mairie de son domicile.",
+      "À la préfecture de son département.",
+      "Au ministère de l'Éducation nationale à Paris.",
+    ],
+    correct: "B",
+  },
+  {
+    num: 2,
+    text: "En cas de litige avec son employeur (ex: licenciement abusif), à quelle juridiction s'adresser ?",
+    options: [
+      "Au tribunal de police.",
+      "Au tribunal de commerce.",
+      "Au conseil de prud'hommes.",
+      "Au tribunal administratif.",
+    ],
+    correct: "C",
+  },
+  {
+    num: 3,
+    text: "Quel est le numéro de téléphone à composer pour joindre les secours (pompiers) ?",
+    options: ["Le 15.", "Le 17.", "Le 18.", "Le 112."],
+    correct: "C",
+  },
+  {
+    num: 4,
+    text: "Un père et une mère divorcent. Qui a l'autorité parentale sur les enfants ?",
+    options: [
+      "Uniquement la mère, car c'est plus naturel.",
+      "Uniquement le père, s'il a obtenu la garde.",
+      "Généralement les deux parents, sauf décision contraire du juge.",
+      "Les grands-parents, car ils sont plus sages.",
+    ],
+    correct: "C",
+  },
+  {
+    num: 5,
+    text: 'Que signifie "travailler au noir" ?',
+    options: [
+      "Travailler de nuit.",
+      "Travailler dans une mine de charbon.",
+      "Travailler sans être déclaré, ce qui est illégal.",
+      "Travailler avec des vêtements sombres.",
+    ],
+    correct: "C",
+  },
+  {
+    num: 6,
+    text: "Jusqu'à quel âge l'instruction est-elle obligatoire pour un enfant ?",
+    options: [
+      "14 ans.",
+      "16 ans.",
+      "18 ans (dès l'âge de 3 ans jusqu'à 18 ans).",
+      "Jusqu'à l'obtention du baccalauréat.",
+    ],
+    correct: "C",
+  },
+  {
+    num: 7,
+    text: 'Un élève handicapé a-t-il le droit d\'aller dans une école "normale" ?',
+    options: [
+      "Non, il doit aller dans un établissement spécialisé.",
+      "Oui, il a le droit d'être scolarisé en milieu ordinaire avec des aides (AESH).",
+      "Oui, mais uniquement s'il n'a pas besoin d'aide.",
+      "Non, l'école publique ne peut pas l'accueillir.",
+    ],
+    correct: "B",
+  },
+  {
+    num: 8,
+    text: "En cas d'accident grave dans la rue, quelle est la première chose à faire ?",
+    options: [
+      "Prendre une photo pour les réseaux sociaux.",
+      "Appeler les secours (15, 18 ou 112) et ne pas déplacer la victime si elle est inconsciente.",
+      "Continuer son chemin pour ne pas être témoin.",
+      "Donner à boire à la victime, quoi qu'il arrive.",
+    ],
+    correct: "B",
+  },
+  {
+    num: 9,
+    text: "Pour être locataire d'un appartement, que faut-il généralement signer avec le propriétaire ?",
+    options: [
+      "Un chèque de caution.",
+      "Un contrat de travail.",
+      "Un bail locatif.",
+      "Une promesse de vente.",
+    ],
+    correct: "C",
+  },
+];
+
+export const crQuestions: Question[] = [
+  ...crTheme1.map((q, index) => ({
+    ...q,
+    theme: 1,
+    id: `cr-t1-${q.num}-${index}`,
+    list: "cr" as const,
+  })),
+  ...crTheme2.map((q, index) => ({
+    ...q,
+    theme: 2,
+    id: `cr-t2-${q.num}-${index}`,
+    list: "cr" as const,
+  })),
+  ...crTheme3.map((q, index) => ({
+    ...q,
+    theme: 3,
+    id: `cr-t3-${q.num}-${index}`,
+    list: "cr" as const,
+  })),
+  ...crTheme4.map((q, index) => ({
+    ...q,
+    theme: 4,
+    id: `cr-t4-${q.num}-${index}`,
+    list: "cr" as const,
+  })),
+  ...crTheme5.map((q, index) => ({
+    ...q,
+    theme: 5,
+    id: `cr-t5-${q.num}-${index}`,
+    list: "cr" as const,
+  })),
+  ...crTheme6.map((q, index) => ({
+    ...q,
+    theme: 6,
+    id: `cr-t6-${q.num}-${index}`,
+    list: "cr" as const,
+  })),
+];
+
+// Export all questions (for backward compatibility)
+export const allQuestions: Question[] = [...cspQuestions, ...crQuestions];
 
 export const corrigesParTheme: { [key: number]: string } = {
   1: "1.C | 2.C | 3.B | 4.A | 5.C | 6.C | 7.D | 8.C | 9.A | 10.B | 11.B | 12.B | 13.A | 14.B | 15.C | 16.C | 17.C | 18.B | 19.C | 20.C | 21.B | 22.B | 23.D | 24.C | 25.B | 26.C | 27.B | 28.A | 29.B | 30.B | 31.C | 32.C | 33.B | 34.B | 35.A | 36.B | 37.B | 38.C",

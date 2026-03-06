@@ -7,6 +7,7 @@ export interface Question {
   id: string;
   revealed?: boolean;
   type?: "connaissance" | "mise en situation";
+  list?: "csp" | "cr";
 }
 
 export type Tab = "train" | "exam" | "resume" | "notes";
@@ -31,4 +32,5 @@ export const THEME_NAMES: { [key: number]: string } = {
   3: "Droits & devoirs",
   4: "Histoire & culture",
   5: "Vie sociale",
+  6: "Vie quotidienne",
 };

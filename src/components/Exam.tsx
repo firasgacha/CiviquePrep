@@ -24,11 +24,14 @@ export function Exam({ questions }: ExamProps) {
 
     // Handle list selection
     const handleListSelect = (list: 'csp' | 'cr') => {
-        if (list === 'cr') {
-            // CR is not yet available
-            return;
-        }
         setSelectedList(list);
+        // Reset exam state when switching lists
+        setExamActive(false);
+        setExamFinished(false);
+        setExamQuestions([]);
+        setExamAnswers([]);
+        setExamIndex(0);
+        if (timerInterval) clearInterval(timerInterval);
     };
 
     // Reset to list selection
@@ -52,7 +55,9 @@ export function Exam({ questions }: ExamProps) {
     };
 
     const startExam = useCallback(() => {
-        const shuffled = shuffleArray([...questions]);
+        // Filter questions by selected list
+        const listQuestions = questions.filter(q => q.list === selectedList);
+        const shuffled = shuffleArray([...listQuestions]);
         const selected = shuffled.slice(0, 50);
         const withTypes = selected.map((q, idx) => ({
             ...q,
@@ -75,7 +80,7 @@ export function Exam({ questions }: ExamProps) {
             });
         }, 1000);
         setTimerInterval(interval);
-    }, [questions, timerInterval]);
+    }, [questions, timerInterval, selectedList]);
 
     const finishExam = useCallback(() => {
         const score = examQuestions.reduce((acc, q, idx) => {
@@ -193,15 +198,14 @@ export function Exam({ questions }: ExamProps) {
                         onClick={() => handleListSelect('csp')}
                     >
                         <span className="list-name">{t('cspList')}</span>
-                        <span className="list-count">{questions.length} {t('questions')}</span>
+                        <span className="list-count">{questions.filter(q => q.list === 'csp').length} {t('questions')}</span>
                     </button>
                     <button
-                        className="list-selection-btn cr disabled"
+                        className="list-selection-btn cr"
                         onClick={() => handleListSelect('cr')}
-                        disabled
                     >
                         <span className="list-name">{t('crList')}</span>
-                        <span className="list-count">{t('comingSoon')}</span>
+                        <span className="list-count">{questions.filter(q => q.list === 'cr').length} {t('questions')}</span>
                     </button>
                 </div>
             </div>

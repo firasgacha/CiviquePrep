@@ -21,11 +21,9 @@ export function Training({ questions }: TrainingProps) {
 
     // Handle list selection
     const handleListSelect = (list: 'csp' | 'cr') => {
-        if (list === 'cr') {
-            // CR is not yet available
-            return;
-        }
         setSelectedList(list);
+        // Clear user selections when switching lists
+        setUserSelections({});
     };
 
     // Reset to list selection
@@ -38,6 +36,11 @@ export function Training({ questions }: TrainingProps) {
 
     const filteredQuestions = useMemo(() => {
         let filtered = questions;
+
+        // Filter by selected list (csp or cr)
+        if (selectedList) {
+            filtered = filtered.filter(q => q.list === selectedList);
+        }
 
         // Filter by theme
         if (currentTheme !== 0) {
@@ -111,15 +114,14 @@ export function Training({ questions }: TrainingProps) {
                         onClick={() => handleListSelect('csp')}
                     >
                         <span className="list-name">{t('cspList')}</span>
-                        <span className="list-count">{questions.length} {t('questions')}</span>
+                        <span className="list-count">{questions.filter(q => q.list === 'csp').length} {t('questions')}</span>
                     </button>
                     <button
-                        className="list-selection-btn cr disabled"
+                        className="list-selection-btn cr"
                         onClick={() => handleListSelect('cr')}
-                        disabled
                     >
                         <span className="list-name">{t('crList')}</span>
-                        <span className="list-count">{t('comingSoon')}</span>
+                        <span className="list-count">{questions.filter(q => q.list === 'cr').length} {t('questions')}</span>
                     </button>
                 </div>
             </div>
@@ -181,6 +183,14 @@ export function Training({ questions }: TrainingProps) {
                 >
                     5. {t('social')}
                 </button>
+                {selectedList === 'cr' && (
+                    <button
+                        className={`theme-btn ${currentTheme === 6 ? 'active' : ''}`}
+                        onClick={() => handleThemeChange(6)}
+                    >
+                        6. {t('daily')}
+                    </button>
+                )}
             </div>
 
             <div className="controls">
