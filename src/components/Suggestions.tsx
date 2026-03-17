@@ -3,10 +3,10 @@ import type { FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import emailjs from '@emailjs/browser';
 
-const EMAILJS_PUBLIC_KEY = 'ULeADCKjI_k9ELz0y';
-const EMAILJS_SERVICE_ID = 'service_CiviquePrep';
-const EMAILJS_TEMPLATE_ID = 'template_vn5k4ud';
-const TARGET_EMAIL = 'firasgacha7@gmail.com';
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '';
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || '';
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || '';
+const TARGET_EMAIL = import.meta.env.VITE_TARGET_EMAIL || '';
 
 export function Suggestions() {
     const { t } = useTranslation();
