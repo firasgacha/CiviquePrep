@@ -13,6 +13,7 @@ import { ThemeToggle } from './components/ThemeToggle';
 import { ScrollToTop } from './components/ScrollToTop';
 import { InstallPrompt } from './components/InstallPrompt';
 import { UpdateNotification } from './components/UpdateNotification';
+import { Suggestions } from './components/Suggestions';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { allQuestions } from './data/questions';
 import { useLocalStorage } from './hooks/useLocalStorage';
@@ -101,6 +102,12 @@ function AppContent() {
         >
           {t('aboutTitle')}
         </div>
+        <div
+          className={`nav-tab ${activeTab === 'suggestions' ? 'active' : ''}`}
+          onClick={() => setActiveTab('suggestions')}
+        >
+          {t('suggestions')}
+        </div>
       </div>
 
       {activeTab === 'info' ? (
@@ -115,6 +122,8 @@ function AppContent() {
         <Flashcards questions={allQuestions} />
       ) : activeTab === 'about' ? (
         <About />
+      ) : activeTab === 'suggestions' ? (
+        <Suggestions />
       ) : activeTab === 'resume' ? (
         <Resume questions={allQuestions} />
       ) : (
