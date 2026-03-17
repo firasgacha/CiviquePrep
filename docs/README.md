@@ -46,6 +46,7 @@ CiviquePrep is built with modern web technologies to provide an offline-capable,
 | **Notes**         | Personal note-taking for each question                                                                    |
 | **Bookmarks**     | Save favorite questions for later review                                                                  |
 | **Resume**        | Summary of exam history and performance                                                                   |
+| **Suggestions**   | Send feedback and suggestions via email                                                                   |
 
 ### Smart Features
 
@@ -73,6 +74,7 @@ CiviquePrep is built with modern web technologies to provide an offline-capable,
 | **Build Tool**           | Vite 7                                            |
 | **Styling**              | CSS (custom properties, CSS variables)            |
 | **Internationalization** | i18next + react-i18next                           |
+| **Email Service**        | EmailJS                                           |
 | **State Management**     | React hooks (useState, useContext) + localStorage |
 | **PWA**                  | Service Worker + Web App Manifest                 |
 
@@ -103,6 +105,8 @@ CiviquePrep/
 │   ├── sw.js                  # Service worker
 │   └── exam-svgrepo.svg       # App icon
 │
+├── .env                       # Environment variables (EmailJS config)
+│
 ├── src/
 │   ├── components/           # UI Components
 │   │   ├── About.tsx         # About page
@@ -116,6 +120,7 @@ CiviquePrep/
 │   │   ├── Notes.tsx        # Personal notes
 │   │   ├── Resume.tsx       # Performance summary
 │   │   ├── ScrollToTop.tsx  # Scroll utility
+│   │   ├── Suggestions.tsx  # User suggestions form
 │   │   ├── ThemeToggle.tsx  # Dark/light mode toggle
 │   │   ├── Training.tsx     # Training mode
 │   │   └── UpdateNotification.tsx # PWA update notification
@@ -280,6 +285,28 @@ Information about the French civic exam.
 #### [`About.tsx`](src/components/About.tsx:1)
 
 Application information and credits.
+
+#### [`Suggestions.tsx`](src/components/Suggestions.tsx:1)
+
+User feedback form using EmailJS for sending suggestions.
+
+**Features:**
+
+- Name, email (optional), and message fields
+- EmailJS integration for direct email delivery
+- Success/error feedback
+- Dark mode support
+- Loading state during submission
+
+**Configuration:**
+
+The component uses environment variables for EmailJS configuration:
+| Variable | Description |
+| -------- | ------------|
+| `VITE_EMAILJS_PUBLIC_KEY` | EmailJS public key |
+| `VITE_EMAILJS_SERVICE_ID` | EmailJS service ID |
+| `VITE_EMAILJS_TEMPLATE_ID` | EmailJS template ID |
+| `VITE_TARGET_EMAIL` | Target email address |
 
 ---
 
