@@ -29,10 +29,12 @@ export function Suggestions() {
 
         try {
             const templateParams = {
-                from_name: name,
-                from_email: email,
+                name: name,
+                email: email,
+                reply_to: email,
                 message: suggestion,
-                to_email: TARGET_EMAIL,
+                title: `CiviquePrep-Suggestion from ${name}`,
+                time: new Date().toLocaleString(),
             };
 
             await emailjs.send(
