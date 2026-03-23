@@ -131,7 +131,15 @@ function AppContent() {
       )}
       <ScrollToTop />
       <footer className="app-footer">
-        {t('copyright')} © {new Date().getFullYear()} {t('allRightsReserved')} 🦦
+        <div className="footer-content">
+          <p className="footer-copyright">
+            {t('copyright')} © {new Date().getFullYear()} {t('allRightsReserved')} 🦦
+          </p>
+          <p className="footer-contact">
+            {t('contactUs')}{' '}
+            <a href="mailto:france-prep@proton.me">france-prep@proton.me</a>
+          </p>
+        </div>
       </footer>
     </div>
   );

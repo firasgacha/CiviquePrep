@@ -1511,6 +1511,31 @@ hr {
   border-top: 1px solid var(--border-color);
 }
 
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-copyright {
+  margin: 0;
+}
+
+.footer-contact {
+  margin: 0;
+}
+
+.footer-contact a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-contact a:hover {
+  text-decoration: underline;
+}
+
 /* Bookmark Button Styles */
 .bookmark-btn {
   background: none;
